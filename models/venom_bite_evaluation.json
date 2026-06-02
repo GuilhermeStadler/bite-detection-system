@@ -1,0 +1,171 @@
+{
+  "classes": [
+    "aranha_marrom",
+    "armadeira",
+    "viuva_negra",
+    "escorpiao_amarelo",
+    "escorpiao_marrom",
+    "jararaca",
+    "cascavel",
+    "coral_verdadeira",
+    "surucucu"
+  ],
+  "overall_accuracy": 0.1875,
+  "per_class": [
+    {
+      "class_name": "aranha_marrom",
+      "test_images": 6,
+      "correct": 1,
+      "accuracy": 0.1667
+    },
+    {
+      "class_name": "armadeira",
+      "test_images": 0,
+      "correct": 0,
+      "accuracy": 0
+    },
+    {
+      "class_name": "viuva_negra",
+      "test_images": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    },
+    {
+      "class_name": "escorpiao_amarelo",
+      "test_images": 3,
+      "correct": 1,
+      "accuracy": 0.3333
+    },
+    {
+      "class_name": "escorpiao_marrom",
+      "test_images": 0,
+      "correct": 0,
+      "accuracy": 0
+    },
+    {
+      "class_name": "jararaca",
+      "test_images": 3,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    {
+      "class_name": "cascavel",
+      "test_images": 2,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    {
+      "class_name": "coral_verdadeira",
+      "test_images": 0,
+      "correct": 0,
+      "accuracy": 0
+    },
+    {
+      "class_name": "surucucu",
+      "test_images": 0,
+      "correct": 0,
+      "accuracy": 0
+    }
+  ],
+  "confusion_matrix": [
+    [
+      1,
+      0,
+      0,
+      4,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ]
+}

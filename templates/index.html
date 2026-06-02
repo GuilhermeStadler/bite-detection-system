@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bite Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <img
+            src="{{ url_for('static', filename='logo/bite-detection-new-logo.png') }}"
+            alt="Bite Detection System"
+            class="brand-logo"
+          />
+        </div>
+
+        <nav class="sidebar-nav">
+          <button class="nav-item" id="nearbyHospitalsNav" type="button">Hospitais próximos</button>
+          <button class="nav-item" id="faqNav" type="button">Dúvidas frequentes</button>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <h1>Bite Detection System</h1>
+        </header>
+
+        <section class="chat-area">
+          <div class="chat-log" id="chatLog">
+            <article class="message assistant intro">
+              <div class="message-icon">IA</div>
+              <div class="message-body">
+                <h3>Como funciona</h3>
+                <p>
+                  Envie uma foto da região afetada, descreva os sintomas e, se puder, informe cidade, estado e tempo desde a picada. A resposta abaixo é um apoio inicial e não substitui avaliação médica.
+                </p>
+                <div class="checklist">
+                  <span>Imagem da picada</span>
+                  <span>Sintomas percebidos</span>
+                  <span>Localização do acidente</span>
+                  <span>Tempo desde o ocorrido</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <form class="composer" id="analysisForm">
+            <div class="form-section-title">Informações da análise</div>
+
+            <div class="attachment-preview" id="attachmentPreview" hidden>
+              <img id="attachmentImage" alt="Imagem anexada para análise" />
+              <button type="button" id="removeAttachmentButton" aria-label="Remover imagem anexada">×</button>
+            </div>
+
+            <div class="camera-panel" id="cameraPanel" hidden>
+              <video id="cameraVideo" autoplay playsinline></video>
+              <canvas id="cameraCanvas" hidden></canvas>
+              <div class="camera-actions">
+                <button type="button" class="camera-action-button primary" id="capturePhotoButton">Capturar foto</button>
+                <button type="button" class="camera-action-button" id="closeCameraButton">Fechar câmera</button>
+              </div>
+            </div>
+
+            <div class="composer-fields">
+              <div class="media-actions">
+                <input type="file" id="imageInput" accept="image/*" hidden />
+                <button class="media-button" id="mediaMenuButton" type="button" aria-expanded="false" aria-controls="mediaMenu">
+                  <span>+</span>
+                </button>
+                <div class="media-menu" id="mediaMenu" hidden>
+                  <button type="button" class="media-menu-item" id="chooseFileButton">Escolher arquivo</button>
+                  <button type="button" class="media-menu-item" id="openCameraButton">Abrir câmera</button>
+                </div>
+              </div>
+
+              <div class="textarea-wrap">
+                <textarea
+                  id="symptomsInput"
+                  placeholder="Descreva a picada e os sintomas. Ex.: dor intensa, inchaço, vermelhidão, duas perfurações, náusea..."
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-button">Analisar</button>
+            </div>
+
+            <div class="meta-grid">
+              <div class="input-group">
+                <label for="cityInput">Cidade</label>
+                <input type="text" id="cityInput" placeholder="Ex.: Campinas" />
+              </div>
+
+              <div class="input-group">
+                <label for="stateInput">Estado</label>
+                <input type="text" id="stateInput" placeholder="Ex.: SP" />
+              </div>
+
+              <div class="input-group">
+                <label for="timeInput">Tempo desde a picada</label>
+                <input type="text" id="timeInput" placeholder="Ex.: 30 minutos" />
+              </div>
+            </div>
+
+            <p class="composer-note">
+              Uso assistivo. Em caso de falta de ar, sangramento, desmaio, vômitos
+              intensos ou dor progressiva, procure atendimento imediato.
+            </p>
+          </form>
+
+          <button class="new-analysis-button" id="newAnalysisButton" type="button" hidden>
+            Nova análise
+          </button>
+
+          <section class="faq-section" id="faqSection" aria-labelledby="faqTitle" hidden>
+            <div class="faq-header">
+              <h2 id="faqTitle">Dúvidas frequentes</h2>
+            </div>
+
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>O que é o Bite Detection System?</summary>
+                <p>O Bite Detection System é uma plataforma que utiliza Inteligência Artificial para auxiliar na identificação de acidentes envolvendo animais peçonhentos. O sistema analisa imagens e sintomas informados pelo usuário para apresentar possíveis resultados, níveis de gravidade e orientações iniciais.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>O sistema substitui atendimento médico?</summary>
+                <p>Não. O Bite Detection System é uma ferramenta de apoio inicial e não substitui avaliação médica profissional. Em casos graves ou suspeitos, a recomendação é procurar atendimento médico imediatamente.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>Como a análise é realizada?</summary>
+                <p>A análise é feita a partir das informações enviadas pelo usuário, incluindo imagem da lesão ou do animal, sintomas apresentados, tempo desde o acidente, localização da picada, cidade e estado do ocorrido. A Inteligência Artificial combina essas informações para gerar uma estimativa dos possíveis animais relacionados ao acidente.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>Quais animais fazem parte do projeto?</summary>
+                <p>O sistema foi desenvolvido para reconhecer acidentes envolvendo diferentes espécies de importância médica no Brasil, incluindo aranhas, escorpiões e serpentes peçonhentas.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>O sistema funciona apenas com imagens?</summary>
+                <p>Não. Além da imagem, o Bite Detection System também utiliza os sintomas descritos pelo usuário para tornar a análise mais completa e aumentar a precisão dos resultados.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>O sistema indica hospitais próximos?</summary>
+                <p>Sim. O sistema possui integração com localização e mapas, permitindo identificar hospitais e unidades de saúde próximos ao usuário para facilitar o atendimento rápido em situações de emergência.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>O sistema apresenta nível de gravidade?</summary>
+                <p>Sim. A plataforma foi desenvolvida para apresentar estimativas de gravidade com base nos sintomas e características informadas durante a análise.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>O projeto pode ajudar pessoas em áreas rurais?</summary>
+                <p>Sim. Um dos principais objetivos do Bite Detection System é auxiliar pessoas em regiões afastadas, onde muitas vezes existe dificuldade em identificar rapidamente o animal causador do acidente.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>Como os dados do projeto foram organizados?</summary>
+                <p>Os dados utilizados no desenvolvimento foram organizados a partir de materiais científicos, informações públicas de saúde e imagens de referência.</p>
+              </details>
+
+              <details class="faq-item">
+                <summary>O Bite Detection System ainda está em desenvolvimento?</summary>
+                <p>Sim. O projeto continuará recebendo melhorias relacionadas à Inteligência Artificial, expansão do banco de dados, novas funcionalidades e aprimoramentos da plataforma.</p>
+              </details>
+            </div>
+          </section>
+
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const analysisForm = document.querySelector("#analysisForm");
+      const chatLog = document.querySelector("#chatLog");
+      const submitButton = document.querySelector(".submit-button");
+      const imageInput = document.querySelector("#imageInput");
+      const symptomsInput = document.querySelector("#symptomsInput");
+      const cityInput = document.querySelector("#cityInput");
+      const stateInput = document.querySelector("#stateInput");
+      const timeInput = document.querySelector("#timeInput");
+      const attachmentPreview = document.querySelector("#attachmentPreview");
+      const attachmentImage = document.querySelector("#attachmentImage");
+      const removeAttachmentButton = document.querySelector("#removeAttachmentButton");
+      const mediaMenuButton = document.querySelector("#mediaMenuButton");
+      const mediaMenu = document.querySelector("#mediaMenu");
+      const chooseFileButton = document.querySelector("#chooseFileButton");
+      const openCameraButton = document.querySelector("#openCameraButton");
+      const closeCameraButton = document.querySelector("#closeCameraButton");
+      const capturePhotoButton = document.querySelector("#capturePhotoButton");
+      const cameraPanel = document.querySelector("#cameraPanel");
+      const cameraVideo = document.querySelector("#cameraVideo");
+      const cameraCanvas = document.querySelector("#cameraCanvas");
+      const nearbyHospitalsNav = document.querySelector("#nearbyHospitalsNav");
+      const faqNav = document.querySelector("#faqNav");
+      const faqSection = document.querySelector("#faqSection");
+      const newAnalysisButton = document.querySelector("#newAnalysisButton");
+      let attachmentPreviewUrl = null;
+      let cameraStream = null;
+      let capturedImageFile = null;
+      let triageQuestionCount = 0;
+      let conversationContext = "";
+      let askedTriageQuestions = [];
+      let cachedImageAnalysis = null;
+
+      function getHospitalSearchUrl(query) {
+        const encodedQuery = encodeURIComponent(query);
+        return `https://www.google.com/maps/search/${encodedQuery}`;
+      }
+
+      function openHospitalSearch(query) {
+        const url = getHospitalSearchUrl(query);
+        window.location.href = url;
+      }
+
+      function searchHospitalsByCity() {
+        const city = cityInput.value.trim();
+        const state = stateInput.value.trim();
+        const place = [city, state].filter(Boolean).join(", ");
+
+        openHospitalSearch(place ? `hospitais próximos em ${place}` : "hospitais próximos");
+      }
+
+      function searchHospitalsByLocation() {
+        nearbyHospitalsNav.classList.add("active");
+        faqNav.classList.remove("active");
+        searchHospitalsByCity();
+      }
+
+      function closeFaqSection() {
+        faqSection.hidden = true;
+        faqNav.classList.remove("active");
+      }
+
+      function createMessage(role, text) {
+        const article = document.createElement("article");
+        article.className = `message ${role}`;
+
+        const icon = document.createElement("div");
+        icon.className = "message-icon";
+        icon.textContent = role === "user" ? "Você" : "IA";
+
+        const body = document.createElement("div");
+        body.className = "message-body";
+
+        const paragraph = document.createElement("p");
+        paragraph.textContent = text;
+
+        body.appendChild(paragraph);
+        article.appendChild(icon);
+        article.appendChild(body);
+        chatLog.appendChild(article);
+        article.scrollIntoView({ behavior: "smooth", block: "end" });
+
+        return paragraph;
+      }
+
+      function getUserText() {
+        const parts = [symptomsInput.value.trim()];
+
+        if (cityInput.value.trim()) {
+          parts.push(`Cidade: ${cityInput.value.trim()}`);
+        }
+
+        if (stateInput.value.trim()) {
+          parts.push(`Estado: ${stateInput.value.trim()}`);
+        }
+
+        if (timeInput.value.trim()) {
+          parts.push(`Tempo desde a picada: ${timeInput.value.trim()}`);
+        }
+
+        const attachedImage = getSelectedImage();
+        if (attachedImage) {
+          parts.push(`Imagem anexada: ${attachedImage.name}`);
+        }
+
+        return parts.filter(Boolean).join("\n");
+      }
+
+      function createImagePreview(file) {
+        if (!file) {
+          return;
+        }
+
+        const previewUrl = URL.createObjectURL(file);
+        const article = document.createElement("article");
+        article.className = "message user";
+
+        const icon = document.createElement("div");
+        icon.className = "message-icon";
+        icon.textContent = "Você";
+
+        const body = document.createElement("div");
+        body.className = "message-body";
+
+        const image = document.createElement("img");
+        image.className = "message-image";
+        image.src = previewUrl;
+        image.alt = "Imagem enviada para análise";
+        image.onload = () => URL.revokeObjectURL(previewUrl);
+
+        body.appendChild(image);
+        article.appendChild(icon);
+        article.appendChild(body);
+        chatLog.appendChild(article);
+        article.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+
+      function clearAttachmentPreview() {
+        if (attachmentPreviewUrl) {
+          URL.revokeObjectURL(attachmentPreviewUrl);
+          attachmentPreviewUrl = null;
+        }
+
+        imageInput.value = "";
+        capturedImageFile = null;
+        attachmentImage.removeAttribute("src");
+        attachmentPreview.hidden = true;
+      }
+
+      function updateAttachmentPreview() {
+        const file = imageInput.files[0];
+        capturedImageFile = null;
+        closeMediaMenu();
+
+        if (attachmentPreviewUrl) {
+          URL.revokeObjectURL(attachmentPreviewUrl);
+          attachmentPreviewUrl = null;
+        }
+
+        if (!file) {
+          attachmentImage.removeAttribute("src");
+          attachmentPreview.hidden = true;
+          return;
+        }
+
+        attachmentPreviewUrl = URL.createObjectURL(file);
+        attachmentImage.src = attachmentPreviewUrl;
+        attachmentPreview.hidden = false;
+      }
+
+      function openMediaMenu() {
+        mediaMenu.hidden = false;
+        mediaMenuButton.setAttribute("aria-expanded", "true");
+      }
+
+      function closeMediaMenu() {
+        mediaMenu.hidden = true;
+        mediaMenuButton.setAttribute("aria-expanded", "false");
+      }
+
+      function toggleMediaMenu() {
+        if (mediaMenu.hidden) {
+          openMediaMenu();
+        } else {
+          closeMediaMenu();
+        }
+      }
+
+      function getSelectedImage() {
+        return capturedImageFile || imageInput.files[0] || null;
+      }
+
+      async function openCamera() {
+        closeMediaMenu();
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert("Seu navegador não liberou acesso à câmera.");
+          return;
+        }
+
+        try {
+          cameraStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: "environment" } },
+            audio: false
+          });
+          cameraVideo.srcObject = cameraStream;
+          cameraPanel.hidden = false;
+        } catch (error) {
+          alert("Não foi possível abrir a câmera. Verifique a permissão do navegador.");
+        }
+      }
+
+      function closeCamera() {
+        if (cameraStream) {
+          cameraStream.getTracks().forEach((track) => track.stop());
+          cameraStream = null;
+        }
+
+        cameraVideo.srcObject = null;
+        cameraPanel.hidden = true;
+      }
+
+      function showCapturedImage(file) {
+        if (attachmentPreviewUrl) {
+          URL.revokeObjectURL(attachmentPreviewUrl);
+        }
+
+        capturedImageFile = file;
+        imageInput.value = "";
+        attachmentPreviewUrl = URL.createObjectURL(file);
+        attachmentImage.src = attachmentPreviewUrl;
+        attachmentPreview.hidden = false;
+      }
+
+      function capturePhoto() {
+        if (!cameraVideo.videoWidth || !cameraVideo.videoHeight) {
+          return;
+        }
+
+        cameraCanvas.width = cameraVideo.videoWidth;
+        cameraCanvas.height = cameraVideo.videoHeight;
+        const context = cameraCanvas.getContext("2d");
+        context.drawImage(cameraVideo, 0, 0, cameraCanvas.width, cameraCanvas.height);
+
+        cameraCanvas.toBlob((blob) => {
+          if (!blob) {
+            return;
+          }
+
+          const file = new File([blob], `foto-camera-${Date.now()}.jpg`, { type: "image/jpeg" });
+          showCapturedImage(file);
+          closeCamera();
+        }, "image/jpeg", 0.92);
+      }
+
+      function resizeSymptomsInput() {
+        symptomsInput.style.height = "auto";
+        symptomsInput.style.height = `${Math.min(symptomsInput.scrollHeight, 360)}px`;
+      }
+
+      analysisForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const question = symptomsInput.value.trim();
+        const selectedImage = getSelectedImage();
+        if (!question && !selectedImage) {
+          symptomsInput.focus();
+          return;
+        }
+
+        closeFaqSection();
+        submitButton.disabled = true;
+        submitButton.textContent = "Analisando...";
+
+        const isFirstTriageMessage = conversationContext === "";
+        const userMessageText = isFirstTriageMessage ? getUserText() : question;
+        conversationContext = isFirstTriageMessage
+          ? getUserText()
+          : `${conversationContext}\nResposta do usuário: ${question}`;
+
+        createMessage("user", userMessageText);
+        if (isFirstTriageMessage) {
+          createImagePreview(selectedImage);
+        }
+        const responseMessage = createMessage("assistant", "A IA está analisando seu relato...");
+
+        try {
+          const formData = new FormData();
+          formData.append("question", question);
+          formData.append("report_context", conversationContext);
+          formData.append("city", cityInput.value);
+          formData.append("state", stateInput.value);
+          formData.append("bite_time", timeInput.value);
+          formData.append("question_count", triageQuestionCount);
+          formData.append("asked_questions", JSON.stringify(askedTriageQuestions));
+
+          if (selectedImage && isFirstTriageMessage) {
+            formData.append("image", selectedImage);
+          } else if (cachedImageAnalysis) {
+            formData.append("image_analysis_context", JSON.stringify(cachedImageAnalysis));
+          }
+
+          const response = await fetch("{{ url_for('ask') }}", {
+            method: "POST",
+            body: formData
+          });
+
+          const data = await response.json();
+          cachedImageAnalysis = data.analysis?.image_analysis || cachedImageAnalysis;
+          responseMessage.textContent = data.answer || "Não foi possível gerar uma resposta agora.";
+          if (data.needs_more_info) {
+            responseMessage.closest(".message").classList.add("triage");
+            triageQuestionCount = data.question_count || triageQuestionCount + 1;
+            if (data.triage_question) {
+              askedTriageQuestions.push(data.triage_question);
+            }
+            symptomsInput.value = "";
+            symptomsInput.placeholder = "Responda à pergunta da IA...";
+            submitButton.textContent = "Responder";
+            clearAttachmentPreview();
+            resizeSymptomsInput();
+            symptomsInput.focus();
+            return;
+          }
+
+          triageQuestionCount = 0;
+          conversationContext = "";
+          askedTriageQuestions = [];
+          cachedImageAnalysis = null;
+          symptomsInput.placeholder = "Descreva a picada e os sintomas. Ex.: dor intensa, inchaço, vermelhidão, duas perfurações, náusea...";
+          clearAttachmentPreview();
+          analysisForm.hidden = true;
+          newAnalysisButton.hidden = false;
+        } catch (error) {
+          responseMessage.textContent = "Não consegui conectar com a IA. Verifique se o servidor Flask está rodando.";
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = triageQuestionCount > 0 ? "Responder" : "Analisar";
+        }
+      });
+
+      symptomsInput.addEventListener("input", resizeSymptomsInput);
+      submitButton.addEventListener("click", closeFaqSection);
+      imageInput.addEventListener("change", updateAttachmentPreview);
+      removeAttachmentButton.addEventListener("click", clearAttachmentPreview);
+      mediaMenuButton.addEventListener("click", toggleMediaMenu);
+      chooseFileButton.addEventListener("click", () => {
+        closeMediaMenu();
+        imageInput.click();
+      });
+      openCameraButton.addEventListener("click", openCamera);
+      closeCameraButton.addEventListener("click", closeCamera);
+      capturePhotoButton.addEventListener("click", capturePhoto);
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".media-actions")) {
+          closeMediaMenu();
+        }
+      });
+      nearbyHospitalsNav.addEventListener("click", searchHospitalsByLocation);
+      faqNav.addEventListener("click", () => {
+        faqNav.classList.add("active");
+        nearbyHospitalsNav.classList.remove("active");
+        faqSection.hidden = false;
+        faqSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      newAnalysisButton.addEventListener("click", () => {
+        analysisForm.reset();
+        triageQuestionCount = 0;
+        conversationContext = "";
+        askedTriageQuestions = [];
+        cachedImageAnalysis = null;
+        symptomsInput.placeholder = "Descreva a picada e os sintomas. Ex.: dor intensa, inchaço, vermelhidão, duas perfurações, náusea...";
+        submitButton.textContent = "Analisar";
+        clearAttachmentPreview();
+        resizeSymptomsInput();
+        analysisForm.hidden = false;
+        newAnalysisButton.hidden = true;
+        closeCamera();
+        symptomsInput.focus();
+      });
+      window.addEventListener("beforeunload", closeCamera);
+      resizeSymptomsInput();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+{% extends "template.html" %}
+
+{% block content %}
+{% if analysis is defined %}
+<div class="container text-left">
+  <h2>Resultado da análise</h2>
+  <p><strong>Texto enviado:</strong> {{ analysis.report_text }}</p>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4>Campos reconhecidos</h4>
+          <p><strong>Sintomas:</strong> {{ analysis.symptoms|join(', ') if analysis.symptoms else 'Não identificado' }}</p>
+          <p><strong>Cidade:</strong> {{ analysis.city if analysis.city else 'Não identificado' }}</p>
+          <p><strong>Estado:</strong> {{ analysis.state if analysis.state else 'Não identificado' }}</p>
+          <p><strong>Região:</strong> {{ analysis.region if analysis.region else 'Não identificado' }}</p>
+          <p><strong>Local da picada:</strong> {{ analysis.bite_location if analysis.bite_location else 'Não identificado' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4>Animais peçonhentos mais prováveis</h4>
+          {% if analysis.species_matches %}
+            <ol class="pl-3">
+              {% for match in analysis.species_matches[:3] %}
+              <li class="mb-3">
+                <strong>{{ match.popular_name }}</strong><br>
+                Nome científico: {{ match.display_name }}<br>
+                Probabilidade: {{ match.probability }}%<br>
+                Gravidade: {{ match.severity }}<br>
+                Risco no app: {{ match.risk_level if match.risk_level else 'Não informado' }}<br>
+                Motivos: {{ match.reason_text }}<br>
+                Sintomas esperados: {{ match.symptoms_reference }}<br>
+                Tempo dos sintomas: {{ match.symptom_onset if match.symptom_onset else 'Não informado' }}<br>
+                Locais comuns: {{ match.accident_sites if match.accident_sites else 'Não informado' }}<br>
+                Sinais de alerta: {{ match.alert_signs if match.alert_signs else 'Não informado' }}<br>
+                Conduta: {{ match.guidance }}
+              </li>
+              {% endfor %}
+            </ol>
+          {% else %}
+            <p>Nenhum animal peçonhento foi encontrado com confiança a partir do texto informado.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4>Recomendações do que fazer</h4>
+          <ul class="pl-3 mb-0">
+            {% for recommendation in analysis.recommendations %}
+            <li class="mb-2">{{ recommendation }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="{{ url_for('index') }}" class="btn btn-primary">Voltar</a>
+{% else %}
+
+  <div class="container d-flex">
+    <div class="row">
+      <div class="container col">
+          <img src="{{ result.image_path }}" class="img-thumbnail" width="300" height="300">
+          <h4>Mais provável: {{ result.class_name|replace("_", " ")|capitalize }}</h4>
+      </div>
+
+      {% if info %}
+      <div class="container text-left info col">
+        <h2><a class="text-info" href="{{ info[0]['Resource'] }}">Informações da Healthline</a></h2>
+        <ul>
+          <li>Aparência da picada:</li>
+        <p>{{ info[0]['Symptoms'] }}</p>
+        <li>Local da picada:</li>
+        <p>{{ info[0]['Location'] }}</p>
+        <li>Picada única ou múltiplas picadas:</li>
+        <p>{{ info[0]['Bites'] }}</p>
+        </ul>
+        <p><a class="text-info" href="{{ info[0]['Resource'] }}">Leia mais sobre picadas de {{ result.class_name|replace("_", " ") }}.</a></p>
+      </div>
+      {% else %}
+      <div class="container text-left info col">
+        <h2>Informações</h2>
+        <p>Não há informações complementares cadastradas para essa classificação.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  
+<div class="container">
+    <h2>Produtos</h2>
+      <div class="row justify-content-center">
+        {% for condition in conditions %}
+
+        {% set product = condition[2][0] if condition[2] else none %}
+        <div class="col pad-bottom">
+          <div class="card">
+            <h4>{{ condition[0]}}:</h4>
+            {% if product %}
+            <img class="card-img-top" width=200px height=200px src="{{product['image']}}">
+            <div class="card-body">
+              <p class="card-title">{{condition[1]|replace("_", " ")|capitalize}}</p>
+              <a class="card-text text-info" href="{{ product['link']}}">{{ product['title']}}</a><br><span>{{product['price']}}</span>
+            </div>
+            {% else %}
+            <div class="card-body">
+              <p class="card-title">{{ condition[1]|replace("_", " ")|capitalize }}</p>
+              <p>Nenhum produto cadastrado para esta categoria.</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+</div>
+<div class="container">
+  <h2>Empresas de controle de pragas{% if companies %} em {{ companies[0]['county'] }}{% endif %}</h2>
+  <p>{{data}}</p>
+  {% if companies %}
+  <table class="table text-left">
+      <thead class="thead-light">
+          <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Cidade</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for company in companies %}
+        <tr>
+            <th scope="row"><a class="text-info" href="http://{{company['website']}}">{{company['name']}}</a></th>
+            <td>{{company['phone']}}</td>
+            <!--<td><a href="http://{{company['website']}}">{{company['website']}}</a></td>-->
+            <td>{{company['city']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>Nenhuma empresa cadastrada para a cidade informada.</p>
+  {% endif %}
+</div>
+<a href="{{ url_for('index') }}" class="btn btn-primary">Voltar</a>
+
+{% endif %}
+{% endblock %}
