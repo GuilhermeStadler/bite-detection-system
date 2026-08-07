@@ -1163,11 +1163,1170 @@ BITE_CHARACTERISTIC_TERMS = {
 NEGATION_TERMS = ["sem", "nao", "não", "ausencia de", "ausência de"]
 
 
+ANSWER_STRENGTH = {
+    "yes": 1.0,
+    "partial": 0.45,
+    "uncertain": 0.25,
+    "probably_yes": 0.5,
+    "no": -0.65,
+    "not_yet": -0.28,
+    "probably_no": -0.3,
+    "unknown": 0.0,
+}
+
+
+CLINICAL_FIELD_CONFIDENCE_THRESHOLD = 0.55
+MAX_IDENTIFICATION_QUESTIONS = 5
+MIN_DIAGNOSTIC_PRIORITY = 0.35
+
+
+FIELD_TO_LEGACY_SYMPTOM = {
+    "burning": "ardor",
+    "tingling": "dormencia",
+    "numbness": "dormencia",
+    "itching": "coceira",
+    "swelling": "inchaço",
+    "redness": "vermelhidão",
+    "purple_skin": "pele arroxeada",
+    "pale_area": "região pálida",
+    "blister": "bolhas",
+    "bleeding": "sangramento",
+    "necrosis": "necrose",
+    "fang_marks": "marcas de presas",
+    "local_sweating": "suor local",
+    "body_sweating": "suor",
+    "nausea": "náusea",
+    "vomiting": "vômito",
+    "diarrhea": "diarreia",
+    "fever": "febre",
+    "dizziness": "tontura",
+    "weakness": "fraqueza",
+    "fatigue": "cansaço",
+    "tremors": "tremores",
+    "contractions": "contrações",
+    "spasms": "espasmos",
+    "shortness_of_breath": "falta de ar",
+    "urine_change": "urina escura",
+    "blurred_vision": "visão embaçada",
+    "ptosis": "pálpebra caída",
+}
+
+
+CLINICAL_FIELD_SPECS = {
+    "time_since_bite": [
+        (r"\b(?:ha|faz)\s+\d+\s*(?:minuto|minutos|hora|horas|dia|dias)\b", None, 0.9),
+        (r"\b(?:menos de|mais de)?\s*\d+\s*(?:minuto|minutos|hora|horas|dia|dias)\b", None, 0.82),
+        (r"\b(?:ontem|hoje|esta manha|de manha)\b", None, 0.72),
+    ],
+    "time_period": [
+        (r"\b(?:manha|de manha|pela manha)\b", "manhã", 0.95),
+        (r"\b(?:tarde|pela tarde|de tarde)\b", "tarde", 0.9),
+        (r"\b(?:noite|a noite|de noite)\b", "noite", 0.9),
+        (r"\b(?:madrugada|de madrugada)\b", "madrugada", 0.9),
+    ],
+    "initial_pain": [
+        (r"\b(?:dor era|dor estava|comecou com dor|no inicio.*dor).{0,35}\b(?:fraca|leve|pouca|quase sem doer|quase nao doia)\b", "fraca", 0.94),
+        (r"\b(?:comecou quase sem doer|na hora nao doeu|no inicio quase nao doia|pouca dor no inicio)\b", "fraca", 0.95),
+        (r"\b(?:dor era|dor estava|comecou com dor).{0,35}\b(?:moderada|media)\b", "moderada", 0.86),
+        (r"\b(?:dor era|dor estava|comecou com dor|na hora).{0,35}\b(?:forte|intensa|insuportavel|muito forte)\b", "intensa", 0.9),
+    ],
+    "current_pain": [
+        (r"\b(?:agora|atualmente|hoje|nesse momento).{0,40}\b(?:dor|doendo).{0,30}\b(?:fraca|leve|pouca)\b", "fraca", 0.82),
+        (r"\b(?:agora|atualmente|hoje|nesse momento).{0,40}\b(?:dor|doendo).{0,30}\b(?:moderada|media)\b", "moderada", 0.82),
+        (r"\b(?:agora|atualmente|hoje|nesse momento|esta).{0,40}\b(?:dor|doendo|mais intensa|mais forte|muito forte|insuportavel)\b", "intensa", 0.82),
+    ],
+    "pain_onset": [
+        (r"\b(?:dor|doeu|queimacao).{0,30}\b(?:na hora|imediata|imediatamente|logo apos|assim que)\b", "imediato", 0.9),
+        (r"\b(?:na hora nao doeu|comecou depois|demorou para doer|dor apareceu depois|apos algumas horas|horas depois)\b", "tardio", 0.95),
+    ],
+    "pain_progression": [
+        (r"\b(?:dor|doendo).{0,55}\b(?:aumentou|aumentando|piorou|piorando|mais forte|mais intensa|ficando mais forte)\b", "aumentando", 0.95),
+        (r"\b(?:dor era fraca|pouca dor|quase nao doia).{0,70}\b(?:agora|depois).{0,45}\b(?:mais intensa|mais forte|piorou|aumentou)\b", "aumentando", 0.97),
+        (r"\b(?:dor|doendo).{0,45}\b(?:melhorou|melhorando|diminuindo|diminuiu)\b", "melhorando", 0.88),
+        (r"\b(?:dor|doendo).{0,45}\b(?:igual|estavel|nao mudou|nao esta piorando)\b", "estavel", 0.78),
+    ],
+    "burning": [(r"\b(?:ardencia|ardendo|queimacao|queimando|esta queimando|queima)\b", True, 0.92)],
+    "tingling": [(r"\b(?:formigamento|formigando|pinicando)\b", True, 0.9)],
+    "numbness": [(r"\b(?:dormencia|dormente|amortecido|sem sentir)\b", True, 0.9)],
+    "itching": [(r"\b(?:coceira|cocando|prurido|pinicando)\b", True, 0.86)],
+    "swelling": [(r"\b(?:inchaco|inchado|edema|inchou|inchada)\b", True, 0.9)],
+    "swelling_progression": [
+        (r"\b(?:inchaco|inchado|edema|area inchada).{0,55}\b(?:aumentando|aumentou|espalhando|subindo|crescendo|maior)\b", "aumentando", 0.94),
+        (r"\b(?:subiu|esta subindo|espalhou|esta espalhando).{0,35}\b(?:perna|braco|membro|pe|mao)\b", "aumentando", 0.94),
+        (r"\b(?:inchaco|edema).{0,45}\b(?:igual|estavel|nao esta piorando|nao aumentou)\b", "estavel", 0.75),
+    ],
+    "redness": [(r"\b(?:vermelho|vermelha|vermelhidao|avermelhado|avermelhada)\b", True, 0.88)],
+    "purple_skin": [(r"\b(?:roxo|roxa|arroxeado|arroxeada|hematoma|ficou roxo|ficou roxa|pele roxa)\b", True, 0.95)],
+    "pale_area": [(r"\b(?:palido|palida|esbranquicado|esbranquicada|branco no centro|area branca)\b", True, 0.86)],
+    "blister": [(r"\b(?:bolha|bolhas|bolhinha|bolhinha pequena)\b", True, 0.95)],
+    "bleeding": [(r"\b(?:sangramento|sangrando|sangue|hemorragia)\b", True, 0.9)],
+    "necrosis": [(r"\b(?:necrose|pele escurecida|pele preta|ferida preta|ferida escura|escureceu)\b", True, 0.94)],
+    "fang_marks": [(r"\b(?:duas marcas|duas perfuracoes|marcas de presa|presas|furos profundos)\b", True, 0.88)],
+    "local_sweating": [(r"\b(?:suor local|suando no local|suor so no local|suor apenas no local)\b", True, 0.9)],
+    "body_sweating": [(r"\b(?:suor pelo corpo|suor intenso|suando muito|suor frio|sudorese)\b", True, 0.86)],
+    "nausea": [(r"\b(?:nausea|enjoo|enjoado|enjoada)\b", True, 0.88)],
+    "vomiting": [(r"\b(?:vomito|vomitos|vomitando|vomitei|vomitou)\b", True, 0.9)],
+    "diarrhea": [(r"\b(?:diarreia|dor de barriga com evacuacao)\b", True, 0.9)],
+    "fever": [(r"\b(?:febre|febril|temperatura alta)\b", True, 0.9)],
+    "dizziness": [(r"\b(?:tontura|tonto|tonta|vertigem|quase desmaiei)\b", True, 0.88)],
+    "weakness": [(r"\b(?:fraqueza|me sinto fraco|me sinto fraca|estou fraco|estou fraca|moleza|sem forca|nao consigo ficar em pe)\b", True, 0.84)],
+    "fatigue": [(r"\b(?:cansaco|cansado|cansada|fadiga|muito cansado|muito cansada|moleza)\b", True, 0.84)],
+    "tremors": [(r"\b(?:tremor|tremores|tremendo|tremedeira)\b", True, 0.9)],
+    "contractions": [(r"\b(?:contracao|contracoes|contraindo)\b", True, 0.88)],
+    "spasms": [(r"\b(?:espasmo|espasmos|caibra|caibras|musculo travado)\b", True, 0.9)],
+    "shortness_of_breath": [(r"\b(?:falta de ar|dificuldade para respirar|nao consigo respirar|respirar direito|respiracao dificil)\b", True, 0.96)],
+    "urine_change": [(r"\b(?:urina escura|xixi escuro|urina avermelhada|sangue na urina|urina diferente)\b", True, 0.92)],
+    "blurred_vision": [(r"\b(?:visao emba[cç]ada|visao turva|visao dupla|enxergando emba[cç]ado|dificuldade para enxergar)\b", True, 0.9)],
+    "ptosis": [(r"\b(?:palpebra caida|palpebras caidas|olho caindo|dificuldade para abrir os olhos|olhos pesados)\b", True, 0.92)],
+    "animal_seen": [(r"\b(?:vi o animal|vi a aranha|vi o escorpiao|vi a cobra|animal visto|consegui ver|tenho foto)\b", True, 0.9)],
+    "context": [(r"\b(?:casa|quintal|jardim|mato|entulho|madeira|sapato|roupa|cama|rural|plantacao|galpao|banheiro|ralo|lixo)\b", None, 0.78)],
+}
+
+
+FIELD_SPECIES_WEIGHTS = {
+    "pain_delayed_worsening": {"aranha_marrom": 5.0, "armadeira": -3.0, "escorpiao_amarelo": -3.0, "escorpiao_marrom": -2.0},
+    "immediate_severe_pain": {"armadeira": 5.0, "escorpiao_amarelo": 4.5, "escorpiao_marrom": 3.5, "aranha_marrom": -3.5},
+    "purple_skin": {"aranha_marrom": 4.5, "jararaca": 3.0, "surucucu": 2.0, "armadeira": -1.2, "escorpiao_amarelo": -1.2},
+    "blister": {"aranha_marrom": 4.0, "jararaca": 2.0, "armadeira": -1.5, "escorpiao_amarelo": -1.5},
+    "necrosis": {"aranha_marrom": 5.0, "jararaca": 2.0, "armadeira": -2.0, "escorpiao_amarelo": -2.0},
+    "swelling_progression": {"jararaca": 4.0, "surucucu": 3.5, "aranha_marrom": 2.0, "escorpiao_amarelo": -1.5},
+    "bleeding": {"jararaca": 4.5, "surucucu": 4.0, "cascavel": 1.0, "escorpiao_amarelo": -2.0, "aranha_marrom": -1.0},
+    "fang_marks": {"jararaca": 3.5, "surucucu": 3.5, "coral_verdadeira": 2.0, "armadeira": 1.5},
+    "local_sweating": {"armadeira": 3.0, "escorpiao_amarelo": 2.0, "viuva_negra": 1.5},
+    "body_sweating": {"escorpiao_amarelo": 3.0, "surucucu": 2.5, "viuva_negra": 2.0, "armadeira": 1.5},
+    "muscle_spasms": {"viuva_negra": 5.0, "escorpiao_amarelo": 2.5, "armadeira": 2.0, "aranha_marrom": -2.0},
+    "tingling_numbness": {"cascavel": 3.0, "coral_verdadeira": 3.0, "escorpiao_amarelo": 2.0},
+    "urine_change": {"cascavel": 4.0, "aranha_marrom": 2.0, "jararaca": 2.0},
+    "systemic_gi": {"surucucu": 3.0, "escorpiao_amarelo": 3.0, "armadeira": 1.5, "aranha_marrom": 1.0},
+    "shortness_of_breath": {"coral_verdadeira": 4.5, "escorpiao_amarelo": 3.0, "cascavel": 2.5},
+    "neuro_ocular": {"cascavel": 4.0, "coral_verdadeira": 3.5, "jararaca": -2.0, "surucucu": -1.0},
+    "weakness": {"cascavel": 2.5, "coral_verdadeira": 3.0, "escorpiao_amarelo": 1.0, "jararaca": -1.0},
+}
+
+
+# Pesos clinicos centralizados para revisao futura. Valores positivos indicam
+# pistas a favor; valores negativos indicam evidencias contrarias moderadas.
+# A escala pratica e: 1-2 complementar, 3-4 moderada, 5+ forte. Negativas ficam
+# menores porque a ausencia pode ocorrer por relato incompleto ou sintoma precoce.
+CLINICAL_REVIEW_WEIGHTS = {
+    "aranha_marrom": {
+        "positive_evidence": {
+            "pain_delayed_worsening": 5.0,
+            "purple_skin": 4.5,
+            "blister": 4.0,
+            "necrosis": 5.0,
+        },
+        "negative_evidence": {
+            "pain_delayed_worsening": 2.0,
+            "purple_skin": 1.6,
+            "blister": 1.5,
+            "necrosis": 1.2,
+            "immediate_severe_pain": -2.0,
+        },
+    },
+    "armadeira": {
+        "positive_evidence": {
+            "immediate_severe_pain": 5.0,
+            "local_sweating": 3.0,
+            "body_sweating": 1.5,
+            "muscle_spasms": 2.0,
+        },
+        "negative_evidence": {
+            "immediate_severe_pain": 2.4,
+            "body_sweating": 1.0,
+            "muscle_spasms": 0.8,
+            "bleeding": -1.0,
+        },
+    },
+    "viuva_negra": {
+        "positive_evidence": {
+            "muscle_spasms": 5.0,
+            "body_sweating": 2.0,
+            "systemic_gi": 1.2,
+        },
+        "negative_evidence": {
+            "muscle_spasms": 2.0,
+            "body_sweating": 0.8,
+            "bleeding": -1.0,
+        },
+    },
+    "escorpiao_amarelo": {
+        "positive_evidence": {
+            "immediate_severe_pain": 4.5,
+            "body_sweating": 3.0,
+            "systemic_gi": 3.0,
+            "shortness_of_breath": 3.0,
+        },
+        "negative_evidence": {
+            "immediate_severe_pain": 2.2,
+            "body_sweating": 1.1,
+            "systemic_gi": 1.0,
+            "bleeding": -1.2,
+        },
+    },
+    "escorpiao_marrom": {
+        "positive_evidence": {
+            "immediate_severe_pain": 3.5,
+            "body_sweating": 1.8,
+            "systemic_gi": 1.8,
+        },
+        "negative_evidence": {
+            "immediate_severe_pain": 1.8,
+            "body_sweating": 0.8,
+            "bleeding": -1.0,
+        },
+    },
+    "jararaca": {
+        "positive_evidence": {
+            "swelling_progression": 4.0,
+            "bleeding": 4.5,
+            "purple_skin": 3.0,
+            "fang_marks": 3.5,
+        },
+        "negative_evidence": {
+            "bleeding": 2.0,
+            "swelling_progression": 1.6,
+            "tingling_numbness": -1.0,
+            "neuro_ocular": -2.0,
+        },
+    },
+    "cascavel": {
+        "positive_evidence": {
+            "tingling_numbness": 3.0,
+            "urine_change": 4.0,
+            "neuro_ocular": 4.0,
+            "weakness": 2.5,
+        },
+        "negative_evidence": {
+            "neuro_ocular": 2.0,
+            "weakness": 1.4,
+            "urine_change": 1.0,
+            "bleeding": -1.0,
+        },
+    },
+    "coral_verdadeira": {
+        "positive_evidence": {
+            "shortness_of_breath": 4.5,
+            "neuro_ocular": 3.5,
+            "weakness": 3.0,
+            "tingling_numbness": 3.0,
+        },
+        "negative_evidence": {
+            "shortness_of_breath": 1.8,
+            "neuro_ocular": 1.5,
+            "weakness": 1.2,
+            "bleeding": -1.0,
+        },
+    },
+    "surucucu": {
+        "positive_evidence": {
+            "swelling_progression": 3.5,
+            "bleeding": 4.0,
+            "systemic_gi": 3.0,
+            "body_sweating": 2.5,
+        },
+        "negative_evidence": {
+            "bleeding": 1.8,
+            "swelling_progression": 1.4,
+            "systemic_gi": 1.2,
+        },
+    },
+}
+
+
+NEGATIVE_FIELD_SPECIES_WEIGHTS = {
+    clue: {
+        animal: weights.get("negative_evidence", {}).get(clue)
+        for animal, weights in CLINICAL_REVIEW_WEIGHTS.items()
+        if clue in weights.get("negative_evidence", {}) and weights.get("negative_evidence", {}).get(clue, 0) > 0
+    }
+    for clue in {
+        clue
+        for weights in CLINICAL_REVIEW_WEIGHTS.values()
+        for clue, value in weights.get("negative_evidence", {}).items()
+        if value > 0
+    }
+}
+
+
+CONTRARY_PRESENT_FIELD_SPECIES_WEIGHTS = {
+    clue: {
+        animal: abs(value)
+        for animal, weights in CLINICAL_REVIEW_WEIGHTS.items()
+        for present_clue, value in weights.get("negative_evidence", {}).items()
+        if present_clue == clue and value < 0
+    }
+    for clue in {
+        clue
+        for weights in CLINICAL_REVIEW_WEIGHTS.values()
+        for clue, value in weights.get("negative_evidence", {}).items()
+        if value < 0
+    }
+}
+
+
+FIELD_TO_CLUE = {
+    "pain_progression": "pain_delayed_worsening",
+    "pain_onset": "immediate_severe_pain",
+    "initial_pain": "immediate_severe_pain",
+    "purple_skin": "purple_skin",
+    "blister": "blister",
+    "necrosis": "necrosis",
+    "swelling_progression": "swelling_progression",
+    "bleeding": "bleeding",
+    "fang_marks": "fang_marks",
+    "local_sweating": "local_sweating",
+    "body_sweating": "body_sweating",
+    "spasms": "muscle_spasms",
+    "tremors": "muscle_spasms",
+    "contractions": "muscle_spasms",
+    "tingling": "tingling_numbness",
+    "numbness": "tingling_numbness",
+    "urine_change": "urine_change",
+    "nausea": "systemic_gi",
+    "vomiting": "systemic_gi",
+    "diarrhea": "systemic_gi",
+    "shortness_of_breath": "shortness_of_breath",
+    "weakness": "weakness",
+    "blurred_vision": "neuro_ocular",
+    "ptosis": "neuro_ocular",
+}
+
+
+TIME_BUCKETS = {
+    "VERY_EARLY": (0, 60),
+    "EARLY": (60, 180),
+    "INTERMEDIATE": (180, 720),
+    "LATE": (720, 1440),
+    "VERY_LATE": (1440, None),
+}
+
+
+SPECIES_TEMPORAL_PROFILES = {
+    "aranha_marrom": {
+        "early_positive": {"pain_delayed_worsening": 2.5},
+        "late_positive": {"purple_skin": 2.0, "blister": 1.8, "necrosis": 2.2},
+        "delayed_clues": {"purple_skin": 180, "blister": 180, "necrosis": 720},
+    },
+    "armadeira": {"early_positive": {"immediate_severe_pain": 2.5, "body_sweating": 1.2, "muscle_spasms": 1.0}},
+    "escorpiao_amarelo": {"early_positive": {"immediate_severe_pain": 2.2, "systemic_gi": 1.4, "body_sweating": 1.4}},
+    "escorpiao_marrom": {"early_positive": {"immediate_severe_pain": 1.8, "systemic_gi": 1.0}},
+    "jararaca": {"early_positive": {"swelling_progression": 1.8, "bleeding": 1.4}, "delayed_clues": {"bleeding": 60}},
+    "cascavel": {"late_positive": {"neuro_ocular": 2.4, "weakness": 1.8, "urine_change": 1.5}, "delayed_clues": {"urine_change": 360}},
+    "coral_verdadeira": {"early_positive": {"shortness_of_breath": 2.0, "neuro_ocular": 1.7, "weakness": 1.5}},
+    "surucucu": {"early_positive": {"swelling_progression": 1.5}, "late_positive": {"systemic_gi": 1.6, "bleeding": 1.4}},
+}
+
+
+ACCIDENT_CONTEXT_GROUPS = {
+    "indoor_stored": ["casa", "quarto", "cama", "roupa", "roupas", "sapato", "calcado", "caixa", "caixas guardadas", "armario"],
+    "urban_debris": ["garagem", "entulho", "telha", "telhas", "madeira", "lenha", "ralo", "banheiro", "lixo"],
+    "garden_yard": ["quintal", "jardim", "terreno"],
+    "wild_rural": ["mata", "trilha", "plantacao", "area rural", "rural", "pasto", "rio", "beira de rio"],
+    "night": ["noite", "madrugada"],
+    "day": ["manha", "tarde", "dia"],
+}
+
+
+CONTEXT_SPECIES_WEIGHTS = {
+    "indoor_stored": {"aranha_marrom": 1.2, "escorpiao_amarelo": 0.9, "escorpiao_marrom": 0.9, "armadeira": 0.8},
+    "urban_debris": {"escorpiao_amarelo": 1.2, "escorpiao_marrom": 1.2, "armadeira": 0.8},
+    "garden_yard": {"armadeira": 1.0, "viuva_negra": 0.9, "escorpiao_marrom": 0.7},
+    "wild_rural": {"jararaca": 1.4, "surucucu": 1.5, "cascavel": 1.2, "coral_verdadeira": 0.9},
+    "night": {"aranha_marrom": 0.5, "armadeira": 0.5, "escorpiao_amarelo": 0.4},
+    "day": {"cascavel": 0.3, "jararaca": 0.3},
+}
+
+
+QUESTION_BANK = [
+    {
+        "question_id": "urgent_breathing_standing",
+        "target_field": "shortness_of_breath",
+        "category": "urgency",
+        "text": "A vitima esta com falta de ar, desmaio, confusao, convulsao ou muita dificuldade para ficar em pe?",
+        "options": ["Sim", "Nao", "Nao sei"],
+        "supports_yes": {},
+        "supports_no": {},
+        "urgency_priority": 2.0,
+        "diagnostic_gain": 0.2,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "urgent_systemic_worsening",
+        "target_field": "urgent_systemic_screen",
+        "category": "urgency",
+        "text": "Teve vomitos repetidos, suor intenso, sangramento importante, urina escura ou piora rapida?",
+        "options": ["Sim", "Nao", "Nao sei"],
+        "supports_yes": {},
+        "supports_no": {},
+        "urgency_priority": 1.7,
+        "diagnostic_gain": 0.25,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "urgent_vulnerable_person",
+        "target_field": "vulnerable_person",
+        "category": "urgency",
+        "text": "A pessoa picada e crianca pequena, idosa, gestante ou tem doenca importante?",
+        "options": ["Sim", "Nao", "Nao sei"],
+        "supports_yes": {},
+        "supports_no": {},
+        "urgency_priority": 1.4,
+        "diagnostic_gain": 0.1,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "immediate_severe_pain",
+        "target_field": "pain_onset",
+        "category": "differential",
+        "text": "A dor comecou na hora e ja veio muito intensa ou em queimacao forte?",
+        "options": ["Sim", "Acho que sim", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["immediate_severe_pain"],
+        "supports_no": {"aranha_marrom": 2.0},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.86,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "pain_delayed_worsening",
+        "target_field": "pain_progression",
+        "category": "differential",
+        "text": "A dor comecou fraca e aumentou depois de algum tempo?",
+        "options": ["Sim", "Acho que sim", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["pain_delayed_worsening"],
+        "supports_no": {"armadeira": 1.0, "escorpiao_amarelo": 1.0},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.88,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "purple_skin",
+        "target_field": "purple_skin",
+        "category": "differential",
+        "text": "A pele ficou roxa, arroxeada ou parecida com hematoma?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["purple_skin"],
+        "supports_no": {"armadeira": 0.8, "escorpiao_amarelo": 0.8},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.74,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "blister",
+        "target_field": "blister",
+        "category": "differential",
+        "text": "Apareceu bolha no centro ou perto da picada?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["blister"],
+        "supports_no": {"armadeira": 0.6, "escorpiao_amarelo": 0.6},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.72,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "swelling_progression",
+        "target_field": "swelling_progression",
+        "category": "differential",
+        "text": "O inchaco esta aumentando, se espalhando ou subindo pelo membro?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["swelling_progression"],
+        "supports_no": {"escorpiao_amarelo": 0.8, "cascavel": 0.8},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.76,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "bleeding",
+        "target_field": "bleeding",
+        "category": "differential",
+        "text": "Houve sangramento no local, na gengiva, no nariz ou na urina?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["bleeding"],
+        "supports_no": {"escorpiao_amarelo": 0.7, "armadeira": 0.7},
+        "urgency_priority": 0.3,
+        "diagnostic_gain": 0.78,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "muscle_spasms",
+        "target_field": "spasms",
+        "category": "differential",
+        "text": "Voce esta sentindo contracoes, caibras, tremores ou espasmos musculares?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["muscle_spasms"],
+        "supports_no": {"aranha_marrom": 0.6},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.7,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "tingling_numbness",
+        "target_field": "tingling",
+        "category": "differential",
+        "text": "Ha formigamento, dormencia ou sensacao de choque no local ou no membro?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["tingling_numbness"],
+        "supports_no": {},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.62,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "neuro_ocular",
+        "target_field": "blurred_vision",
+        "category": "differential",
+        "text": "A visao ficou embacada/dupla ou as palpebras estao pesadas ou caidas?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["neuro_ocular"],
+        "supports_no": {"jararaca": 0.8, "surucucu": 0.6},
+        "urgency_priority": 0.2,
+        "diagnostic_gain": 0.82,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "muscle_weakness",
+        "target_field": "weakness",
+        "category": "differential",
+        "text": "Ha fraqueza muscular, dificuldade para caminhar, falar ou manter os olhos abertos?",
+        "options": ["Sim", "Um pouco", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["weakness"],
+        "supports_no": {"jararaca": 0.6},
+        "urgency_priority": 0.2,
+        "diagnostic_gain": 0.76,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "urine_change",
+        "target_field": "urine_change",
+        "category": "differential",
+        "text": "A urina ficou escura, avermelhada ou diferente do normal?",
+        "options": ["Sim", "Nao", "Nao sei"],
+        "supports_yes": FIELD_SPECIES_WEIGHTS["urine_change"],
+        "supports_no": {},
+        "urgency_priority": 0.4,
+        "diagnostic_gain": 0.68,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "accident_context",
+        "target_field": "context",
+        "category": "context",
+        "text": "O acidente aconteceu em casa, roupa/sapato/cama, entulho/madeira, jardim ou area rural?",
+        "options": ["Casa, roupa ou sapato", "Entulho, madeira ou jardim", "Area rural ou mata"],
+        "supports_yes": {"aranha_marrom": 1.2, "escorpiao_amarelo": 1.2, "armadeira": 1.0, "jararaca": 0.8},
+        "supports_no": {},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.38,
+        "answer_type": "single_choice",
+    },
+    {
+        "question_id": "animal_seen",
+        "target_field": "animal_seen",
+        "category": "context",
+        "text": "Voce viu o animal ou conseguiu tirar foto dele?",
+        "options": ["Vi o animal", "Tenho foto", "Nao vi"],
+        "supports_yes": {},
+        "supports_no": {},
+        "urgency_priority": 0,
+        "diagnostic_gain": 0.3,
+        "answer_type": "single_choice",
+    },
+]
+
+
+QUESTION_BY_ID = {question["question_id"]: question for question in QUESTION_BANK}
+
+
 def normalize_text(value):
     value = value or ""
     ascii_value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     ascii_value = ascii_value.lower()
     return re.sub(r"\s+", " ", ascii_value).strip()
+
+
+def split_evidence_sentences(text):
+    return [part.strip() for part in re.split(r"[\.;\n]+", text or "") if part.strip()]
+
+
+def evidence_for_match(original_text, pattern):
+    normalized_sentences = [(sentence, normalize_text(sentence)) for sentence in split_evidence_sentences(original_text)]
+    for original_sentence, normalized_sentence in normalized_sentences:
+        if re.search(pattern, normalized_sentence):
+            return original_sentence
+    match = re.search(pattern, normalize_text(original_text))
+    return match.group(0) if match else ""
+
+
+def has_recent_negation(normalized_text, match_start):
+    window = normalized_text[max(0, match_start - 18):match_start]
+    return any(term in window.split()[-3:] for term in ("sem", "nao", "nunca"))
+
+
+def has_time_uncertain_negation(normalized_text, match_start):
+    window = normalized_text[max(0, match_start - 28):match_start]
+    return any(term in window for term in ("ainda nao", "por enquanto nao", "ate agora nao"))
+
+
+def clinical_status_from_value(value, confidence=None):
+    if value == "partial":
+        return "partial"
+    if value == "unknown" or value is None:
+        return "unknown"
+    if value == "uncertain":
+        return "uncertain"
+    if value == "absent_with_time_uncertainty":
+        return "absent_with_time_uncertainty"
+    if value is False:
+        return "absent"
+    return "present"
+
+
+def add_clinical_field(profile, field, value, confidence, source, evidence, question_id=None, status=None):
+    status = status or clinical_status_from_value(value, confidence)
+    if field in profile:
+        current = profile[field]
+        same_value = current.get("value") == value and current.get("status") == status
+        if same_value and current.get("confidence", 0) >= confidence:
+            return
+        if not same_value:
+            if source != "triage_answer" and current.get("source") == "triage_answer":
+                return
+            confidence = max(0.35, min(float(confidence), current.get("confidence", 0)) - 0.15)
+            evidence = "{} | conflito com: {}".format(evidence or "", current.get("evidence", "")).strip(" |")
+
+    if field in profile and profile[field].get("confidence", 0) >= confidence and source != "triage_answer":
+        return
+
+    entry = {
+        "value": value,
+        "confidence": round(float(confidence), 2),
+        "source": source,
+        "evidence": evidence or "",
+        "status": status,
+    }
+    if field in profile and profile[field].get("value") != value:
+        entry["conflict"] = True
+    if question_id:
+        entry["question_id"] = question_id
+    profile[field] = entry
+
+
+def extract_detailed_bite_location(report_text):
+    normalized = normalize_text(report_text)
+    body_aliases = [
+        ("coxa", ["coxa", "thigh"]),
+        ("braco", ["braco", "antebraco", "arm", "forearm"]),
+        ("mao", ["mao", "dedo", "hand", "finger"]),
+        ("perna", ["perna", "panturrilha", "canela", "leg"]),
+        ("pe", ["pe", "dedao do pe", "foot", "toe"]),
+        ("tornozelo", ["tornozelo", "ankle"]),
+        ("pescoco", ["pescoco", "neck"]),
+        ("rosto", ["rosto", "face", "bochecha", "cheek"]),
+        ("costas", ["costas", "back"]),
+        ("tronco", ["tronco", "torso"]),
+        ("barriga", ["barriga", "abdomen", "estomago", "stomach", "belly"]),
+        ("ombro", ["ombro", "shoulder"]),
+        ("peito", ["peito", "chest"]),
+    ]
+    for label, aliases in body_aliases:
+        for alias in aliases:
+            if re.search(rf"\b{re.escape(alias)}\b", normalized):
+                return label, alias
+    return None, None
+
+
+def extract_value_from_match(field, explicit_value, matched_text):
+    if explicit_value is not None:
+        return explicit_value
+    if field == "time_since_bite":
+        return matched_text.strip()
+    if field == "context":
+        return matched_text.strip()
+    return True
+
+
+def extract_answer_markers(report_text):
+    markers = []
+    marker_pattern = re.compile(
+        r"question_id=([a-z0-9_]+)\s+target_field=([a-z0-9_]+)\s+answer=([a-z_]+)\s+normalized_value=([^\s\.]+)(?:\s+confidence=([0-9.]+))?",
+        flags=re.IGNORECASE,
+    )
+    for match in marker_pattern.finditer(report_text or ""):
+        markers.append(
+            {
+                "question_id": match.group(1),
+                "target_field": match.group(2),
+                "answer": match.group(3),
+                "normalized_value": match.group(4).strip(),
+                "evidence": match.group(0),
+            }
+        )
+    return markers
+
+
+def marker_value_for_field(field, marker):
+    raw_value = normalize_text(marker.get("normalized_value"))
+    answer = marker.get("answer")
+    if answer == "unknown":
+        return "unknown"
+    if answer == "uncertain":
+        return "uncertain"
+    if answer == "partial":
+        return "partial"
+    if answer == "not_yet":
+        return "absent_with_time_uncertainty"
+    if raw_value in {"true", "sim"}:
+        if field in {"pain_onset"}:
+            return "imediato"
+        if field in {"pain_progression", "swelling_progression"}:
+            return "aumentando"
+        return True
+    if raw_value in {"false", "nao"}:
+        return False
+    return marker.get("normalized_value")
+
+
+def extract_structured_clinical_data(report_text, source="initial_description"):
+    profile = {}
+    normalized = normalize_text(report_text)
+
+    location, location_evidence = extract_detailed_bite_location(report_text)
+    if location:
+        add_clinical_field(profile, "bite_location", location, 0.9, source, location_evidence)
+
+    for field, specs in CLINICAL_FIELD_SPECS.items():
+        for pattern, explicit_value, confidence in specs:
+            match = re.search(pattern, normalized)
+            if not match:
+                continue
+            if explicit_value is True and has_recent_negation(normalized, match.start()):
+                status = "absent_with_time_uncertainty" if has_time_uncertain_negation(normalized, match.start()) else "absent"
+                value = "absent_with_time_uncertainty" if status == "absent_with_time_uncertainty" else False
+                add_clinical_field(
+                    profile,
+                    field,
+                    value,
+                    confidence * 0.8,
+                    source,
+                    evidence_for_match(report_text, pattern),
+                    status=status,
+                )
+                break
+            value = extract_value_from_match(field, explicit_value, match.group(0))
+            add_clinical_field(
+                profile,
+                field,
+                value,
+                confidence,
+                source,
+                evidence_for_match(report_text, pattern),
+            )
+            break
+
+    for marker in extract_answer_markers(report_text):
+        field = marker["target_field"]
+        value = marker_value_for_field(field, marker)
+        status = clinical_status_from_value(value)
+        if status in {"unknown", "uncertain"}:
+            confidence = 0.5 if status == "unknown" else 0.42
+            add_clinical_field(profile, field, value, confidence, "triage_answer", marker["evidence"], marker["question_id"], status=status)
+            continue
+        confidence = 0.85 if marker["answer"] in {"yes", "no"} else 0.62
+        if marker["answer"] == "partial":
+            confidence = 0.62
+        elif marker["answer"] == "not_yet":
+            confidence = 0.58
+        add_clinical_field(profile, field, value, confidence, "triage_answer", marker["evidence"], marker["question_id"], status=status)
+
+    return profile
+
+
+def clinical_field_value(profile, field):
+    entry = (profile or {}).get(field) or {}
+    return entry.get("value")
+
+
+def clinical_field_answered(profile, field, threshold=CLINICAL_FIELD_CONFIDENCE_THRESHOLD):
+    entry = (profile or {}).get(field)
+    return bool(entry and entry.get("confidence", 0) >= threshold and entry.get("value") != "unknown")
+
+
+def clinical_fields_answered(profile, fields, threshold=CLINICAL_FIELD_CONFIDENCE_THRESHOLD):
+    return any(clinical_field_answered(profile, field, threshold) for field in fields)
+
+
+def question_target_fields(question):
+    target = question.get("target_field")
+    equivalent_fields = {
+        "pain_progression": {"pain_progression", "initial_pain", "pain_onset"},
+        "pain_onset": {"pain_onset", "initial_pain", "current_pain"},
+        "swelling_progression": {"swelling_progression"},
+        "urgent_systemic_screen": {"vomiting", "body_sweating", "bleeding", "urine_change", "dizziness", "weakness"},
+        "blurred_vision": {"blurred_vision", "ptosis"},
+        "weakness": {"weakness", "fatigue"},
+    }
+    return equivalent_fields.get(target, {target})
+
+
+def infer_clues_from_profile(clinical_profile):
+    clues = set()
+    if clinical_field_value(clinical_profile, "pain_progression") == "aumentando":
+        clues.add("pain_delayed_worsening")
+    if clinical_field_value(clinical_profile, "initial_pain") == "fraca" and clinical_field_value(clinical_profile, "pain_progression") == "aumentando":
+        clues.add("pain_delayed_worsening")
+    if clinical_field_value(clinical_profile, "pain_onset") == "imediato" or clinical_field_value(clinical_profile, "initial_pain") == "intensa":
+        clues.add("immediate_severe_pain")
+    for field, clue in (
+        ("purple_skin", "purple_skin"),
+        ("blister", "blister"),
+        ("necrosis", "necrosis"),
+        ("bleeding", "bleeding"),
+        ("fang_marks", "fang_marks"),
+        ("local_sweating", "local_sweating"),
+        ("body_sweating", "body_sweating"),
+        ("urine_change", "urine_change"),
+        ("shortness_of_breath", "shortness_of_breath"),
+    ):
+        if clinical_field_value(clinical_profile, field) is True:
+            clues.add(clue)
+    if clinical_field_value(clinical_profile, "swelling_progression") == "aumentando":
+        clues.add("swelling_progression")
+    if clinical_field_value(clinical_profile, "spasms") is True or clinical_field_value(clinical_profile, "tremors") is True or clinical_field_value(clinical_profile, "contractions") is True:
+        clues.add("muscle_spasms")
+    if clinical_field_value(clinical_profile, "tingling") is True or clinical_field_value(clinical_profile, "numbness") is True:
+        clues.add("tingling_numbness")
+    if clinical_field_value(clinical_profile, "blurred_vision") is True or clinical_field_value(clinical_profile, "ptosis") is True:
+        clues.add("neuro_ocular")
+    if clinical_field_value(clinical_profile, "weakness") is True:
+        clues.add("weakness")
+    if clinical_field_value(clinical_profile, "nausea") is True or clinical_field_value(clinical_profile, "vomiting") is True or clinical_field_value(clinical_profile, "diarrhea") is True:
+        clues.add("systemic_gi")
+    return clues
+
+
+def normalize_answer(answer_text):
+    normalized = normalize_text(answer_text)
+    if not normalized:
+        return {"answer": "unknown", "normalized_value": None, "confidence": 0.0}
+    if any(term in normalized for term in ("nao sei", "nao tenho certeza", "nao reparei", "n sei", "incerto")):
+        return {"answer": "unknown", "normalized_value": None, "confidence": 0.0}
+    if any(term in normalized for term in ("talvez", "pode ser", "nao tenho certeza mas acho")):
+        return {"answer": "uncertain", "normalized_value": "uncertain", "confidence": 0.35}
+    if any(term in normalized for term in ("um pouco", "mais ou menos", "levemente", "leve", "parcial", "so ao redor")):
+        return {"answer": "partial", "normalized_value": "partial", "confidence": 0.55}
+    if any(term in normalized for term in ("acho que sim", "provavelmente sim", "parece que sim")):
+        return {"answer": "probably_yes", "normalized_value": True, "confidence": 0.6}
+    if any(term in normalized for term in ("ainda nao", "por enquanto nao", "ate agora nao")):
+        return {"answer": "not_yet", "normalized_value": "absent_with_time_uncertainty", "confidence": 0.55}
+    if any(term in normalized for term in ("acho que nao", "provavelmente nao", "nao parece", "quase nao")):
+        return {"answer": "probably_no", "normalized_value": False, "confidence": 0.45}
+    if re.search(r"\bnao\b", normalized) or normalized.startswith("sem "):
+        return {"answer": "no", "normalized_value": False, "confidence": 0.75}
+    if any(term in normalized for term in ("sim", "esta subindo", "subiu", "comecou depois", "na hora nao doeu", "mais forte", "mais intensa", "aumentou", "piorou")):
+        return {"answer": "yes", "normalized_value": True, "confidence": 0.85}
+    return {"answer": "unknown", "normalized_value": None, "confidence": 0.0}
+
+
+def clinical_answer_marker(question, answer_text):
+    parsed = normalize_answer(answer_text)
+    value = parsed["normalized_value"]
+    if value is None:
+        marker_value = "unknown"
+    elif isinstance(value, str):
+        marker_value = value
+    else:
+        marker_value = str(bool(value)).lower()
+    return (
+        "Resposta clinica: question_id={question_id} target_field={target_field} "
+        "answer={answer} normalized_value={value} confidence={confidence}."
+    ).format(
+        question_id=question["question_id"],
+        target_field=question["target_field"],
+        answer=parsed["answer"],
+        value=marker_value,
+        confidence=parsed["confidence"],
+    )
+
+
+def parse_bite_time(value):
+    normalized = normalize_text(value)
+    if not normalized or any(term in normalized for term in ("nao sei", "n sei", "sem certeza", "desconhecido")):
+        return {"minutes": None, "bucket": "UNKNOWN", "evidence": value or ""}
+
+    if "meia hora" in normalized:
+        minutes = 30
+    elif re.search(r"\b1\s*hora\s*e\s*meia\b", normalized) or "uma hora e meia" in normalized:
+        minutes = 90
+    elif "desde ontem" in normalized or normalized == "ontem":
+        minutes = 18 * 60
+    else:
+        minutes = None
+        hour_match = re.search(r"\b(?:ha|faz|umas|uns|cerca de|aproximadamente)?\s*(\d+(?:[,.]\d+)?)\s*h(?:ora|oras)?\b", normalized)
+        minute_match = re.search(r"\b(?:ha|faz|umas|uns|cerca de|aproximadamente)?\s*(\d+)\s*(?:minuto|minutos|min)\b", normalized)
+        compact_hour = re.search(r"\b(\d+(?:[,.]\d+)?)h\b", normalized)
+        day_match = re.search(r"\b(\d+)\s*(?:dia|dias)\b", normalized)
+        if hour_match:
+            minutes = int(float(hour_match.group(1).replace(",", ".")) * 60)
+        elif compact_hour:
+            minutes = int(float(compact_hour.group(1).replace(",", ".")) * 60)
+        elif minute_match:
+            minutes = int(minute_match.group(1))
+        elif day_match:
+            minutes = int(day_match.group(1)) * 24 * 60
+        elif "hoje" in normalized or "agora" in normalized:
+            minutes = 30
+
+    if minutes is None:
+        return {"minutes": None, "bucket": "UNKNOWN", "evidence": value or ""}
+
+    for bucket, (start, end) in TIME_BUCKETS.items():
+        if minutes >= start and (end is None or minutes < end):
+            return {"minutes": minutes, "bucket": bucket, "evidence": value or ""}
+    return {"minutes": minutes, "bucket": "UNKNOWN", "evidence": value or ""}
+
+
+def bite_time_from_profile_or_report(clinical_profile, report_text):
+    entry = (clinical_profile or {}).get("time_since_bite") or {}
+    parsed = parse_bite_time(entry.get("value") or "")
+    if parsed["bucket"] != "UNKNOWN":
+        return parsed
+    return parse_bite_time(report_text)
+
+
+def clinical_field_status(clinical_profile, field):
+    entry = (clinical_profile or {}).get(field) or {}
+    return entry.get("status") or clinical_status_from_value(entry.get("value"))
+
+
+def clue_statuses_from_profile(clinical_profile):
+    statuses = {}
+    confidence = {}
+    for field, clue in FIELD_TO_CLUE.items():
+        if field not in (clinical_profile or {}):
+            continue
+        status = clinical_field_status(clinical_profile, field)
+        if clue in statuses and confidence.get(clue, 0) >= clinical_profile[field].get("confidence", 0):
+            continue
+        value = clinical_field_value(clinical_profile, field)
+        if field == "pain_progression" and value != "aumentando" and status == "present":
+            status = "absent"
+        if field == "pain_onset" and value != "imediato" and status == "present":
+            status = "absent"
+        if field == "initial_pain" and value == "fraca":
+            statuses["immediate_severe_pain"] = "absent"
+            confidence["immediate_severe_pain"] = clinical_profile[field].get("confidence", 0)
+            continue
+        statuses[clue] = status
+        confidence[clue] = clinical_profile[field].get("confidence", 0)
+    return statuses
+
+
+def time_penalty_multiplier(clue, bite_time):
+    minutes = (bite_time or {}).get("minutes")
+    if minutes is None:
+        return 1.0
+    earliest = min(
+        (
+            profile.get("delayed_clues", {}).get(clue)
+            for profile in SPECIES_TEMPORAL_PROFILES.values()
+            if profile.get("delayed_clues", {}).get(clue) is not None
+        ),
+        default=None,
+    )
+    if earliest is not None and minutes < earliest:
+        return 0.2
+    return 1.0
+
+
+def score_negative_clinical_evidence(clinical_profile, species, matched_features, bite_time=None):
+    animal = species.get("animal")
+    score = 0.0
+    for clue, status in clue_statuses_from_profile(clinical_profile).items():
+        if status in {"unknown", "uncertain"}:
+            continue
+        if status in {"absent", "absent_with_time_uncertainty"}:
+            weight = NEGATIVE_FIELD_SPECIES_WEIGHTS.get(clue, {}).get(animal, 0)
+            if not weight:
+                continue
+            multiplier = 0.55 if status == "absent_with_time_uncertainty" else 1.0
+            multiplier *= time_penalty_multiplier(clue, bite_time)
+            delta = -weight * multiplier
+            score += delta
+            matched_features.append(f"evidencia_negativa:{clue}:{round(delta, 2)}")
+        elif status == "present":
+            contrary = CONTRARY_PRESENT_FIELD_SPECIES_WEIGHTS.get(clue, {}).get(animal, 0)
+            if contrary:
+                score -= contrary
+                matched_features.append(f"evidencia_contraria:{clue}")
+        elif status == "partial":
+            weights = FIELD_SPECIES_WEIGHTS.get(clue, {})
+            if animal in weights:
+                score += weights[animal] * 0.45
+                matched_features.append(f"estruturado_parcial:{clue}")
+    return score
+
+
+def score_temporal_evidence(clinical_profile, report_text, species, matched_features):
+    bite_time = bite_time_from_profile_or_report(clinical_profile, report_text)
+    minutes = bite_time.get("minutes")
+    if minutes is None:
+        return 0.0, ["Tempo desde a picada desconhecido; sem ajuste temporal."]
+
+    animal = species.get("animal")
+    profile = SPECIES_TEMPORAL_PROFILES.get(animal, {})
+    statuses = clue_statuses_from_profile(clinical_profile)
+    score = 0.0
+    explanations = []
+    early = minutes < 180
+
+    for clue, weight in (profile.get("early_positive") or {}).items():
+        if statuses.get(clue) in {"present", "partial"} and early:
+            factor = 1.0 if statuses[clue] == "present" else 0.45
+            score += weight * factor
+            matched_features.append(f"tempo:{clue}")
+            explanations.append(f"{prettify_term(clue.replace('_', ' '))} em {minutes} minutos e compativel com evolucao de {animal}.")
+
+    for clue, weight in (profile.get("late_positive") or {}).items():
+        if statuses.get(clue) in {"present", "partial"} and minutes >= 180:
+            factor = 1.0 if statuses[clue] == "present" else 0.45
+            score += weight * factor
+            matched_features.append(f"tempo:{clue}")
+            explanations.append(f"{prettify_term(clue.replace('_', ' '))} apos varias horas e compativel com evolucao de {animal}.")
+
+    for clue, expected_min in (profile.get("delayed_clues") or {}).items():
+        if statuses.get(clue) in {"absent", "absent_with_time_uncertainty"} and minutes < expected_min:
+            explanations.append(f"Ausencia de {prettify_term(clue.replace('_', ' '))} apos {minutes} minutos nao reduz significativamente {animal}.")
+
+    return score, explanations
+
+
+def extract_accident_context(report_text):
+    normalized = normalize_text(report_text)
+    contexts = []
+    for context_name, terms in ACCIDENT_CONTEXT_GROUPS.items():
+        if any(term in normalized for term in terms):
+            contexts.append(context_name)
+    return contexts
+
+
+def score_accident_context(report_text, species, matched_features):
+    animal = species.get("animal")
+    score = 0.0
+    for context_name in extract_accident_context(report_text):
+        weight = CONTEXT_SPECIES_WEIGHTS.get(context_name, {}).get(animal, 0)
+        if weight:
+            score += weight
+            matched_features.append(f"contexto_acidente:{context_name}")
+    return score
+
+
+def score_structured_clues(clinical_profile, species, matched_features):
+    animal = species.get("animal")
+    score = 0.0
+    counted_clues = set()
+    for clue in infer_clues_from_profile(clinical_profile):
+        weights = FIELD_SPECIES_WEIGHTS.get(clue, {})
+        if animal in weights:
+            score += weights[animal]
+            counted_clues.add(clue)
+            matched_features.append(f"estruturado:{clue}")
+
+    if (
+        clinical_field_value(clinical_profile, "initial_pain") == "fraca"
+        and clinical_field_value(clinical_profile, "pain_progression") == "aumentando"
+        and clinical_field_value(clinical_profile, "purple_skin") is True
+        and clinical_field_value(clinical_profile, "blister") is True
+        and animal == "aranha_marrom"
+    ):
+        score += 6.0
+        matched_features.append("combinacao: dor tardia, pele arroxeada e bolha")
+
+    return score, counted_clues
+
+
+def score_question_answer_markers(report_text, species, matched_features):
+    animal = species.get("animal")
+    score = 0.0
+    used_questions = set()
+    for marker in extract_answer_markers(report_text):
+        question_id = marker["question_id"]
+        if question_id in used_questions:
+            continue
+        used_questions.add(question_id)
+        question = QUESTION_BY_ID.get(question_id)
+        if not question:
+            continue
+        strength = ANSWER_STRENGTH.get(marker.get("answer"), 0.0)
+        if strength == 0:
+            matched_features.append(f"resposta neutra:{question_id}")
+            continue
+        if strength > 0:
+            weights = question.get("supports_yes") or {}
+        else:
+            supports_no = question.get("supports_no") or {}
+            weights = supports_no if animal in supports_no else question.get("supports_yes") or {}
+        if not weights or animal not in weights:
+            continue
+        if strength < 0 and weights is question.get("supports_yes"):
+            delta = abs(weights[animal]) * strength
+        else:
+            delta = weights[animal] * abs(strength)
+        score += delta
+        matched_features.append(f"resposta:{question_id}:{marker.get('answer')}")
+    return score
+
+
+def apply_structured_scores_to_matches(matches, clinical_profile, report_text):
+    ranking_log = []
+    adjusted = []
+    species_by_animal = {item.get("animal"): item for item in load_species_knowledge()}
+    existing_animals = {match.get("animal") for match in matches}
+
+    for match in matches:
+        species = species_by_animal.get(match.get("animal"), match)
+        matched_features = match.setdefault("matched_features", [])
+        structured_score, _counted = score_structured_clues(clinical_profile, species, matched_features)
+        answer_score = score_question_answer_markers(report_text, species, matched_features)
+        delta = structured_score + answer_score
+        if delta:
+            before = match.get("score", 0)
+            match["score"] = round(before + delta, 2)
+            ranking_log.append({"animal": match.get("animal"), "before": before, "delta": round(delta, 2), "after": match["score"]})
+        adjusted.append(match)
+
+    for species in load_species_knowledge():
+        animal = species.get("animal")
+        if animal in existing_animals:
+            continue
+        matched_features = []
+        structured_score, _counted = score_structured_clues(clinical_profile, species, matched_features)
+        answer_score = score_question_answer_markers(report_text, species, matched_features)
+        score = structured_score + answer_score
+        if score <= 0:
+            continue
+        adjusted.append(
+            {
+                "display_name": species["display_name"],
+                "animal": animal,
+                "popular_name": species["popular_name"],
+                "category": species["category"],
+                "severity": species["severity"],
+                "risk_level": species.get("risk_level", ""),
+                "guidance": species["guidance"],
+                "dont_do": species.get("dont_do", ""),
+                "alert_signs": ", ".join(species.get("alert_signs", [])),
+                "symptom_onset": species.get("symptom_onset", ""),
+                "regions": ", ".join(species["regions"]),
+                "environment": ", ".join(species["environment"]),
+                "symptoms_reference": ", ".join(species["symptoms"]),
+                "score": round(score, 2),
+                "matched_features": matched_features,
+            }
+        )
+        ranking_log.append({"animal": animal, "before": 0, "delta": round(score, 2), "after": round(score, 2)})
+
+    adjusted.sort(key=lambda item: (-item.get("score", 0), -risk_sort_value(item), item.get("display_name", "")))
+    return adjusted[:5], ranking_log
 
 
 def tokenize_terms(phrases):
@@ -1454,6 +2613,10 @@ def extract_symptoms(report):
     for symptom, patterns in SYMPTOM_PATTERNS.items():
         if any(pattern in normalized for pattern in patterns):
             found.append(SYMPTOM_LABELS.get(symptom, symptom))
+    clinical_profile = extract_structured_clinical_data(report)
+    for field, label in FIELD_TO_LEGACY_SYMPTOM.items():
+        if clinical_field_value(clinical_profile, field) is True and label not in found:
+            found.append(label)
     return found
 
 
@@ -1588,10 +2751,11 @@ def rank_possible_bugs(report_text):
     return ranked[:3]
 
 
-def rank_specific_species(report_text, state=None):
+def rank_specific_species(report_text, state=None, clinical_profile=None):
     normalized_report = normalize_text(report_text)
     ranked = []
     detected_region = extract_region(report_text, state=state)
+    clinical_profile = clinical_profile or extract_structured_clinical_data(report_text)
 
     for species in load_species_knowledge():
         score = 0
@@ -1653,6 +2817,16 @@ def rank_specific_species(report_text, state=None):
             score += 4
             matched_features.append("nome citado")
 
+        animal = species.get("animal", "")
+        positive_answer_marker = normalize_text(f"resposta a favor de {animal}:")
+        negative_answer_marker = normalize_text(f"resposta contra {animal}:")
+        if positive_answer_marker in normalized_report:
+            score += 6
+            matched_features.append("resposta especifica favoravel")
+        if negative_answer_marker in normalized_report:
+            score -= 8
+            matched_features.append("resposta especifica contraria")
+
         # Penalidades fortes para contexto muito incompatível.
         if contains_any_term(normalized_report, STRONG_URBAN_INDOOR_TERMS):
             if species["category"] == "cobra":
@@ -1679,6 +2853,14 @@ def rank_specific_species(report_text, state=None):
 
         # Cobras precisam de sinais mais característicos ou contexto compatível.
         score += score_viuva_negra_cluster(normalized_report, species, matched_features)
+        structured_score, _counted_structured = score_structured_clues(clinical_profile, species, matched_features)
+        score += structured_score
+        score += score_question_answer_markers(report_text, species, matched_features)
+        bite_time = bite_time_from_profile_or_report(clinical_profile, report_text)
+        score += score_negative_clinical_evidence(clinical_profile, species, matched_features, bite_time)
+        temporal_score, temporal_explanations = score_temporal_evidence(clinical_profile, report_text, species, matched_features)
+        score += temporal_score
+        score += score_accident_context(report_text, species, matched_features)
 
         if species["category"] == "cobra":
             snake_signal_terms = tokenize_terms(species["symptoms"]) + tokenize_terms(species["environment"])
@@ -1715,6 +2897,7 @@ def rank_specific_species(report_text, state=None):
                 "symptoms_reference": ", ".join(species["symptoms"]),
                 "score": score,
                 "matched_features": matched_features,
+                "temporal_explanations": temporal_explanations,
             }
         )
 
@@ -1781,6 +2964,17 @@ def rank_specific_species(report_text, state=None):
                 reasons.append(f"característica da picada: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
             elif feature.startswith("ausencia:"):
                 reasons.append(f"ausência compatível: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
+            elif feature.startswith("evidencia_negativa:"):
+                parts = feature.split(":", 2)
+                reasons.append(f"evidencia negativa moderada: {prettify_term(parts[1].replace('_', ' '))}")
+            elif feature.startswith("evidencia_contraria:"):
+                reasons.append(f"evidencia contraria: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
+            elif feature.startswith("estruturado_parcial:"):
+                reasons.append(f"sinal parcial: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
+            elif feature.startswith("tempo:"):
+                reasons.append(f"evolucao temporal: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
+            elif feature.startswith("contexto_acidente:"):
+                reasons.append(f"contexto do acidente: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
             elif feature.startswith("possivel:"):
                 reasons.append(f"característica possível: {prettify_term(feature.split(':', 1)[1].replace('_', ' '))}")
             elif feature.startswith("ambiente:"):
@@ -2035,73 +3229,487 @@ def has_victim_history_answer(report_text):
     )
 
 
+def count_identification_questions(asked_questions):
+    count = 0
+    for question_id in asked_questions or []:
+        question = QUESTION_BY_ID.get(str(question_id))
+        if question and question.get("category") == "differential":
+            count += 1
+    return count
+
+
+def profile_detail_count(clinical_profile):
+    return sum(
+        1
+        for entry in (clinical_profile or {}).values()
+        if entry.get("confidence", 0) >= CLINICAL_FIELD_CONFIDENCE_THRESHOLD and entry.get("value") != "unknown"
+    )
+
+
+def ranking_is_stable(species_matches):
+    if not species_matches:
+        return False
+    if len(species_matches) == 1:
+        return True
+    return species_matches[0].get("score", 0) - species_matches[1].get("score", 0) >= 12
+
+
+def question_has_relevant_top_species(question, top_animals):
+    supports = {
+        animal
+        for animal, weight in (question.get("supports_yes") or {}).items()
+        if weight > 0
+    }
+    if not supports:
+        return question.get("category") in {"urgency", "context"}
+    return bool(supports.intersection(top_animals))
+
+
+def estimate_diagnostic_gain(question, top_animals):
+    weights = question.get("supports_yes") or {}
+    supports_no = question.get("supports_no") or {}
+    values = [weights.get(animal, 0.0) - supports_no.get(animal, 0.0) for animal in top_animals]
+    if len(values) < 2:
+        return question.get("diagnostic_gain", 0)
+    spread = max(values) - min(values)
+    non_zero = sum(1 for value in values if abs(value) > 0.01)
+    discrimination = spread / 8.0
+    if non_zero == len(values) and spread < 1.0:
+        discrimination *= 0.35
+    coverage = non_zero / max(1, len(values))
+    base_gain = question.get("diagnostic_gain", 0)
+    return min(1.0, max(base_gain * 0.6, discrimination + (coverage * 0.15)))
+
+
+def estimate_question_time_relevance(question, bite_time):
+    minutes = (bite_time or {}).get("minutes")
+    if minutes is None:
+        return 1.0
+    target = question.get("target_field")
+    if target in {"blister", "purple_skin"} and minutes < 120:
+        return 0.55
+    if target == "urine_change" and minutes < 240:
+        return 0.45
+    if target in {"pain_onset", "swelling_progression", "bleeding"} and minutes < 180:
+        return 1.08
+    if target in {"blurred_vision", "weakness"} and minutes >= 180:
+        return 1.12
+    return 1.0
+
+
+def build_question_selection_log(analysis):
+    return {
+        "current_ranking": [
+            {"animal": item.get("animal"), "score": item.get("score")}
+            for item in (analysis.get("species_matches") or [])[:5]
+        ],
+        "compared_species": [item.get("animal") for item in (analysis.get("species_matches") or [])[:3]],
+        "candidates": [],
+        "ignored_repetition": [],
+        "ignored_answered": [],
+        "ignored_low_gain": [],
+        "chosen": None,
+        "reason": "",
+    }
+
+
+def select_best_triage_question(analysis, question_count=0, max_questions=5, asked_questions=None):
+    clinical_profile = analysis.get("clinical_profile") or {}
+    asked_questions = asked_questions or []
+    asked_set = {normalize_question_key(question) for question in asked_questions}
+    top_animals = [item.get("animal") for item in (analysis.get("species_matches") or [])[:3] if item.get("animal")]
+    identification_count = count_identification_questions(asked_questions)
+    selection_log = build_question_selection_log(analysis)
+    bite_time = analysis.get("bite_time_analysis") or bite_time_from_profile_or_report(clinical_profile, analysis.get("report_text") or "")
+    best_candidate = None
+    best_priority = None
+
+    for question in QUESTION_BANK:
+        question_id = question["question_id"]
+        normalized_question_id = normalize_question_key(question_id)
+        if normalized_question_id in asked_set:
+            selection_log["ignored_repetition"].append({"question_id": question_id, "reason": "question_id ja perguntado"})
+            continue
+
+        target_fields = question_target_fields(question)
+        if clinical_fields_answered(clinical_profile, target_fields):
+            selection_log["ignored_answered"].append(
+                {"question_id": question_id, "target_field": question.get("target_field"), "reason": "campo clinico ja preenchido"}
+            )
+            continue
+
+        category = question.get("category")
+        if category == "differential" and identification_count >= max_questions:
+            selection_log["ignored_low_gain"].append({"question_id": question_id, "reason": "limite de perguntas de identificacao"})
+            continue
+
+        if category == "differential" and not question_has_relevant_top_species(question, top_animals):
+            selection_log["ignored_low_gain"].append({"question_id": question_id, "reason": "baixo ganho para top 3 atual"})
+            continue
+
+        diagnostic_gain = estimate_diagnostic_gain(question, top_animals)
+        time_relevance = estimate_question_time_relevance(question, bite_time)
+        missing_information_bonus = 0.25 if not clinical_fields_answered(clinical_profile, target_fields, 0.35) else 0
+        repetition_penalty = 1.0 if normalized_question_id in asked_set else 0
+        already_answered_penalty = 2.0 if clinical_fields_answered(clinical_profile, target_fields) else 0
+        priority = (diagnostic_gain * time_relevance) + question.get("urgency_priority", 0) + missing_information_bonus - repetition_penalty - already_answered_penalty
+        candidate_log = {
+            "question_id": question_id,
+            "target_field": question.get("target_field"),
+            "category": category,
+            "diagnostic_gain": round(diagnostic_gain, 2),
+            "time_relevance": round(time_relevance, 2),
+            "priority": round(priority, 2),
+        }
+        selection_log["candidates"].append(candidate_log)
+
+        if category != "urgency" and priority < MIN_DIAGNOSTIC_PRIORITY:
+            selection_log["ignored_low_gain"].append({"question_id": question_id, "priority": round(priority, 2), "reason": "prioridade diagnostica baixa"})
+            continue
+
+        if best_candidate is None or priority > best_priority:
+            best_candidate = dict(question)
+            best_candidate["priority"] = round(priority, 2)
+            best_candidate["diagnostic_gain"] = round(diagnostic_gain, 2)
+            best_priority = priority
+
+    if best_candidate:
+        selection_log["chosen"] = {
+            "question_id": best_candidate["question_id"],
+            "target_field": best_candidate.get("target_field"),
+            "priority": best_candidate.get("priority"),
+        }
+        selection_log["reason"] = "maior prioridade combinando urgencia, ganho diagnostico e informacao ausente"
+
+    analysis["question_selection_log"] = selection_log
+    return best_candidate
+
+
+def build_triage_candidate(question_id, text, options=None, priority=50, answer_type="text"):
+    return {
+        "id": question_id,
+        "text": text,
+        "options": options or [],
+        "priority": priority,
+        "answer_type": answer_type,
+    }
+
+
+YES_NO_UNKNOWN_OPTIONS = ["Sim", "Não", "Não sei"]
+
+
+SPECIES_TRIAGE_QUESTIONS = {
+    "aranha_marrom": [
+        ("dor_lenta", "A dor era fraca no início e aumentou algumas horas depois?", "dor fraca no inicio e aumentou depois", "sem dor fraca inicial que aumentou depois"),
+        ("arroxeado", "O local está ficando arroxeado, escuro ou com aparência de hematoma?", "local arroxeado escuro com hematoma", "sem local arroxeado escuro ou hematoma"),
+        ("bolha", "Apareceu alguma bolha no centro ou ao redor da picada?", "bolha no centro ou ao redor da picada", "sem bolha no centro ou ao redor da picada"),
+        ("area_aumentando", "A área afetada está aumentando lentamente desde o acidente?", "area afetada aumentando lentamente", "area afetada nao esta aumentando lentamente"),
+        ("sistemicos", "Você apresentou febre, mal-estar, náusea ou urina mais escura?", "febre mal-estar nausea ou urina escura", "sem febre mal-estar nausea ou urina escura"),
+    ],
+    "armadeira": [
+        ("dor_imediata", "A dor começou imediatamente e ficou muito intensa?", "dor imediata muito intensa", "sem dor imediata muito intensa"),
+        ("dor_espalhou", "A dor se espalhou para outras partes do membro ou do corpo?", "dor irradiando ou se espalhando", "dor nao irradiou nem se espalhou"),
+        ("autonomicos", "Você apresentou suor intenso, agitação ou tremores?", "suor intenso agitacao ou tremores", "sem suor intenso agitacao ou tremores"),
+        ("nausea_saliva", "Você teve náusea, vômito ou aumento da salivação?", "nausea vomito ou salivacao aumentada", "sem nausea vomito ou salivacao aumentada"),
+        ("contexto", "O acidente aconteceu ao mexer em calçados, roupas, caixas ou cachos de banana?", "acidente em calcados roupas caixas ou cachos de banana", "sem contexto de calcados roupas caixas ou cachos de banana"),
+    ],
+    "viuva_negra": [
+        ("queimacao", "A picada causou ardência ou sensação de queimação?", "ardencia ou queimacao", "sem ardencia ou queimacao"),
+        ("espasmos", "Você está sentindo contrações, tremores ou espasmos musculares?", "contracoes tremores ou espasmos musculares", "sem contracoes tremores ou espasmos musculares"),
+        ("abdomen", "O abdômen está dolorido, rígido ou contraído?", "dor abdominal rigidez abdominal ou abdomen contraido", "sem dor abdominal rigidez abdominal ou abdomen contraido"),
+        ("autonomicos", "Você apresentou suor intenso, ansiedade ou agitação?", "suor intenso ansiedade ou agitacao", "sem suor intenso ansiedade ou agitacao"),
+        ("dor_espalhou", "A dor começou no local e depois se espalhou pelo corpo?", "dor comecou no local e espalhou pelo corpo", "dor nao se espalhou pelo corpo"),
+    ],
+    "escorpiao_amarelo": [
+        ("dor_queimacao", "A dor e a queimação começaram imediatamente após a picada?", "dor e queimacao imediatas", "sem dor e queimacao imediatas"),
+        ("sistemicos", "Você apresentou suor intenso, náusea ou vômitos?", "suor intenso nausea ou vomitos", "sem suor intenso nausea ou vomitos"),
+        ("salivacao", "Está salivando mais que o normal?", "salivacao aumentada", "sem salivacao aumentada"),
+        ("cardiorrespiratorio", "Você sente o coração acelerado, falta de ar ou muita agitação?", "coracao acelerado falta de ar ou muita agitacao", "sem coracao acelerado falta de ar ou muita agitacao"),
+        ("risco_vitima", "A pessoa picada é criança, idosa ou possui alguma condição de saúde importante?", "crianca idoso ou condicao de saude importante", "nao e crianca idoso e sem condicao de saude importante"),
+    ],
+    "escorpiao_marrom": [
+        ("dor_formigamento", "A picada provocou dor imediata, queimação ou formigamento?", "dor imediata queimacao ou formigamento", "sem dor imediata queimacao ou formigamento"),
+        ("local", "Existe vermelhidão ou pequeno inchaço no local?", "vermelhidao ou pequeno inchaco local", "sem vermelhidao ou pequeno inchaco local"),
+        ("sistemicos", "Você apresentou náusea, vômito, suor ou agitação?", "nausea vomito suor ou agitacao", "sem nausea vomito suor ou agitacao"),
+        ("contexto", "O acidente aconteceu dentro de casa, próximo a entulhos, madeira, ralos ou materiais de construção?", "dentro de casa entulho madeira ralo ou material de construcao", "sem contexto de casa entulho madeira ralo ou material de construcao"),
+        ("foto_cor", "Você conseguiu observar ou fotografar a cor e o formato do escorpião?", "observou ou fotografou cor e formato do escorpiao", "nao observou nem fotografou o escorpiao"),
+    ],
+    "jararaca": [
+        ("inchaco_dor", "O local começou a inchar e doer pouco tempo depois da mordida?", "inchaco e dor pouco tempo depois da mordida", "sem inchaco e dor pouco tempo depois da mordida"),
+        ("inchaco_subindo", "O inchaço está aumentando ou subindo pelo membro?", "inchaco aumentando ou subindo pelo membro", "inchaco nao esta aumentando ou subindo"),
+        ("sangramento_local", "Existe sangramento no local da mordida?", "sangramento no local da mordida", "sem sangramento no local da mordida"),
+        ("sangramento_geral", "Você apresentou sangramento na gengiva, no nariz ou na urina?", "sangramento na gengiva nariz ou urina", "sem sangramento na gengiva nariz ou urina"),
+        ("pele_roxa", "A pele está ficando arroxeada, com bolhas ou áreas escurecidas?", "pele arroxeada bolhas ou areas escurecidas", "sem pele arroxeada bolhas ou areas escurecidas"),
+    ],
+    "cascavel": [
+        ("pouco_local", "A dor e o inchaço no local são pequenos ou quase inexistentes?", "pouca dor pouco inchaco ou pouca lesao local", "dor ou inchaco local importante"),
+        ("palpebras", "Suas pálpebras estão caídas ou você está com dificuldade para manter os olhos abertos?", "palpebras caidas ou dificuldade para manter olhos abertos", "sem palpebras caidas ou dificuldade nos olhos"),
+        ("visao", "Você está com visão dupla ou visão embaçada?", "visao dupla ou visao embacada", "sem visao dupla ou embacada"),
+        ("fraqueza", "Está sentindo fraqueza muscular, dificuldade para caminhar ou falar?", "fraqueza muscular dificuldade para caminhar ou falar", "sem fraqueza muscular dificuldade para caminhar ou falar"),
+        ("urina", "Sua urina ficou escura, avermelhada ou com aparência diferente?", "urina escura avermelhada ou diferente", "urina sem alteracao"),
+    ],
+    "coral_verdadeira": [
+        ("palpebras", "Você está com dificuldade para abrir os olhos ou com as pálpebras caídas?", "dificuldade para abrir olhos ou palpebras caidas", "sem dificuldade para abrir olhos ou palpebras caidas"),
+        ("visao", "Está com visão dupla ou dificuldade para focalizar?", "visao dupla ou dificuldade para focalizar", "sem visao dupla ou dificuldade para focalizar"),
+        ("fala_engolir", "Você sente dificuldade para falar, engolir ou movimentar a língua?", "dificuldade para falar engolir ou movimentar a lingua", "sem dificuldade para falar engolir ou movimentar a lingua"),
+        ("fraqueza_respirar", "Está sentindo fraqueza muscular ou dificuldade para respirar?", "fraqueza muscular ou dificuldade para respirar", "sem fraqueza muscular ou dificuldade para respirar"),
+        ("pouco_local", "A mordida apresentou pouca dor ou poucos sinais no local, apesar dos outros sintomas?", "pouca dor ou poucos sinais no local", "dor ou sinais locais importantes"),
+    ],
+    "surucucu": [
+        ("floresta", "O acidente aconteceu em mata fechada ou região de floresta?", "mata fechada ou regiao de floresta", "nao aconteceu em mata fechada ou floresta"),
+        ("dor_inchaco", "O local apresenta dor forte e inchaço que está aumentando?", "dor forte e inchaco aumentando", "sem dor forte e inchaco aumentando"),
+        ("sangramento", "Houve sangramento no local, na gengiva, no nariz ou em outra região?", "sangramento local gengiva nariz ou outra regiao", "sem sangramento local gengiva nariz ou outra regiao"),
+        ("gastro", "Você apresentou diarreia, cólicas, náusea ou vômitos?", "diarreia colicas nausea ou vomitos", "sem diarreia colicas nausea ou vomitos"),
+        ("vagal", "Você apresentou tontura, sensação de desmaio, pressão baixa ou batimentos mais lentos?", "tontura desmaio pressao baixa ou batimentos lentos", "sem tontura desmaio pressao baixa ou batimentos lentos"),
+    ],
+}
+
+
+def get_species_triage_question(question_id):
+    for animal, questions in SPECIES_TRIAGE_QUESTIONS.items():
+        for suffix, text, positive_evidence, negative_evidence in questions:
+            if question_id == f"species_{animal}_{suffix}":
+                return {
+                    "animal": animal,
+                    "suffix": suffix,
+                    "text": text,
+                    "positive_evidence": positive_evidence,
+                    "negative_evidence": negative_evidence,
+                }
+    return None
+
+
+def build_species_triage_candidates(analysis, asked_question_keys):
+    candidates = []
+    species_matches = analysis.get("species_matches") or []
+
+    for species_index, match in enumerate(species_matches[:3]):
+        animal = match.get("animal")
+        questions = SPECIES_TRIAGE_QUESTIONS.get(animal) or []
+        if not questions:
+            continue
+
+        asked_for_animal = sum(1 for key in asked_question_keys if key.startswith(normalize_question_key(f"species_{animal}_")))
+        if asked_for_animal >= 2:
+            continue
+
+        for question_index, (suffix, text, _positive_evidence, _negative_evidence) in enumerate(questions):
+            question_id = f"species_{animal}_{suffix}"
+            if normalize_question_key(question_id) in asked_question_keys:
+                continue
+
+            candidates.append(build_triage_candidate(
+                question_id,
+                text,
+                YES_NO_UNKNOWN_OPTIONS,
+                priority=8 + (species_index * 20) + question_index,
+                answer_type="single_choice",
+            ))
+            break
+
+    return candidates
+
+
+def describe_triage_answer(question_id, answer):
+    question = QUESTION_BY_ID.get(question_id or "")
+    if question:
+        return clinical_answer_marker(question, answer)
+
+    question = get_species_triage_question(question_id or "")
+    if not question:
+        return ""
+
+    normalized_answer = normalize_text(answer)
+    if not normalized_answer or "nao sei" in normalized_answer:
+        return ""
+    if normalized_answer.startswith("sim"):
+        return f"resposta a favor de {question['animal']}: {question['positive_evidence']}"
+    if normalized_answer.startswith("nao") or normalized_answer.startswith("não"):
+        return f"resposta contra {question['animal']}: {question['negative_evidence']}"
+    return ""
+
+
 def get_triage_question_candidates(analysis):
     report_text = analysis.get("report_text") or ""
     symptoms = analysis.get("symptoms") or []
     has_pain = "dor" in symptoms or "dor" in normalize_text(report_text)
     candidates = []
-
-    if not symptoms:
-        candidates.append("Quais sintomas você está sentindo agora? Por exemplo: dor, coceira, inchaço, vermelhidão, náusea ou falta de ar.")
-
-    if has_pain and not has_pain_intensity(report_text):
-        candidates.append("A dor é leve, moderada ou intensa?")
+    asked_question_keys = {
+        normalize_question_key(question)
+        for question in analysis.get("asked_questions", [])
+    }
 
     if not has_emergency_screen_answer(report_text):
-        candidates.append("A vítima consegue respirar normalmente e ficar em pé?")
+        candidates.append(build_triage_candidate(
+            "emergency_screen",
+            "A vítima consegue respirar normalmente e ficar em pé?",
+            ["Sim, respira e fica em pé", "Não respira bem", "Desmaiou ou está muito fraca"],
+            priority=5,
+            answer_type="single_choice",
+        ))
+
+    candidates.extend(build_species_triage_candidates(analysis, asked_question_keys))
+
+    if not symptoms:
+        candidates.append(build_triage_candidate(
+            "current_symptoms",
+            "Quais sintomas você está sentindo agora? Por exemplo: dor, coceira, inchaço, vermelhidão, náusea ou falta de ar.",
+            ["Dor e inchaço", "Coceira e vermelhidão", "Náusea, tontura ou falta de ar"],
+            priority=10,
+        ))
+
+    if has_pain and not has_pain_intensity(report_text):
+        candidates.append(build_triage_candidate(
+            "pain_intensity",
+            "A dor é leve, moderada ou intensa?",
+            ["Leve", "Moderada", "Intensa ou insuportável"],
+            priority=15,
+            answer_type="single_choice",
+        ))
 
     if has_pain and not has_pain_start_answer(report_text):
-        candidates.append("A dor começou imediatamente ou demorou para aparecer?")
+        candidates.append(build_triage_candidate(
+            "pain_start",
+            "A dor começou imediatamente ou demorou para aparecer?",
+            ["Imediatamente", "Demorou minutos ou horas", "Não sei"],
+            priority=25,
+            answer_type="single_choice",
+        ))
 
     if has_pain and not has_pain_progression_answer(report_text):
-        candidates.append("A dor está aumentando com o tempo?")
+        candidates.append(build_triage_candidate(
+            "pain_progression",
+            "A dor está aumentando com o tempo?",
+            ["Está aumentando", "Está igual", "Está melhorando"],
+            priority=30,
+            answer_type="single_choice",
+        ))
 
     if has_pain and not has_pain_type_answer(report_text):
-        candidates.append("A dor é em pontadas, queimação, pressão ou latejamento?")
+        candidates.append(build_triage_candidate(
+            "pain_type",
+            "A dor é em pontadas, queimação, pressão ou latejamento?",
+            ["Pontadas", "Queimação", "Pressão ou latejamento"],
+            priority=35,
+            answer_type="single_choice",
+        ))
 
     if not analysis.get("bite_location"):
-        candidates.append("Em qual parte do corpo aconteceu?")
+        candidates.append(build_triage_candidate(
+            "bite_location",
+            "Em qual parte do corpo aconteceu?",
+            ["Mão ou braço", "Pé ou perna", "Rosto, pescoço ou tronco"],
+            priority=20,
+        ))
 
     if not has_local_appearance_answer(report_text):
-        candidates.append("O local está inchado, vermelho, quente, com bolha, roxo, escuro, com pus ou sangrando?")
+        candidates.append(build_triage_candidate(
+            "local_appearance",
+            "O local está inchado, vermelho, quente, com bolha, roxo, escuro, com pus ou sangrando?",
+            ["Inchado ou vermelho", "Bolha, roxo ou escuro", "Pus ou sangramento"],
+            priority=40,
+        ))
 
     if not has_time_reference(report_text):
-        candidates.append("Quanto tempo faz desde o acidente?")
+        candidates.append(build_triage_candidate(
+            "bite_time",
+            "Quanto tempo faz desde o acidente?",
+            ["Menos de 1 hora", "1 a 6 horas", "Mais de 6 horas"],
+            priority=18,
+        ))
 
     if not has_systemic_symptom_answer(report_text):
-        candidates.append("Teve febre, vômito, diarreia, náusea, tontura, suor intenso, tremores ou falta de ar?")
+        candidates.append(build_triage_candidate(
+            "systemic_symptoms",
+            "Teve febre, vômito, diarreia, náusea, tontura, suor intenso, tremores ou falta de ar?",
+            ["Não tive esses sintomas", "Náusea, tontura ou suor", "Febre, vômito, tremores ou falta de ar"],
+            priority=12,
+        ))
 
     if not has_environment_answer(report_text):
-        candidates.append("O acidente aconteceu em casa, quintal, mato, rio, plantação ou galpão?")
+        candidates.append(build_triage_candidate(
+            "environment",
+            "O acidente aconteceu em casa, quintal, mato, rio, plantação ou galpão?",
+            ["Dentro de casa", "Quintal ou galpão", "Mato, rio ou plantação"],
+            priority=55,
+        ))
 
     if not has_animal_seen_answer(report_text):
-        candidates.append("O animal foi visto ou o usuário conseguiu tirar foto dele?")
+        candidates.append(build_triage_candidate(
+            "animal_seen",
+            "O animal foi visto ou o usuário conseguiu tirar foto dele?",
+            ["Vi o animal", "Tenho foto", "Não vi o animal"],
+            priority=50,
+            answer_type="single_choice",
+        ))
 
     if not has_victim_history_answer(report_text):
-        candidates.append("A vítima é criança, idosa, gestante, tem alergias ou usa algum medicamento contínuo?")
+        candidates.append(build_triage_candidate(
+            "victim_history",
+            "A vítima é criança, idosa, gestante, tem alergias ou usa algum medicamento contínuo?",
+            ["Não", "Criança, idosa ou gestante", "Tem alergia ou usa medicamento"],
+            priority=60,
+        ))
 
-    return candidates
+    return sorted(candidates, key=lambda item: (item["priority"], item["id"]))
+
+
+def build_triage_question_payload(analysis, question_count=0, max_questions=5, asked_questions=None):
+    asked_questions = asked_questions or []
+    asked_set = {normalize_question_key(item) for item in asked_questions}
+    clinical_profile = analysis.get("clinical_profile") or {}
+    species_matches = analysis.get("species_matches") or []
+    identification_count = count_identification_questions(asked_questions)
+    urgent_unanswered = any(
+        question.get("category") == "urgency"
+        and normalize_question_key(question["question_id"]) not in asked_set
+        and not clinical_fields_answered(clinical_profile, question_target_fields(question))
+        for question in QUESTION_BANK
+    )
+
+    if (
+        not urgent_unanswered
+        and identification_count > 0
+        and (
+            profile_detail_count(clinical_profile) >= 8
+            or ranking_is_stable(species_matches)
+            or identification_count >= max_questions
+        )
+    ):
+        analysis["question_selection_log"] = build_question_selection_log(analysis)
+        analysis["question_selection_log"]["reason"] = "parada antecipada por informacoes suficientes, ranking estavel ou limite de identificacao"
+        return None
+
+    candidate = select_best_triage_question(
+        analysis,
+        question_count=question_count,
+        max_questions=max_questions,
+        asked_questions=asked_questions,
+    )
+    if not candidate:
+        return None
+
+    return {
+        "id": candidate["question_id"],
+        "question_id": candidate["question_id"],
+        "target_field": candidate.get("target_field"),
+        "category": candidate.get("category"),
+        "text": candidate["text"],
+        "options": candidate.get("options", []),
+        "priority": candidate.get("priority", 0),
+        "diagnostic_gain": candidate.get("diagnostic_gain", 0),
+        "answer_type": candidate.get("answer_type", "text"),
+    }
 
 
 def build_triage_question(analysis, question_count=0, max_questions=5, asked_questions=None):
-    if question_count >= max_questions:
-        return None
-
-    report_text = analysis.get("report_text") or ""
-    asked_question_keys = {
-        normalize_question_key(question)
-        for question in (asked_questions or [])
-    }
-
-    if has_urgent_triage_sign(report_text):
-        return None
-
-    for question in get_triage_question_candidates(analysis):
-        question_key = normalize_question_key(question)
-        if question_key not in asked_question_keys and not was_triage_question_asked(report_text, question):
-            return question
-
-    return None
+    payload = build_triage_question_payload(
+        analysis,
+        question_count=question_count,
+        max_questions=max_questions,
+        asked_questions=asked_questions,
+    )
+    return payload["text"] if payload else None
 
 
 def analyze_report(report_text):
@@ -2109,10 +3717,12 @@ def analyze_report(report_text):
     state = extract_state(report_text)
     city = extract_city(report_text, state=state)
     region = extract_region(report_text, state=state)
+    clinical_profile = extract_structured_clinical_data(report_text)
+    bite_time_analysis = bite_time_from_profile_or_report(clinical_profile, report_text)
     symptoms = extract_symptoms(report_text)
-    bite_location = extract_bite_location(report_text)
+    bite_location = clinical_field_value(clinical_profile, "bite_location") or extract_bite_location(report_text)
     bug_matches = rank_possible_bugs(report_text)
-    species_matches = rank_specific_species(report_text, state=state)
+    species_matches = rank_specific_species(report_text, state=state, clinical_profile=clinical_profile)
     recommendations = build_recommendations(species_matches)
     urgent_triage = has_urgent_triage_sign(report_text)
 
@@ -2129,8 +3739,11 @@ def analyze_report(report_text):
         "state": state,
         "region": region,
         "bite_location": BITE_LOCATION_LABELS.get(bite_location, bite_location),
+        "clinical_profile": clinical_profile,
+        "bite_time_analysis": bite_time_analysis,
         "bug_matches": bug_matches,
         "species_matches": species_matches,
         "recommendations": recommendations,
         "urgent_triage": urgent_triage,
+        "question_selection_log": build_question_selection_log({"species_matches": species_matches}),
     }

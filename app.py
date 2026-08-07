@@ -21,9 +21,59 @@ Bootstrap(app)
 init_db_app(app)
 
 ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+MODEL_EVALUATION_PATH = os.path.join('models', 'venom_bite_evaluation.json')
+_image_model_evaluation = None
 
 def is_allowed_image(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
+
+
+def load_image_model_evaluation():
+    global _image_model_evaluation
+
+    if _image_model_evaluation is not None:
+        return _image_model_evaluation
+
+    try:
+        with open(MODEL_EVALUATION_PATH, 'r', encoding='utf-8') as evaluation_file:
+            evaluation = json.load(evaluation_file)
+    except (OSError, ValueError):
+        _image_model_evaluation = {}
+        return _image_model_evaluation
+
+    per_class = evaluation.get('per_class') or []
+    _image_model_evaluation = {
+        item.get('class_name'): item
+        for item in per_class
+        if item.get('class_name')
+    }
+    return _image_model_evaluation
+
+
+def get_image_class_reliability(class_name):
+    item = load_image_model_evaluation().get(class_name) or {}
+    test_images = int(item.get('test_images') or 0)
+    accuracy = float(item.get('accuracy') or 0)
+
+    if test_images <= 0:
+        return 0.18
+    if test_images < 3:
+        return max(0.18, accuracy * 0.65)
+    return max(0.12, min(0.92, accuracy))
+
+
+def is_dataset_image_prediction(prediction):
+    source = (prediction.get('source') or '').lower()
+    return 'dataset' in source
+
+
+def calibrate_image_confidence(prediction):
+    confidence = float(prediction.get('confidence') or 0)
+    if is_dataset_image_prediction(prediction):
+        return confidence
+
+    reliability = get_image_class_reliability(prediction.get('class_name'))
+    return confidence * (0.35 + (0.65 * reliability))
 
 
 def save_uploaded_image(uploaded_file):
@@ -117,11 +167,17 @@ def apply_image_evidence(analysis, image_analysis):
 
     for rank, prediction in enumerate(predictions):
         class_name = prediction.get('class_name')
-        confidence = float(prediction.get('confidence') or 0)
-        if rank > 0 and confidence < 0.20:
+        raw_confidence = float(prediction.get('confidence') or 0)
+        confidence = calibrate_image_confidence(prediction)
+        prediction['calibrated_confidence'] = confidence
+        if rank > 0 and confidence < 0.08:
             continue
 
-        image_weight = max(1, int(round(confidence * 8)))
+        if rank == 0 and confidence < 0.12 and not is_dataset_image_prediction(prediction):
+            continue
+
+        image_weight_scale = 8 if is_dataset_image_prediction(prediction) else 5
+        image_weight = max(1, int(round(confidence * image_weight_scale)))
         if rank > 0:
             image_weight = max(1, image_weight - rank)
         if is_uncertain or confidence_margin < 0.12:
@@ -133,16 +189,22 @@ def apply_image_evidence(analysis, image_analysis):
                 matched = True
                 match['score'] = match.get('score', 0) + image_weight
                 reasons = match.get('reasons') or []
-                reasons.append('classificacao por imagem: {}%'.format(int(round(confidence * 100))))
+                reasons.append('classificacao por imagem: {}%'.format(int(round(raw_confidence * 100))))
                 match['reasons'] = list(dict.fromkeys(reasons))
                 match['reason_text'] = ', '.join(match['reasons'])
-                match['image_confidence'] = int(round(confidence * 100))
+                match['image_confidence'] = int(round(raw_confidence * 100))
+                match['image_calibrated_confidence'] = int(round(confidence * 100))
                 break
 
         if not matched:
+            has_text_evidence = bool(analysis.get('symptoms')) or bool(analysis.get('bite_location'))
+            if not is_dataset_image_prediction(prediction) and confidence < (0.22 if has_text_evidence else 0.28):
+                continue
             image_match = build_species_match_from_image(class_name, confidence)
             if image_match:
                 image_match['score'] = image_weight
+                image_match['image_confidence'] = int(round(raw_confidence * 100))
+                image_match['image_calibrated_confidence'] = int(round(confidence * 100))
                 species_matches.append(image_match)
 
     species_matches.sort(key=lambda item: (-item.get('score', 0), item.get('display_name', '')))
@@ -182,8 +244,6 @@ def build_ai_response(analysis):
 
     lines = []
     lines.append("Análise inicial da IA")
-    showed_image_predictions = False
-
     recognized = []
     if symptoms:
         recognized.append("sintomas: {}".format(", ".join(symptoms)))
@@ -200,38 +260,8 @@ def build_ai_response(analysis):
         lines.append("Foi identificado " + "; ".join(recognized) + ".")
     elif image_analysis and image_analysis.get('class_label'):
         lines.append("Análise baseada somente na imagem enviada. Para aumentar a precisão, informe também sintomas, local da picada, cidade, estado e tempo desde o ocorrido.")
-        predictions = image_analysis.get('predictions') or []
-        if predictions:
-            lines.append("")
-            lines.append("Resultado visual do classificador:")
-            for prediction in predictions:
-                source = prediction.get('source')
-                source_text = " ({})".format(source) if source and source != "complemento" else ""
-                lines.append(
-                    "- {}: {}%{}".format(
-                        prediction.get('class_label'),
-                        int(round(float(prediction.get('confidence') or 0) * 100)),
-                        source_text,
-                    )
-                )
-            showed_image_predictions = True
     else:
         lines.append("Não consegui reconhecer todos os dados principais. Descreva sintomas, local da picada, cidade, estado e há quanto tempo aconteceu.")
-
-    predictions = image_analysis.get('predictions') or []
-    if predictions and not showed_image_predictions:
-        lines.append("")
-        lines.append("Resultado visual do classificador:")
-        for prediction in predictions:
-            source = prediction.get('source')
-            source_text = " ({})".format(source) if source and source != "complemento" else ""
-            lines.append(
-                "- {}: {}%{}".format(
-                    prediction.get('class_label'),
-                    int(round(float(prediction.get('confidence') or 0) * 100)),
-                    source_text,
-                )
-            )
 
     if analysis.get('urgent_triage'):
         lines.append("")
@@ -243,9 +273,8 @@ def build_ai_response(analysis):
         for match in species_matches[:3]:
             reason_text = match.get('reason_text') or "sinais descritos"
             lines.append(
-                "- {}: {}% de compatibilidade, gravidade {}, risco {}, por causa de {}.".format(
+                "- {}: maior compatibilidade dentro do sistema, gravidade {}, risco {}, por causa de {}.".format(
                     match.get('popular_name'),
-                    match.get('probability'),
                     match.get('severity'),
                     match.get('risk_level') or 'não informado',
                     reason_text,
@@ -329,6 +358,7 @@ def ask():
     city = (data.get('city') or '').strip()
     state = (data.get('state') or '').strip()
     bite_time = (data.get('bite_time') or '').strip()
+    answered_question_id = (data.get('answered_question_id') or '').strip()
     question_count = parse_question_count(data.get('question_count'))
     asked_questions = parse_asked_questions(data.get('asked_questions'))
     image_analysis = analyze_uploaded_image(request.files.get('image'))
@@ -336,6 +366,9 @@ def ask():
         image_analysis = parse_image_analysis_context(data.get('image_analysis_context'))
 
     report_parts = [report_context or question]
+    interpreted_answer = symptom_ai.describe_triage_answer(answered_question_id, question)
+    if interpreted_answer:
+        report_parts.append(interpreted_answer)
     if city:
         report_parts.append("Cidade: {}".format(city))
     if state:
@@ -353,21 +386,26 @@ def ask():
     analysis = symptom_ai.analyze_report(report_text)
     analysis = apply_image_evidence(analysis, image_analysis)
     analysis['image_analysis'] = image_analysis
+    analysis['asked_questions'] = asked_questions
     if is_refusal_answer(question):
         question_count = 5
-    triage_question = symptom_ai.build_triage_question(
+    triage_payload = symptom_ai.build_triage_question_payload(
         analysis,
         question_count=question_count,
         max_questions=5,
         asked_questions=asked_questions,
     )
 
-    if triage_question:
+    if triage_payload:
+        triage_question = triage_payload['text']
         return jsonify({
             'ok': True,
             'needs_more_info': True,
             'answer': build_triage_response(triage_question),
             'triage_question': triage_question,
+            'triage_question_id': triage_payload.get('id'),
+            'triage_options': triage_payload.get('options', []),
+            'triage_answer_type': triage_payload.get('answer_type'),
             'question_count': question_count + 1,
             'analysis': analysis,
         })

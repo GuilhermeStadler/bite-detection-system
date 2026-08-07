@@ -208,6 +208,7 @@
       let conversationContext = "";
       let askedTriageQuestions = [];
       let cachedImageAnalysis = null;
+      let pendingTriageQuestionId = "";
 
       function getHospitalSearchUrl(query) {
         const encodedQuery = encodeURIComponent(query);
@@ -259,6 +260,174 @@
         article.scrollIntoView({ behavior: "smooth", block: "end" });
 
         return paragraph;
+      }
+
+      function clearQuickReplies() {
+        document.querySelectorAll(".quick-replies").forEach((element) => element.remove());
+      }
+
+      function renderQuickReplies(messageElement, options) {
+        if (!messageElement || !options || options.length === 0) {
+          return;
+        }
+
+        const body = messageElement.querySelector(".message-body");
+        const replies = document.createElement("div");
+        replies.className = "quick-replies";
+
+        options.forEach((option) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "quick-reply-button";
+          button.textContent = option;
+          button.addEventListener("click", () => {
+            symptomsInput.value = option;
+            resizeSymptomsInput();
+            symptomsInput.focus();
+            analysisForm.requestSubmit();
+          });
+          replies.appendChild(button);
+        });
+
+        body.appendChild(replies);
+      }
+
+      function appendTextElement(parent, tagName, className, text) {
+        const element = document.createElement(tagName);
+        if (className) {
+          element.className = className;
+        }
+        element.textContent = text;
+        parent.appendChild(element);
+        return element;
+      }
+
+      function splitReasonText(value, limit = 3) {
+        return String(value || "")
+          .split(",")
+          .map((item) => item.trim())
+          .filter(Boolean)
+          .map(formatReasonText)
+          .slice(0, limit);
+      }
+
+      function formatReasonText(value) {
+        const cleaned = String(value || "")
+          .replace(/^sinal geral:\s*/i, "")
+          .replace(/^sinal local:\s*/i, "")
+          .replace(/^sinal específico:\s*/i, "")
+          .replace(/^indicador forte:\s*/i, "")
+          .replace(/^característica da picada:\s*/i, "")
+          .replace(/^perfil visual:\s*/i, "")
+          .replace(/^perfil diferencial:\s*/i, "")
+          .replace(/^diferencial contra [^:]+:\s*/i, "")
+          .replace(/^região\s+/i, "Região: ")
+          .trim();
+
+        if (!cleaned) {
+          return "";
+        }
+
+        return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+      }
+
+      function appendEmergencyFooter(parent) {
+        const emergency = document.createElement("aside");
+        emergency.className = "result-emergency";
+        appendTextElement(emergency, "span", "", "Contatos de emergência");
+        appendTextElement(emergency, "strong", "", "SAMU 192");
+        appendTextElement(emergency, "strong", "", "Bombeiros 193");
+        appendTextElement(emergency, "p", "", "Em caso de piora ou emergência, procure atendimento médico imediatamente. O Bite Detection System é uma ferramenta de apoio.");
+        parent.appendChild(emergency);
+      }
+
+      function renderResultCard(messageElement, data) {
+        const analysis = data.analysis || {};
+        const matches = analysis.species_matches || [];
+        const recommendations = analysis.recommendations || [];
+        const body = messageElement.querySelector(".message-body");
+        body.replaceChildren();
+        messageElement.classList.add("analysis-result");
+
+        if (!matches.length) {
+          appendTextElement(body, "p", "", data.answer || "Não foi possível gerar uma resposta agora.");
+          appendEmergencyFooter(body);
+          return;
+        }
+
+        const topMatch = matches[0];
+        const result = document.createElement("section");
+        result.className = "result-summary";
+
+        const header = document.createElement("div");
+        header.className = "result-summary-header";
+        const titleWrap = document.createElement("div");
+        appendTextElement(titleWrap, "span", "result-kicker", "Resultado da análise");
+        appendTextElement(titleWrap, "h2", "", topMatch.popular_name || topMatch.display_name || "Animal provável");
+        const probability = appendTextElement(header, "strong", "result-probability", `${topMatch.probability || 0}%`);
+        probability.setAttribute("aria-label", "Compatibilidade");
+        header.prepend(titleWrap);
+        result.appendChild(header);
+
+        const meta = document.createElement("div");
+        meta.className = "result-meta";
+        if (topMatch.severity) {
+          appendTextElement(meta, "span", "risk-chip", `Gravidade: ${topMatch.severity}`);
+        }
+        if (topMatch.risk_level) {
+          appendTextElement(meta, "span", "risk-chip strong", `Risco: ${topMatch.risk_level}`);
+        }
+        if (analysis.bite_location) {
+          appendTextElement(meta, "span", "risk-chip", `Local: ${analysis.bite_location}`);
+        }
+        result.appendChild(meta);
+
+        const comparison = document.createElement("div");
+        comparison.className = "match-list";
+        matches.slice(0, 3).forEach((match, index) => {
+          const row = document.createElement("article");
+          row.className = "match-row";
+          const label = document.createElement("div");
+          appendTextElement(label, "strong", "", match.popular_name || match.display_name || "Possibilidade");
+          appendTextElement(label, "span", "", index === 0 ? "Mais compatível" : "Também possível");
+          const meter = document.createElement("div");
+          meter.className = "match-meter";
+          const fill = document.createElement("span");
+          fill.style.width = `${Math.max(0, Math.min(100, match.probability || 0))}%`;
+          meter.appendChild(fill);
+          appendTextElement(row, "b", "", `${match.probability || 0}%`);
+          row.prepend(label, meter);
+          comparison.appendChild(row);
+        });
+        result.appendChild(comparison);
+
+        const reasons = splitReasonText(topMatch.reason_text);
+        if (reasons.length) {
+          const reasonsBox = document.createElement("div");
+          reasonsBox.className = "result-reasons";
+          appendTextElement(reasonsBox, "h3", "", "Sinais considerados");
+          const list = document.createElement("div");
+          list.className = "reason-tags";
+          reasons.forEach((reason) => appendTextElement(list, "span", "", reason));
+          reasonsBox.appendChild(list);
+          result.appendChild(reasonsBox);
+        }
+
+        if (recommendations.length) {
+          const actionBox = document.createElement("div");
+          actionBox.className = "result-actions";
+          appendTextElement(actionBox, "h3", "", "O que fazer agora");
+          const list = document.createElement("ul");
+          recommendations.slice(0, 3).forEach((recommendation) => {
+            appendTextElement(list, "li", "", recommendation);
+          });
+          actionBox.appendChild(list);
+          result.appendChild(actionBox);
+        }
+
+        appendEmergencyFooter(result);
+
+        body.appendChild(result);
       }
 
       function getUserText() {
@@ -437,6 +606,7 @@
 
       analysisForm.addEventListener("submit", async (event) => {
         event.preventDefault();
+        clearQuickReplies();
 
         const question = symptomsInput.value.trim();
         const selectedImage = getSelectedImage();
@@ -450,6 +620,7 @@
         submitButton.textContent = "Analisando...";
 
         const isFirstTriageMessage = conversationContext === "";
+        const answeredQuestionId = isFirstTriageMessage ? "" : pendingTriageQuestionId;
         const userMessageText = isFirstTriageMessage ? getUserText() : question;
         conversationContext = isFirstTriageMessage
           ? getUserText()
@@ -468,6 +639,7 @@
           formData.append("city", cityInput.value);
           formData.append("state", stateInput.value);
           formData.append("bite_time", timeInput.value);
+          formData.append("answered_question_id", answeredQuestionId);
           formData.append("question_count", triageQuestionCount);
           formData.append("asked_questions", JSON.stringify(askedTriageQuestions));
 
@@ -486,10 +658,14 @@
           cachedImageAnalysis = data.analysis?.image_analysis || cachedImageAnalysis;
           responseMessage.textContent = data.answer || "Não foi possível gerar uma resposta agora.";
           if (data.needs_more_info) {
-            responseMessage.closest(".message").classList.add("triage");
+            const triageMessage = responseMessage.closest(".message");
+            triageMessage.classList.add("triage");
+            renderQuickReplies(triageMessage, data.triage_options);
             triageQuestionCount = data.question_count || triageQuestionCount + 1;
-            if (data.triage_question) {
-              askedTriageQuestions.push(data.triage_question);
+            conversationContext = data.analysis?.report_text || conversationContext;
+            pendingTriageQuestionId = data.triage_question_id || "";
+            if (data.triage_question_id || data.triage_question) {
+              askedTriageQuestions.push(data.triage_question_id || data.triage_question);
             }
             symptomsInput.value = "";
             symptomsInput.placeholder = "Responda à pergunta da IA...";
@@ -504,8 +680,10 @@
           conversationContext = "";
           askedTriageQuestions = [];
           cachedImageAnalysis = null;
+          pendingTriageQuestionId = "";
           symptomsInput.placeholder = "Descreva a picada e os sintomas. Ex.: dor intensa, inchaço, vermelhidão, duas perfurações, náusea...";
           clearAttachmentPreview();
+          renderResultCard(responseMessage.closest(".message"), data);
           analysisForm.hidden = true;
           newAnalysisButton.hidden = false;
         } catch (error) {
@@ -546,6 +724,8 @@
         conversationContext = "";
         askedTriageQuestions = [];
         cachedImageAnalysis = null;
+        pendingTriageQuestionId = "";
+        clearQuickReplies();
         symptomsInput.placeholder = "Descreva a picada e os sintomas. Ex.: dor intensa, inchaço, vermelhidão, duas perfurações, náusea...";
         submitButton.textContent = "Analisar";
         clearAttachmentPreview();

@@ -581,6 +581,31 @@ textarea::placeholder,
   font-weight: 800;
 }
 
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.quick-reply-button {
+  border: 1px solid rgba(156, 240, 177, 0.34);
+  border-radius: 14px;
+  padding: 10px 13px;
+  background: rgba(156, 240, 177, 0.12);
+  color: #effff3;
+  cursor: pointer;
+  font-weight: 800;
+  line-height: 1.25;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.quick-reply-button:hover {
+  border-color: rgba(156, 240, 177, 0.56);
+  background: rgba(156, 240, 177, 0.2);
+  transform: translateY(-1px);
+}
+
 .message-image {
   display: block;
   width: min(320px, 100%);
@@ -612,6 +637,190 @@ textarea::placeholder,
 
 .new-analysis-button[hidden] {
   display: none;
+}
+
+.message.analysis-result {
+  border-color: rgba(156, 240, 177, 0.22);
+  background: rgba(28, 29, 31, 0.96);
+}
+
+.result-summary {
+  display: grid;
+  gap: 16px;
+}
+
+.result-summary-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.result-kicker {
+  display: block;
+  margin-bottom: 4px;
+  color: #9cf0b1;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.result-summary h2,
+.result-summary h3 {
+  margin: 0;
+}
+
+.result-summary h2 {
+  color: #f7fff9;
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  line-height: 1.08;
+}
+
+.result-probability {
+  flex: 0 0 auto;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(156, 240, 177, 0.14);
+  color: #dfffe8;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  line-height: 1;
+}
+
+.result-meta,
+.reason-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.risk-chip,
+.reason-tags span {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 8px 11px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #dfe6dd;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.risk-chip.strong {
+  border-color: rgba(249, 115, 22, 0.3);
+  background: rgba(249, 115, 22, 0.12);
+  color: #fed7aa;
+}
+
+.match-list {
+  display: grid;
+  gap: 10px;
+}
+
+.match-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.5fr) minmax(120px, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(19, 19, 19, 0.3);
+}
+
+.match-row strong,
+.match-row b {
+  color: #f8fbfa;
+}
+
+.match-row span {
+  display: block;
+  margin-top: 2px;
+  color: #9ca3af;
+  font-size: 0.82rem;
+}
+
+.match-meter {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.match-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22c55e, #9cf0b1);
+}
+
+.result-reasons,
+.result-actions {
+  display: grid;
+  gap: 10px;
+  padding-top: 2px;
+}
+
+.result-reasons {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(156, 240, 177, 0.055);
+  border: 1px solid rgba(156, 240, 177, 0.12);
+}
+
+.result-summary h3 {
+  color: #f7fff9;
+  font-size: 1rem;
+}
+
+.result-reasons h3 {
+  color: #dfffe8;
+}
+
+.reason-tags span {
+  border-color: rgba(156, 240, 177, 0.16);
+  background: rgba(19, 19, 19, 0.26);
+  color: #edf7ef;
+}
+
+.result-actions ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: #d7d8dc;
+}
+
+.result-emergency {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-items: center;
+  margin-top: 2px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(249, 115, 22, 0.22);
+  background: rgba(249, 115, 22, 0.08);
+}
+
+.result-emergency span {
+  color: #fed7aa;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.result-emergency strong {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(255, 247, 237, 0.1);
+  color: #fff7ed;
+}
+
+.result-emergency p {
+  flex-basis: 100%;
+  margin: 0;
+  color: #f3d6c2;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .faq-section {
@@ -695,6 +904,20 @@ textarea::placeholder,
 }
 
 @media (max-width: 720px) {
+  .result-summary-header,
+  .match-row {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .result-probability {
+    width: max-content;
+  }
+
+  .match-row {
+    gap: 8px;
+  }
+
   .faq-section {
     padding: 18px;
     border-radius: 22px;

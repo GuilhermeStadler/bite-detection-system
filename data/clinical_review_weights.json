@@ -1,0 +1,81 @@
+{
+  "scale": {
+    "1_to_2": "complementary clue",
+    "3_to_4": "moderate clue",
+    "5_plus": "strong clue"
+  },
+  "note": "Negative evidence uses smaller weights because symptoms may be absent early, underreported, or still developing. This file mirrors the review structure in symptom_ai.py for future clinical validation.",
+  "species": {
+    "aranha_marrom": {
+      "positive_evidence": {
+        "pain_delayed_worsening": 5.0,
+        "purple_skin": 4.5,
+        "blister": 4.0,
+        "necrosis": 5.0
+      },
+      "negative_evidence": {
+        "pain_delayed_worsening": 2.0,
+        "purple_skin": 1.6,
+        "blister": 1.5,
+        "necrosis": 1.2,
+        "immediate_severe_pain": -2.0
+      }
+    },
+    "armadeira": {
+      "positive_evidence": {
+        "immediate_severe_pain": 5.0,
+        "local_sweating": 3.0,
+        "body_sweating": 1.5,
+        "muscle_spasms": 2.0
+      },
+      "negative_evidence": {
+        "immediate_severe_pain": 2.4,
+        "body_sweating": 1.0,
+        "muscle_spasms": 0.8,
+        "bleeding": -1.0
+      }
+    },
+    "jararaca": {
+      "positive_evidence": {
+        "swelling_progression": 4.0,
+        "bleeding": 4.5,
+        "purple_skin": 3.0,
+        "fang_marks": 3.5
+      },
+      "negative_evidence": {
+        "bleeding": 2.0,
+        "swelling_progression": 1.6,
+        "tingling_numbness": -1.0,
+        "neuro_ocular": -2.0
+      }
+    },
+    "cascavel": {
+      "positive_evidence": {
+        "tingling_numbness": 3.0,
+        "urine_change": 4.0,
+        "neuro_ocular": 4.0,
+        "weakness": 2.5
+      },
+      "negative_evidence": {
+        "neuro_ocular": 2.0,
+        "weakness": 1.4,
+        "urine_change": 1.0,
+        "bleeding": -1.0
+      }
+    },
+    "coral_verdadeira": {
+      "positive_evidence": {
+        "shortness_of_breath": 4.5,
+        "neuro_ocular": 3.5,
+        "weakness": 3.0,
+        "tingling_numbness": 3.0
+      },
+      "negative_evidence": {
+        "shortness_of_breath": 1.8,
+        "neuro_ocular": 1.5,
+        "weakness": 1.2,
+        "bleeding": -1.0
+      }
+    }
+  }
+}
