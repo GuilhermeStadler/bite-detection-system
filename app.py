@@ -28,6 +28,10 @@ from db import get_db, init_app as init_db_app
 
 app = Flask(__name__, template_folder='templates')
 
+@app.route("/healthz", methods=["GET"])
+def healthz():
+    return "OK", 200
+
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.jinja_env.auto_reload = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or os.environ.get('FLASK_SECRET_KEY') or secrets.token_hex(32)
