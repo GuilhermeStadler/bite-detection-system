@@ -1178,6 +1178,41 @@ ANSWER_STRENGTH = {
 CLINICAL_FIELD_CONFIDENCE_THRESHOLD = 0.55
 MAX_IDENTIFICATION_QUESTIONS = 5
 MIN_DIAGNOSTIC_PRIORITY = 0.35
+MIN_SPECIES_DIAGNOSTIC_SCORE = 4
+
+
+DIAGNOSTIC_FEATURE_PREFIXES = (
+    "specific_signs:",
+    "ai_indicators:",
+    "visual_characteristics:",
+    "visual_profile:",
+    "perfil_diferencial:",
+    "local_signs:",
+    "general_signs:",
+    "sintoma:",
+    "caracteristica:",
+    "estruturado:",
+    "estruturado_parcial:",
+    "combinacao:",
+    "conjunto ",
+)
+
+
+NON_DIAGNOSTIC_FEATURE_PREFIXES = (
+    "regiao:",
+    "ambiente:",
+    "contexto:",
+    "local:",
+    "tempo:",
+    "resposta neutra:",
+    "evidencia_negativa:",
+    "evidencia_contraria:",
+    "ausencia:",
+    "raro:",
+    "incomum:",
+    "incompativel:",
+    "possivel:",
+)
 
 
 FIELD_TO_LEGACY_SYMPTOM = {
@@ -2220,6 +2255,44 @@ def score_accident_context(report_text, species, matched_features):
     return score
 
 
+def is_diagnostic_feature(feature):
+    normalized_feature = normalize_text(feature or "")
+    if not normalized_feature:
+        return False
+    if normalized_feature.startswith(NON_DIAGNOSTIC_FEATURE_PREFIXES):
+        return False
+    if normalized_feature.startswith("perfil_diferencial:"):
+        value = normalized_feature.split(":", 1)[1].strip()
+        geography_terms = set(REGION_STATES)
+        geography_terms.update(STATE_ALIASES)
+        for states in REGION_STATES.values():
+            geography_terms.update(states)
+        if value in geography_terms:
+            return False
+    return normalized_feature.startswith(DIAGNOSTIC_FEATURE_PREFIXES)
+
+
+def is_geographic_feature(feature):
+    normalized_feature = normalize_text(feature or "")
+    if normalized_feature.startswith("regiao:"):
+        return True
+    if normalized_feature.startswith("perfil_diferencial:"):
+        value = normalized_feature.split(":", 1)[1].strip()
+        geography_terms = set(REGION_STATES)
+        geography_terms.update(STATE_ALIASES)
+        for states in REGION_STATES.values():
+            geography_terms.update(states)
+        return value in geography_terms
+    return False
+
+
+def has_species_diagnostic_evidence(match):
+    features = match.get("matched_features") or []
+    if not any(is_diagnostic_feature(feature) for feature in features):
+        return False
+    return float(match.get("score") or 0) >= MIN_SPECIES_DIAGNOSTIC_SCORE
+
+
 def score_structured_clues(clinical_profile, species, matched_features):
     animal = species.get("animal")
     score = 0.0
@@ -2304,25 +2377,26 @@ def apply_structured_scores_to_matches(matches, clinical_profile, report_text):
         score = structured_score + answer_score
         if score <= 0:
             continue
-        adjusted.append(
-            {
-                "display_name": species["display_name"],
-                "animal": animal,
-                "popular_name": species["popular_name"],
-                "category": species["category"],
-                "severity": species["severity"],
-                "risk_level": species.get("risk_level", ""),
-                "guidance": species["guidance"],
-                "dont_do": species.get("dont_do", ""),
-                "alert_signs": ", ".join(species.get("alert_signs", [])),
-                "symptom_onset": species.get("symptom_onset", ""),
-                "regions": ", ".join(species["regions"]),
-                "environment": ", ".join(species["environment"]),
-                "symptoms_reference": ", ".join(species["symptoms"]),
-                "score": round(score, 2),
-                "matched_features": matched_features,
-            }
-        )
+        match = {
+            "display_name": species["display_name"],
+            "animal": animal,
+            "popular_name": species["popular_name"],
+            "category": species["category"],
+            "severity": species["severity"],
+            "risk_level": species.get("risk_level", ""),
+            "guidance": species["guidance"],
+            "dont_do": species.get("dont_do", ""),
+            "alert_signs": ", ".join(species.get("alert_signs", [])),
+            "symptom_onset": species.get("symptom_onset", ""),
+            "regions": ", ".join(species["regions"]),
+            "environment": ", ".join(species["environment"]),
+            "symptoms_reference": ", ".join(species["symptoms"]),
+            "score": round(score, 2),
+            "matched_features": matched_features,
+        }
+        if not has_species_diagnostic_evidence(match):
+            continue
+        adjusted.append(match)
         ranking_log.append({"animal": animal, "before": 0, "delta": round(score, 2), "after": round(score, 2)})
 
     adjusted.sort(key=lambda item: (-item.get("score", 0), -risk_sort_value(item), item.get("display_name", "")))
@@ -2870,36 +2944,37 @@ def rank_specific_species(report_text, state=None, clinical_profile=None):
         if score <= 0:
             continue
 
-        ranked.append(
-            {
-                "display_name": species["display_name"],
-                "animal": species.get("animal", ""),
-                "popular_name": species["popular_name"],
-                "category": species["category"],
-                "severity": species["severity"],
-                "risk_level": species.get("risk_level", ""),
-                "guidance": species["guidance"],
-                "dont_do": species.get("dont_do", ""),
-                "alert_signs": ", ".join(species.get("alert_signs", [])),
-                "symptom_onset": species.get("symptom_onset", ""),
-                "evolution": species.get("evolution", ""),
-                "color": species.get("color", ""),
-                "size": species.get("size", ""),
-                "activity_period": species.get("activity_period", ""),
-                "behavior": species.get("behavior", ""),
-                "visual_profile": species.get("visual_profile", {}),
-                "differential_profile": species.get("differential_profile", {}),
-                "confusion_note": species.get("confusion_note", ""),
-                "affected_regions": ", ".join(species.get("affected_regions", [])),
-                "accident_sites": ", ".join(species.get("accident_sites", [])),
-                "regions": ", ".join(species["regions"]),
-                "environment": ", ".join(species["environment"]),
-                "symptoms_reference": ", ".join(species["symptoms"]),
-                "score": score,
-                "matched_features": matched_features,
-                "temporal_explanations": temporal_explanations,
-            }
-        )
+        match = {
+            "display_name": species["display_name"],
+            "animal": species.get("animal", ""),
+            "popular_name": species["popular_name"],
+            "category": species["category"],
+            "severity": species["severity"],
+            "risk_level": species.get("risk_level", ""),
+            "guidance": species["guidance"],
+            "dont_do": species.get("dont_do", ""),
+            "alert_signs": ", ".join(species.get("alert_signs", [])),
+            "symptom_onset": species.get("symptom_onset", ""),
+            "evolution": species.get("evolution", ""),
+            "color": species.get("color", ""),
+            "size": species.get("size", ""),
+            "activity_period": species.get("activity_period", ""),
+            "behavior": species.get("behavior", ""),
+            "visual_profile": species.get("visual_profile", {}),
+            "differential_profile": species.get("differential_profile", {}),
+            "confusion_note": species.get("confusion_note", ""),
+            "affected_regions": ", ".join(species.get("affected_regions", [])),
+            "accident_sites": ", ".join(species.get("accident_sites", [])),
+            "regions": ", ".join(species["regions"]),
+            "environment": ", ".join(species["environment"]),
+            "symptoms_reference": ", ".join(species["symptoms"]),
+            "score": score,
+            "matched_features": matched_features,
+            "temporal_explanations": temporal_explanations,
+        }
+        if not has_species_diagnostic_evidence(match):
+            continue
+        ranked.append(match)
 
     ranked.sort(key=lambda item: (-item["score"], -risk_sort_value(item), item["display_name"]))
     top_matches = ranked[:5]
@@ -2938,6 +3013,8 @@ def rank_specific_species(report_text, state=None, clinical_profile=None):
     for item in top_matches:
         reasons = []
         for feature in item["matched_features"]:
+            if is_geographic_feature(feature):
+                continue
             if feature.startswith("specific_signs:"):
                 reasons.append(f"sinal específico: {prettify_term(feature.split(':', 1)[1])}")
             elif feature.startswith("ai_indicators:"):
@@ -3001,10 +3078,6 @@ def rank_specific_species(report_text, state=None, clinical_profile=None):
             for symptom in tokenize_terms(item["symptoms_reference"].split(", ")):
                 if symptom and symptom in normalized_report:
                     fallback_reasons.append(prettify_term(symptom))
-            if state:
-                item_regions = [normalize_text(part.strip()) for part in item["regions"].split(",")]
-                if any(region == "todo o brasil" or state_matches_region(state, region) for region in item_regions):
-                    fallback_reasons.append(f"região compatível com {state}")
             reasons = fallback_reasons
 
         reasons = list(dict.fromkeys(reasons))

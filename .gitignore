@@ -6,3 +6,8 @@ logs/*.log
 static/uploads/*
 static/images/*
 !static/images/.gitkeep
+.env
+instance/uploads/*
+.security_backup_*/
+.test_deps/
+.pip-audit-cache/

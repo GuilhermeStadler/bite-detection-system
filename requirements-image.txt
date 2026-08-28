@@ -1,3 +1,4 @@
-tensorflow
-numpy
-Pillow
+-c constraints.txt
+tensorflow==2.16.1
+numpy==1.26.4
+Pillow==12.3.0

@@ -35,7 +35,7 @@
               <div class="message-body">
                 <h3>Como funciona</h3>
                 <p>
-                  Envie uma foto da região afetada, descreva os sintomas e, se puder, informe cidade, estado e tempo desde a picada. A resposta abaixo é um apoio inicial e não substitui avaliação médica.
+                  Envie uma foto da região afetada, descreva os sintomas, cidade, estado e tempo desde a picada. A resposta abaixo é um apoio inicial e não substitui avaliação médica.
                 </p>
                 <div class="checklist">
                   <span>Imagem da picada</span>
@@ -48,6 +48,7 @@
           </div>
 
           <form class="composer" id="analysisForm">
+            <input type="hidden" id="csrfToken" name="_csrf_token" value="{{ csrf_token() }}" />
             <div class="form-section-title">Informações da análise</div>
 
             <div class="attachment-preview" id="attachmentPreview" hidden>
@@ -79,7 +80,9 @@
               <div class="textarea-wrap">
                 <textarea
                   id="symptomsInput"
+                  maxlength="1000"
                   placeholder="Descreva a picada e os sintomas. Ex.: dor intensa, inchaço, vermelhidão, duas perfurações, náusea..."
+                  required
                   rows="3"
                 ></textarea>
               </div>
@@ -90,19 +93,24 @@
             <div class="meta-grid">
               <div class="input-group">
                 <label for="cityInput">Cidade</label>
-                <input type="text" id="cityInput" placeholder="Ex.: Campinas" />
+                <input type="text" id="cityInput" maxlength="80" placeholder="Ex.: Campinas" required />
               </div>
 
               <div class="input-group">
                 <label for="stateInput">Estado</label>
-                <input type="text" id="stateInput" placeholder="Ex.: SP" />
+                <input type="text" id="stateInput" maxlength="80" placeholder="Ex.: SP" required />
               </div>
 
               <div class="input-group">
                 <label for="timeInput">Tempo desde a picada</label>
-                <input type="text" id="timeInput" placeholder="Ex.: 30 minutos" />
+                <input type="text" id="timeInput" maxlength="80" placeholder="Ex.: 30 minutos" required />
               </div>
             </div>
+
+            <label class="composer-note">
+              <input type="checkbox" id="privacyConsent" required />
+              Autorizo o envio das informacoes fornecidas para analise assistiva. Entendo que o sistema oferece apoio inicial e nao substitui atendimento medico.
+            </label>
 
             <p class="composer-note">
               Uso assistivo. Em caso de falta de ar, sangramento, desmaio, vômitos
@@ -181,6 +189,8 @@
       const chatLog = document.querySelector("#chatLog");
       const submitButton = document.querySelector(".submit-button");
       const imageInput = document.querySelector("#imageInput");
+      const csrfToken = document.querySelector("#csrfToken");
+      const privacyConsent = document.querySelector("#privacyConsent");
       const symptomsInput = document.querySelector("#symptomsInput");
       const cityInput = document.querySelector("#cityInput");
       const stateInput = document.querySelector("#stateInput");
@@ -604,14 +614,47 @@
         symptomsInput.style.height = `${Math.min(symptomsInput.scrollHeight, 360)}px`;
       }
 
+      function showRequiredFieldsMessage(focusElement) {
+        createMessage("assistant", "Preencha todos os campos obrigatórios antes de iniciar a análise.");
+        if (focusElement) {
+          focusElement.focus();
+        }
+      }
+
+      function validateInitialAnalysisFields() {
+        const requiredChecks = [
+          [getSelectedImage(), mediaMenuButton],
+          [symptomsInput.value.trim(), symptomsInput],
+          [cityInput.value.trim(), cityInput],
+          [stateInput.value.trim(), stateInput],
+          [timeInput.value.trim(), timeInput]
+        ];
+
+        const missing = requiredChecks.find(([value]) => !value);
+        if (missing) {
+          showRequiredFieldsMessage(missing[1]);
+          return false;
+        }
+
+        return true;
+      }
+
       analysisForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         clearQuickReplies();
 
         const question = symptomsInput.value.trim();
         const selectedImage = getSelectedImage();
-        if (!question && !selectedImage) {
+        const isFirstTriageMessage = conversationContext === "";
+        if (isFirstTriageMessage && !validateInitialAnalysisFields()) {
+          return;
+        }
+        if (!isFirstTriageMessage && !question) {
           symptomsInput.focus();
+          return;
+        }
+        if (!privacyConsent.checked) {
+          privacyConsent.focus();
           return;
         }
 
@@ -619,7 +662,6 @@
         submitButton.disabled = true;
         submitButton.textContent = "Analisando...";
 
-        const isFirstTriageMessage = conversationContext === "";
         const answeredQuestionId = isFirstTriageMessage ? "" : pendingTriageQuestionId;
         const userMessageText = isFirstTriageMessage ? getUserText() : question;
         conversationContext = isFirstTriageMessage
@@ -651,10 +693,17 @@
 
           const response = await fetch("{{ url_for('ask') }}", {
             method: "POST",
+            headers: {
+              "X-CSRFToken": csrfToken.value
+            },
             body: formData
           });
 
           const data = await response.json();
+          if (!response.ok) {
+            responseMessage.textContent = data.answer || "Nao foi possivel processar sua solicitacao agora.";
+            return;
+          }
           cachedImageAnalysis = data.analysis?.image_analysis || cachedImageAnalysis;
           responseMessage.textContent = data.answer || "Não foi possível gerar uma resposta agora.";
           if (data.needs_more_info) {

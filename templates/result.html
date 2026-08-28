@@ -71,13 +71,16 @@
   <div class="container d-flex">
     <div class="row">
       <div class="container col">
-          <img src="{{ result.image_path }}" class="img-thumbnail" width="300" height="300">
+          {% if result.image_preview_url %}
+          <img src="{{ result.image_preview_url }}" class="img-thumbnail" width="300" height="300">
+          {% endif %}
           <h4>Mais provável: {{ result.class_name|replace("_", " ")|capitalize }}</h4>
       </div>
 
       {% if info %}
+      {% set info_url = safe_external_url(info[0]['Resource'], ['healthline.com']) %}
       <div class="container text-left info col">
-        <h2><a class="text-info" href="{{ info[0]['Resource'] }}">Informações da Healthline</a></h2>
+        <h2>{% if info_url %}<a class="text-info" href="{{ info_url }}" rel="noopener noreferrer">Informações da Healthline</a>{% else %}Informações da Healthline{% endif %}</h2>
         <ul>
           <li>Aparência da picada:</li>
         <p>{{ info[0]['Symptoms'] }}</p>
@@ -86,7 +89,7 @@
         <li>Picada única ou múltiplas picadas:</li>
         <p>{{ info[0]['Bites'] }}</p>
         </ul>
-        <p><a class="text-info" href="{{ info[0]['Resource'] }}">Leia mais sobre picadas de {{ result.class_name|replace("_", " ") }}.</a></p>
+        {% if info_url %}`r`n        <p><a class="text-info" href="{{ info_url }}" rel="noopener noreferrer">Leia mais sobre picadas de {{ result.class_name|replace("_", " ") }}.</a></p>`r`n        {% endif %}
       </div>
       {% else %}
       <div class="container text-left info col">
@@ -104,14 +107,24 @@
         {% for condition in conditions %}
 
         {% set product = condition[2][0] if condition[2] else none %}
+        {% if product %}
+        {% set product_image = safe_external_url(product['image'], ['walmartimages.com']) %}
+        {% set product_link = safe_external_url(product['link'], ['walmart.com']) %}
+        {% endif %}
         <div class="col pad-bottom">
           <div class="card">
             <h4>{{ condition[0]}}:</h4>
             {% if product %}
-            <img class="card-img-top" width=200px height=200px src="{{product['image']}}">
+            {% if product_image %}
+            <img class="card-img-top" width=200px height=200px src="{{ product_image }}">
+            {% endif %}
             <div class="card-body">
               <p class="card-title">{{condition[1]|replace("_", " ")|capitalize}}</p>
-              <a class="card-text text-info" href="{{ product['link']}}">{{ product['title']}}</a><br><span>{{product['price']}}</span>
+              {% if product_link %}
+              <a class="card-text text-info" href="{{ product_link }}" rel="noopener noreferrer">{{ product['title']}}</a><br><span>{{product['price']}}</span>
+              {% else %}
+              <span class="card-text">{{ product['title']}}</span><br><span>{{product['price']}}</span>
+              {% endif %}
             </div>
             {% else %}
             <div class="card-body">
@@ -138,10 +151,10 @@
       </thead>
       <tbody>
         {% for company in companies %}
+        {% set company_url = safe_external_url(company['website'], allow_any_domain=True) %}
         <tr>
-            <th scope="row"><a class="text-info" href="http://{{company['website']}}">{{company['name']}}</a></th>
+            <th scope="row">{% if company_url %}<a class="text-info" href="{{ company_url }}" rel="noopener noreferrer">{{company['name']}}</a>{% else %}{{company['name']}}{% endif %}</th>
             <td>{{company['phone']}}</td>
-            <!--<td><a href="http://{{company['website']}}">{{company['website']}}</a></td>-->
             <td>{{company['city']}}</td>
         </tr>
         {% endfor %}
