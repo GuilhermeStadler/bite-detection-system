@@ -1,0 +1,1452 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "95cd658da04047cc9fe3a0661c882a17",
+  "case_id": "PUBLIC-20261105T122922091255Z",
+  "test_id": "PUBLIC-20261105T122922091255Z",
+  "status": "IN_PROGRESS",
+  "started_at": "2026-11-05T12:29:22.091255Z",
+  "completed_at": null,
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "Captura de tela 2026-10-28 091044.png",
+    "sha256": "5ae1db7a44f26bff4751279a8d58cb7ab1943ceae89a383db0aafb521527cdcd",
+    "bytes": 357993,
+    "width": 632,
+    "height": 436
+  },
+  "questions": [],
+  "turns": [],
+  "derived_metrics": {},
+  "input": {
+    "initial_narrative": "Acordei com uma pequena marca no braço esquerdo, mas inicialmente não senti muita dor. Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação. A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar. Não consegui identificar o animal responsável pela picada\r\nCidade: Campo Largo\r\nEstado: Paraná\r\nTempo desde a picada: 18 horas\r\nImagem anexada.",
+    "raw_question": "Acordei com uma pequena marca no braço esquerdo, mas inicialmente não senti muita dor. Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação. A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar. Não consegui identificar o animal responsável pela picada",
+    "normalized_question": "Acordei com uma pequena marca no braço esquerdo, mas inicialmente não senti muita dor. Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação. A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar. Não consegui identificar o animal responsável pela picada",
+    "structured_input": {
+      "structured_time_since_bite": "18 horas",
+      "city": "Campo Largo",
+      "state": "Paraná",
+      "body_location": {
+        "value": "braco",
+        "confidence": 0.9,
+        "source": "initial_description",
+        "evidence": "braco",
+        "status": "present"
+      },
+      "location": {
+        "city": "Campo Largo",
+        "state": "Paraná",
+        "uf": "PR",
+        "region": "Sul"
+      },
+      "answered_question_id": ""
+    },
+    "assembled_report_text": "Acordei com uma pequena marca no braço esquerdo, mas inicialmente não senti muita dor. Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação. A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar. Não consegui identificar o animal responsável pela picada\r\nCidade: Campo Largo\r\nEstado: Paraná\r\nTempo desde a picada: 18 horas\r\nImagem anexada.. Cidade: Campo Largo. Estado: Paraná. UF: PR. Região: Sul. Tempo desde a picada: 18 horas"
+  },
+  "initial_narrative": "Acordei com uma pequena marca no braço esquerdo, mas inicialmente não senti muita dor. Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação. A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar. Não consegui identificar o animal responsável pela picada\r\nCidade: Campo Largo\r\nEstado: Paraná\r\nTempo desde a picada: 18 horas\r\nImagem anexada.",
+  "structured_time_since_bite": "18 horas",
+  "location": {
+    "city": "Campo Largo",
+    "state": "Paraná",
+    "uf": "PR",
+    "region": "Sul"
+  },
+  "body_location": {
+    "value": "braco",
+    "confidence": 0.9,
+    "source": "initial_description",
+    "evidence": "braco",
+    "status": "present"
+  },
+  "extracted_clinical_features": {
+    "bite_location": {
+      "value": "braco",
+      "confidence": 0.9,
+      "source": "initial_description",
+      "evidence": "braco",
+      "status": "present"
+    },
+    "time_since_bite": {
+      "value": "18 horas",
+      "confidence": 0.82,
+      "source": "initial_description",
+      "evidence": "Tempo desde a picada: 18 horas",
+      "status": "present"
+    },
+    "pain_progression": {
+      "value": "aumentando",
+      "confidence": 0.95,
+      "source": "initial_description",
+      "evidence": "A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar",
+      "status": "present"
+    },
+    "burning": {
+      "value": true,
+      "confidence": 0.92,
+      "source": "initial_description",
+      "evidence": "Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação",
+      "status": "present"
+    },
+    "swelling": {
+      "value": true,
+      "confidence": 0.9,
+      "source": "initial_description",
+      "evidence": "Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação",
+      "status": "present"
+    },
+    "redness": {
+      "value": true,
+      "confidence": 0.88,
+      "source": "initial_description",
+      "evidence": "Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação",
+      "status": "present"
+    },
+    "purple_skin": {
+      "value": true,
+      "confidence": 0.95,
+      "source": "initial_description",
+      "evidence": "Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação",
+      "status": "present"
+    },
+    "nausea": {
+      "value": true,
+      "confidence": 0.88,
+      "source": "initial_description",
+      "evidence": "A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar",
+      "status": "present"
+    },
+    "symptom_progression": {
+      "value": "piorando",
+      "confidence": 0.95,
+      "source": "initial_description",
+      "evidence": "A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar",
+      "status": "present"
+    }
+  },
+  "clinical_only_snapshot": {
+    "clinical_only_top1": {
+      "display_name": "Loxosceles spp.",
+      "animal": "aranha_marrom",
+      "popular_name": "Aranha-marrom",
+      "category": "aranha",
+      "severity": "moderada a grave",
+      "risk_level": "alto",
+      "guidance": "Lavar com agua e sabao, nao espremer e procurar hospital.",
+      "dont_do": "Evite receitas caseiras.",
+      "alert_signs": "necrose progressiva, lesao escura central, febre, mal-estar, fraqueza",
+      "symptom_onset": "horas apos a picada",
+      "evolution": "",
+      "color": "",
+      "size": "",
+      "activity_period": "noite, madrugada",
+      "behavior": "",
+      "visual_profile": {
+        "puncture_marks": "ponto discreto ou marcas pouco evidentes",
+        "redness": "moderada",
+        "swelling": "pequeno inchaco",
+        "color_change": "area arroxeada ao redor",
+        "blisters": "bolha escura possivel",
+        "necrosis": "possivel necrose; centro pode ficar preto ou escuro",
+        "bleeding": "raro",
+        "inflammation": "aparencia de queimadura",
+        "evolution": "evolucao lenta nas primeiras horas; lesao pode aumentar com o tempo",
+        "key_visual_clues": [
+          "vermelhidao moderada",
+          "area arroxeada ao redor",
+          "pequeno inchaco",
+          "bolha escura possivel",
+          "centro preto ou escuro",
+          "aparencia de queimadura",
+          "possivel necrose",
+          "evolucao lenta",
+          "lesao aumenta com o tempo"
+        ]
+      },
+      "differential_profile": {
+        "lesion_color": "vermelha com area arroxeada ou escurecida",
+        "lesion_size": "medio, podendo aumentar com o tempo",
+        "marks": "geralmente um ponto central ou marcas discretas",
+        "bleeding": "incomum",
+        "purple_marks": "muito comum",
+        "blisters": "pode aparecer",
+        "necrosis": "pode acontecer em casos moderados ou graves",
+        "swelling": "pequeno ou moderado",
+        "pain": "comeca leve e aumenta depois",
+        "evolution": "piora lentamente em horas",
+        "common_places": [
+          "dentro de casa",
+          "roupas",
+          "armarios",
+          "caixas",
+          "depositos"
+        ],
+        "common_regions": [
+          "sul",
+          "sudeste",
+          "centro-oeste"
+        ],
+        "systemic_symptoms": [
+          "mal-estar",
+          "febre leve",
+          "cansaco"
+        ],
+        "uncommon": [
+          "dor extrema imediata",
+          "muito inchaco no comeco"
+        ],
+        "confusion_note": "Parece viuva-negra, mas a aranha-marrom costuma causar necrose e lesao arroxeada, enquanto a viuva-negra geralmente causa mais sintomas musculares do que lesao visual."
+      },
+      "confusion_note": "Parece viuva-negra, mas a aranha-marrom costuma causar necrose e lesao arroxeada, enquanto a viuva-negra geralmente causa mais sintomas musculares do que lesao visual.",
+      "affected_regions": "pe, mao, perna, braco",
+      "accident_sites": "atras de moveis, roupas guardadas, sapatos, caixas, armarios, locais escuros e secos",
+      "regions": "parana, santa catarina, rio grande do sul, sao paulo, minas gerais, sul, sudeste",
+      "environment": "atras de moveis, roupas guardadas, roupas, sapatos, caixas, armarios, locais escuros e secos",
+      "symptoms_reference": "ardencia, vermelhidao, dor moderada, pele arroxeada, bolhas, necrose, ferida escura, sensibilidade ao toque, febre, nausea, mal-estar, fraqueza, dor no corpo, necrose progressiva, lesao escura central, evolucao lenta, aumento gradual da dor, pele arroxeada ao redor da lesao, ponto unico, inchaco leve, queimacao, dor crescente, bolha escura central",
+      "score": 22.5,
+      "score_debug": {
+        "score_visual": 0.0,
+        "score_symptoms": 12.5,
+        "score_absent_symptoms": 0.0,
+        "score_time": 2.0,
+        "score_location_context": 3.0,
+        "bonuses": 5.0,
+        "penalties": 0.0,
+        "absolute_score": 22.5,
+        "included": true,
+        "reason": "minimum_diagnostic_evidence_met"
+      },
+      "matched_features": [
+        "general_signs:nausea",
+        "perfil_diferencial:mal-estar",
+        "perfil_diferencial:sul",
+        "local:braco",
+        "caracteristica:queimacao",
+        "regiao:parana",
+        "estruturado:pain_delayed_worsening",
+        "estruturado:purple_skin",
+        "tempo:purple_skin"
+      ],
+      "temporal_explanations": [
+        "purple skin apos varias horas e compativel com evolucao de aranha_marrom."
+      ],
+      "probability": null,
+      "rank_position": 1,
+      "reasons": [
+        "sinal geral: náusea",
+        "perfil diferencial: mal-estar",
+        "braco",
+        "característica da picada: queimacao",
+        "evolução temporal: purple skin"
+      ],
+      "reason_text": "sinal geral: náusea, perfil diferencial: mal-estar, braco, característica da picada: queimacao, evolução temporal: purple skin",
+      "clinical_evidence": {
+        "raw_score": 22.5,
+        "evidence_score": 43.08,
+        "specific_evidence_count": 3,
+        "generic_evidence_count": 3,
+        "negative_evidence_count": 0,
+        "syndromic_evidence_count": 0,
+        "discriminative_evidence_count": 2,
+        "unique_positive_evidence_count": 6
+      },
+      "evidence_score": 43.08,
+      "absolute_compatibility": 43.08,
+      "relative_score": null,
+      "clinical_compatibility": 0.3594
+    },
+    "clinical_only_top2": {
+      "display_name": "Bothrops jararaca",
+      "animal": "jararaca",
+      "popular_name": "Jararaca",
+      "category": "cobra",
+      "severity": "grave",
+      "risk_level": "muito alto",
+      "guidance": "Emergencia imediata e manter a pessoa parada.",
+      "dont_do": "Nao fazer torniquete.",
+      "alert_signs": "sangramento importante, sangramentos espontaneos, alteracao de coagulacao, edema progressivo rapido, necrose",
+      "symptom_onset": "minutos apos a picada",
+      "evolution": "",
+      "color": "",
+      "size": "",
+      "activity_period": "final da tarde, noite, madrugada",
+      "behavior": "",
+      "visual_profile": {
+        "puncture_marks": "duas marcas profundas",
+        "redness": "intensa",
+        "swelling": "muito inchaco",
+        "color_change": "manchas roxas",
+        "blisters": "bolhas possiveis",
+        "necrosis": "possivel em alguns casos",
+        "bleeding": "sangramento no local",
+        "inflammation": "pele quente e inflamada; aparencia agressiva da lesao",
+        "evolution": "pode evoluir rapidamente",
+        "key_visual_clues": [
+          "duas marcas profundas",
+          "muito inchaco",
+          "vermelhidao intensa",
+          "sangramento no local",
+          "manchas roxas",
+          "bolhas possiveis",
+          "pele quente e inflamada",
+          "aparencia agressiva",
+          "evolucao rapida"
+        ]
+      },
+      "differential_profile": {
+        "lesion_color": "vermelha e arroxeada",
+        "lesion_size": "grande",
+        "marks": "duas perfuracoes profundas",
+        "bleeding": "comum",
+        "purple_marks": "muito comum",
+        "blisters": "possivel",
+        "necrosis": "pode acontecer",
+        "swelling": "muito grande",
+        "pain": "muito intensa",
+        "evolution": "rapida",
+        "common_places": [
+          "mato",
+          "sitios",
+          "plantacoes",
+          "rios"
+        ],
+        "common_regions": [
+          "praticamente todo o brasil"
+        ],
+        "systemic_symptoms": [
+          "tontura",
+          "nausea",
+          "sangramentos"
+        ],
+        "uncommon": [
+          "poucos sintomas locais"
+        ],
+        "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa."
+      },
+      "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa.",
+      "affected_regions": "pe, tornozelo, perna, mao",
+      "accident_sites": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+      "regions": "sudeste, sul, nordeste, centro-oeste, mata atlantica",
+      "environment": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+      "symptoms_reference": "dor intensa, grande inchaco, vermelhidao forte, sangramento, bolhas, pele arroxeada, calor local, edema progressivo, nausea, vomito, suor frio, fraqueza, tontura, queda de pressao, mal-estar, alteracao de coagulacao, sangramentos espontaneos, edema progressivo rapido, necrose, sangramento pela gengiva, sangramento pela urina, duas marcas profundas, dor forte com edema crescente",
+      "score": 12.0,
+      "score_debug": {
+        "score_visual": 0.0,
+        "score_symptoms": 3.0,
+        "score_absent_symptoms": 0.0,
+        "score_time": 0.0,
+        "score_location_context": 2.0,
+        "bonuses": 7.0,
+        "penalties": 0.0,
+        "absolute_score": 12.0,
+        "included": true,
+        "reason": "minimum_diagnostic_evidence_met"
+      },
+      "matched_features": [
+        "general_signs:mal-estar",
+        "perfil_diferencial:nausea",
+        "possivel:queimacao",
+        "caracteristica:roxo",
+        "diferencial:cascavel:dor",
+        "regiao:sul"
+      ],
+      "temporal_explanations": [],
+      "probability": null,
+      "rank_position": 2,
+      "reasons": [
+        "sinal geral: mal-estar",
+        "perfil diferencial: náusea",
+        "característica possível: queimacao",
+        "característica da picada: roxo",
+        "diferencial contra cascavel: dor"
+      ],
+      "reason_text": "sinal geral: mal-estar, perfil diferencial: náusea, característica possível: queimacao, característica da picada: roxo, diferencial contra cascavel: dor",
+      "clinical_evidence": {
+        "raw_score": 12.0,
+        "evidence_score": 21.9,
+        "specific_evidence_count": 2,
+        "generic_evidence_count": 3,
+        "negative_evidence_count": 0,
+        "syndromic_evidence_count": 0,
+        "discriminative_evidence_count": 2,
+        "unique_positive_evidence_count": 5
+      },
+      "evidence_score": 21.9,
+      "absolute_compatibility": 21.9,
+      "relative_score": null,
+      "clinical_compatibility": 0.1917
+    },
+    "clinical_only_top3": {
+      "display_name": "Tityus serrulatus",
+      "animal": "escorpiao_amarelo",
+      "popular_name": "Escorpiao-amarelo",
+      "category": "escorpiao",
+      "severity": "moderada a grave; alto potencial de complicacoes sistemicas",
+      "risk_level": "muito alto",
+      "guidance": "Procurar hospital imediatamente e manter o local limpo, especialmente se a vitima for crianca, idosa ou apresentar vomitos, sonolencia, suor intenso ou dificuldade respiratoria.",
+      "dont_do": "Nao cortar, sugar, fazer torniquete ou passar alcool.",
+      "alert_signs": "dificuldade respiratoria, sonolencia, vomitos intensos, alteracao cardiaca, suor intenso, tremores, convulsoes, edema pulmonar, piora rapida, crianca com vomitos e sonolencia",
+      "symptom_onset": "imediato; segundos a poucos minutos apos a picada",
+      "evolution": "",
+      "color": "",
+      "size": "",
+      "activity_period": "noite, madrugada, dias quentes, periodos chuvosos",
+      "behavior": "",
+      "visual_profile": {
+        "puncture_marks": "ponto pequeno no local",
+        "redness": "pouca vermelhidao",
+        "swelling": "pouco ou nenhum inchaco",
+        "color_change": "aparencia discreta; quase sem marca visivel em alguns casos",
+        "blisters": "sem bolhas na maioria dos casos",
+        "necrosis": "nao esperado",
+        "bleeding": "raro",
+        "inflammation": "pele pode ficar sensivel, mas com pouca alteracao visual",
+        "evolution": "dor e sintomas podem ser rapidos apesar da lesao discreta",
+        "key_visual_clues": [
+          "ponto pequeno no local",
+          "pouca vermelhidao",
+          "pouco ou nenhum inchaco",
+          "aparencia discreta",
+          "quase sem marca visivel",
+          "pele sensivel",
+          "sem bolhas"
+        ]
+      },
+      "differential_profile": {
+        "lesion_color": "pouca alteracao visual",
+        "lesion_size": "muito pequeno",
+        "marks": "um ponto pequeno",
+        "bleeding": "raro",
+        "purple_marks": "raro",
+        "blisters": "praticamente nunca",
+        "necrosis": "nao costuma acontecer",
+        "swelling": "pequeno",
+        "pain": "muito intensa tipo choque",
+        "evolution": "muito rapida",
+        "common_places": [
+          "casas",
+          "entulhos",
+          "esgoto",
+          "quintais"
+        ],
+        "common_regions": [
+          "sudeste",
+          "nordeste",
+          "centro-oeste"
+        ],
+        "systemic_symptoms": [
+          "suor",
+          "nausea",
+          "vomito",
+          "agitacao"
+        ],
+        "uncommon": [
+          "necrose",
+          "bolhas grandes"
+        ],
+        "confusion_note": "Parece escorpiao-marrom, mas o amarelo geralmente causa sintomas sistemicos mais intensos."
+      },
+      "confusion_note": "Parece escorpiao-marrom, mas o amarelo geralmente causa sintomas sistemicos mais intensos.",
+      "affected_regions": "pe, mao, dedo, perna, braco",
+      "accident_sites": "entulhos, tijolos, telhas, madeiras empilhadas, quintais, esgotos, ralos, banheiros, garagens, depositos escuros, areas urbanas, lixo acumulado, sapatos, roupas, locais quentes e umidos",
+      "regions": "sao paulo, minas gerais, goias, parana, bahia, pernambuco, ceara, tocantins, distrito federal, mato grosso do sul, mato grosso, sudeste, sul, centro-oeste, nordeste, norte",
+      "environment": "entulhos, tijolos, telhas, madeiras empilhadas, quintais, esgotos, esgoto, ralos, banheiros, garagens, depositos escuros, areas urbanas, lixo acumulado, lixo, sapatos, roupas, locais quentes e umidos",
+      "symptoms_reference": "dor extremamente intensa, sensacao de choque eletrico, ardencia forte, vermelhidao leve, pequeno inchaco, formigamento, dormencia leve, dor irradiando pelo membro, suor excessivo, suor frio, agitacao, ansiedade, tremores, nausea, vomito, palpitacoes, taquicardia, aumento da pressao arterial, queda de pressao, dor abdominal, salivacao excessiva, dificuldade para respirar, respiracao acelerada, fraqueza, mal-estar, sonolencia, espasmos musculares, convulsoes, edema pulmonar, alteracao cardiaca, ponto unico, dor intensa, queimacao, choque local, calor local",
+      "score": 7.0,
+      "score_debug": {
+        "score_visual": 0.0,
+        "score_symptoms": 5.0,
+        "score_absent_symptoms": 0.0,
+        "score_time": 0.0,
+        "score_location_context": 3.0,
+        "bonuses": 0.0,
+        "penalties": -1.0,
+        "absolute_score": 7.0,
+        "included": true,
+        "reason": "minimum_diagnostic_evidence_met"
+      },
+      "matched_features": [
+        "general_signs:mal-estar",
+        "local:braco",
+        "caracteristica:queimacao",
+        "raro:roxo",
+        "regiao:parana",
+        "estruturado:systemic_gi"
+      ],
+      "temporal_explanations": [],
+      "probability": null,
+      "rank_position": 3,
+      "reasons": [
+        "sinal geral: mal-estar",
+        "braco",
+        "característica da picada: queimacao"
+      ],
+      "reason_text": "sinal geral: mal-estar, braco, característica da picada: queimacao",
+      "clinical_evidence": {
+        "raw_score": 7.0,
+        "evidence_score": 13.65,
+        "specific_evidence_count": 1,
+        "generic_evidence_count": 2,
+        "negative_evidence_count": 1,
+        "syndromic_evidence_count": 0,
+        "discriminative_evidence_count": 0,
+        "unique_positive_evidence_count": 3
+      },
+      "evidence_score": 13.65,
+      "absolute_compatibility": 13.65,
+      "relative_score": null,
+      "clinical_compatibility": 0.1118
+    },
+    "clinical_only_candidate": "aranha_marrom",
+    "clinical_only_acceptance": {
+      "top1_score": 22.5,
+      "top1_evidence": 43.08
+    },
+    "clinical_only_ranking": [
+      {
+        "display_name": "Loxosceles spp.",
+        "animal": "aranha_marrom",
+        "popular_name": "Aranha-marrom",
+        "category": "aranha",
+        "severity": "moderada a grave",
+        "risk_level": "alto",
+        "guidance": "Lavar com agua e sabao, nao espremer e procurar hospital.",
+        "dont_do": "Evite receitas caseiras.",
+        "alert_signs": "necrose progressiva, lesao escura central, febre, mal-estar, fraqueza",
+        "symptom_onset": "horas apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "ponto discreto ou marcas pouco evidentes",
+          "redness": "moderada",
+          "swelling": "pequeno inchaco",
+          "color_change": "area arroxeada ao redor",
+          "blisters": "bolha escura possivel",
+          "necrosis": "possivel necrose; centro pode ficar preto ou escuro",
+          "bleeding": "raro",
+          "inflammation": "aparencia de queimadura",
+          "evolution": "evolucao lenta nas primeiras horas; lesao pode aumentar com o tempo",
+          "key_visual_clues": [
+            "vermelhidao moderada",
+            "area arroxeada ao redor",
+            "pequeno inchaco",
+            "bolha escura possivel",
+            "centro preto ou escuro",
+            "aparencia de queimadura",
+            "possivel necrose",
+            "evolucao lenta",
+            "lesao aumenta com o tempo"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha com area arroxeada ou escurecida",
+          "lesion_size": "medio, podendo aumentar com o tempo",
+          "marks": "geralmente um ponto central ou marcas discretas",
+          "bleeding": "incomum",
+          "purple_marks": "muito comum",
+          "blisters": "pode aparecer",
+          "necrosis": "pode acontecer em casos moderados ou graves",
+          "swelling": "pequeno ou moderado",
+          "pain": "comeca leve e aumenta depois",
+          "evolution": "piora lentamente em horas",
+          "common_places": [
+            "dentro de casa",
+            "roupas",
+            "armarios",
+            "caixas",
+            "depositos"
+          ],
+          "common_regions": [
+            "sul",
+            "sudeste",
+            "centro-oeste"
+          ],
+          "systemic_symptoms": [
+            "mal-estar",
+            "febre leve",
+            "cansaco"
+          ],
+          "uncommon": [
+            "dor extrema imediata",
+            "muito inchaco no comeco"
+          ],
+          "confusion_note": "Parece viuva-negra, mas a aranha-marrom costuma causar necrose e lesao arroxeada, enquanto a viuva-negra geralmente causa mais sintomas musculares do que lesao visual."
+        },
+        "confusion_note": "Parece viuva-negra, mas a aranha-marrom costuma causar necrose e lesao arroxeada, enquanto a viuva-negra geralmente causa mais sintomas musculares do que lesao visual.",
+        "affected_regions": "pe, mao, perna, braco",
+        "accident_sites": "atras de moveis, roupas guardadas, sapatos, caixas, armarios, locais escuros e secos",
+        "regions": "parana, santa catarina, rio grande do sul, sao paulo, minas gerais, sul, sudeste",
+        "environment": "atras de moveis, roupas guardadas, roupas, sapatos, caixas, armarios, locais escuros e secos",
+        "symptoms_reference": "ardencia, vermelhidao, dor moderada, pele arroxeada, bolhas, necrose, ferida escura, sensibilidade ao toque, febre, nausea, mal-estar, fraqueza, dor no corpo, necrose progressiva, lesao escura central, evolucao lenta, aumento gradual da dor, pele arroxeada ao redor da lesao, ponto unico, inchaco leve, queimacao, dor crescente, bolha escura central",
+        "score": 22.5,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 12.5,
+          "score_absent_symptoms": 0.0,
+          "score_time": 2.0,
+          "score_location_context": 3.0,
+          "bonuses": 5.0,
+          "penalties": 0.0,
+          "absolute_score": 22.5,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:nausea",
+          "perfil_diferencial:mal-estar",
+          "perfil_diferencial:sul",
+          "local:braco",
+          "caracteristica:queimacao",
+          "regiao:parana",
+          "estruturado:pain_delayed_worsening",
+          "estruturado:purple_skin",
+          "tempo:purple_skin"
+        ],
+        "temporal_explanations": [
+          "purple skin apos varias horas e compativel com evolucao de aranha_marrom."
+        ],
+        "probability": null,
+        "rank_position": 1,
+        "reasons": [
+          "sinal geral: náusea",
+          "perfil diferencial: mal-estar",
+          "braco",
+          "característica da picada: queimacao",
+          "evolução temporal: purple skin"
+        ],
+        "reason_text": "sinal geral: náusea, perfil diferencial: mal-estar, braco, característica da picada: queimacao, evolução temporal: purple skin",
+        "clinical_evidence": {
+          "raw_score": 22.5,
+          "evidence_score": 43.08,
+          "specific_evidence_count": 3,
+          "generic_evidence_count": 3,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 2,
+          "unique_positive_evidence_count": 6
+        },
+        "evidence_score": 43.08,
+        "absolute_compatibility": 43.08,
+        "relative_score": null,
+        "clinical_compatibility": 0.3594
+      },
+      {
+        "display_name": "Bothrops jararaca",
+        "animal": "jararaca",
+        "popular_name": "Jararaca",
+        "category": "cobra",
+        "severity": "grave",
+        "risk_level": "muito alto",
+        "guidance": "Emergencia imediata e manter a pessoa parada.",
+        "dont_do": "Nao fazer torniquete.",
+        "alert_signs": "sangramento importante, sangramentos espontaneos, alteracao de coagulacao, edema progressivo rapido, necrose",
+        "symptom_onset": "minutos apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "final da tarde, noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "duas marcas profundas",
+          "redness": "intensa",
+          "swelling": "muito inchaco",
+          "color_change": "manchas roxas",
+          "blisters": "bolhas possiveis",
+          "necrosis": "possivel em alguns casos",
+          "bleeding": "sangramento no local",
+          "inflammation": "pele quente e inflamada; aparencia agressiva da lesao",
+          "evolution": "pode evoluir rapidamente",
+          "key_visual_clues": [
+            "duas marcas profundas",
+            "muito inchaco",
+            "vermelhidao intensa",
+            "sangramento no local",
+            "manchas roxas",
+            "bolhas possiveis",
+            "pele quente e inflamada",
+            "aparencia agressiva",
+            "evolucao rapida"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha e arroxeada",
+          "lesion_size": "grande",
+          "marks": "duas perfuracoes profundas",
+          "bleeding": "comum",
+          "purple_marks": "muito comum",
+          "blisters": "possivel",
+          "necrosis": "pode acontecer",
+          "swelling": "muito grande",
+          "pain": "muito intensa",
+          "evolution": "rapida",
+          "common_places": [
+            "mato",
+            "sitios",
+            "plantacoes",
+            "rios"
+          ],
+          "common_regions": [
+            "praticamente todo o brasil"
+          ],
+          "systemic_symptoms": [
+            "tontura",
+            "nausea",
+            "sangramentos"
+          ],
+          "uncommon": [
+            "poucos sintomas locais"
+          ],
+          "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa."
+        },
+        "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa.",
+        "affected_regions": "pe, tornozelo, perna, mao",
+        "accident_sites": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+        "regions": "sudeste, sul, nordeste, centro-oeste, mata atlantica",
+        "environment": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+        "symptoms_reference": "dor intensa, grande inchaco, vermelhidao forte, sangramento, bolhas, pele arroxeada, calor local, edema progressivo, nausea, vomito, suor frio, fraqueza, tontura, queda de pressao, mal-estar, alteracao de coagulacao, sangramentos espontaneos, edema progressivo rapido, necrose, sangramento pela gengiva, sangramento pela urina, duas marcas profundas, dor forte com edema crescente",
+        "score": 12.0,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 3.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 2.0,
+          "bonuses": 7.0,
+          "penalties": 0.0,
+          "absolute_score": 12.0,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:mal-estar",
+          "perfil_diferencial:nausea",
+          "possivel:queimacao",
+          "caracteristica:roxo",
+          "diferencial:cascavel:dor",
+          "regiao:sul"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 2,
+        "reasons": [
+          "sinal geral: mal-estar",
+          "perfil diferencial: náusea",
+          "característica possível: queimacao",
+          "característica da picada: roxo",
+          "diferencial contra cascavel: dor"
+        ],
+        "reason_text": "sinal geral: mal-estar, perfil diferencial: náusea, característica possível: queimacao, característica da picada: roxo, diferencial contra cascavel: dor",
+        "clinical_evidence": {
+          "raw_score": 12.0,
+          "evidence_score": 21.9,
+          "specific_evidence_count": 2,
+          "generic_evidence_count": 3,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 2,
+          "unique_positive_evidence_count": 5
+        },
+        "evidence_score": 21.9,
+        "absolute_compatibility": 21.9,
+        "relative_score": null,
+        "clinical_compatibility": 0.1917
+      },
+      {
+        "display_name": "Tityus serrulatus",
+        "animal": "escorpiao_amarelo",
+        "popular_name": "Escorpiao-amarelo",
+        "category": "escorpiao",
+        "severity": "moderada a grave; alto potencial de complicacoes sistemicas",
+        "risk_level": "muito alto",
+        "guidance": "Procurar hospital imediatamente e manter o local limpo, especialmente se a vitima for crianca, idosa ou apresentar vomitos, sonolencia, suor intenso ou dificuldade respiratoria.",
+        "dont_do": "Nao cortar, sugar, fazer torniquete ou passar alcool.",
+        "alert_signs": "dificuldade respiratoria, sonolencia, vomitos intensos, alteracao cardiaca, suor intenso, tremores, convulsoes, edema pulmonar, piora rapida, crianca com vomitos e sonolencia",
+        "symptom_onset": "imediato; segundos a poucos minutos apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada, dias quentes, periodos chuvosos",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "ponto pequeno no local",
+          "redness": "pouca vermelhidao",
+          "swelling": "pouco ou nenhum inchaco",
+          "color_change": "aparencia discreta; quase sem marca visivel em alguns casos",
+          "blisters": "sem bolhas na maioria dos casos",
+          "necrosis": "nao esperado",
+          "bleeding": "raro",
+          "inflammation": "pele pode ficar sensivel, mas com pouca alteracao visual",
+          "evolution": "dor e sintomas podem ser rapidos apesar da lesao discreta",
+          "key_visual_clues": [
+            "ponto pequeno no local",
+            "pouca vermelhidao",
+            "pouco ou nenhum inchaco",
+            "aparencia discreta",
+            "quase sem marca visivel",
+            "pele sensivel",
+            "sem bolhas"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "pouca alteracao visual",
+          "lesion_size": "muito pequeno",
+          "marks": "um ponto pequeno",
+          "bleeding": "raro",
+          "purple_marks": "raro",
+          "blisters": "praticamente nunca",
+          "necrosis": "nao costuma acontecer",
+          "swelling": "pequeno",
+          "pain": "muito intensa tipo choque",
+          "evolution": "muito rapida",
+          "common_places": [
+            "casas",
+            "entulhos",
+            "esgoto",
+            "quintais"
+          ],
+          "common_regions": [
+            "sudeste",
+            "nordeste",
+            "centro-oeste"
+          ],
+          "systemic_symptoms": [
+            "suor",
+            "nausea",
+            "vomito",
+            "agitacao"
+          ],
+          "uncommon": [
+            "necrose",
+            "bolhas grandes"
+          ],
+          "confusion_note": "Parece escorpiao-marrom, mas o amarelo geralmente causa sintomas sistemicos mais intensos."
+        },
+        "confusion_note": "Parece escorpiao-marrom, mas o amarelo geralmente causa sintomas sistemicos mais intensos.",
+        "affected_regions": "pe, mao, dedo, perna, braco",
+        "accident_sites": "entulhos, tijolos, telhas, madeiras empilhadas, quintais, esgotos, ralos, banheiros, garagens, depositos escuros, areas urbanas, lixo acumulado, sapatos, roupas, locais quentes e umidos",
+        "regions": "sao paulo, minas gerais, goias, parana, bahia, pernambuco, ceara, tocantins, distrito federal, mato grosso do sul, mato grosso, sudeste, sul, centro-oeste, nordeste, norte",
+        "environment": "entulhos, tijolos, telhas, madeiras empilhadas, quintais, esgotos, esgoto, ralos, banheiros, garagens, depositos escuros, areas urbanas, lixo acumulado, lixo, sapatos, roupas, locais quentes e umidos",
+        "symptoms_reference": "dor extremamente intensa, sensacao de choque eletrico, ardencia forte, vermelhidao leve, pequeno inchaco, formigamento, dormencia leve, dor irradiando pelo membro, suor excessivo, suor frio, agitacao, ansiedade, tremores, nausea, vomito, palpitacoes, taquicardia, aumento da pressao arterial, queda de pressao, dor abdominal, salivacao excessiva, dificuldade para respirar, respiracao acelerada, fraqueza, mal-estar, sonolencia, espasmos musculares, convulsoes, edema pulmonar, alteracao cardiaca, ponto unico, dor intensa, queimacao, choque local, calor local",
+        "score": 7.0,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 5.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 3.0,
+          "bonuses": 0.0,
+          "penalties": -1.0,
+          "absolute_score": 7.0,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:mal-estar",
+          "local:braco",
+          "caracteristica:queimacao",
+          "raro:roxo",
+          "regiao:parana",
+          "estruturado:systemic_gi"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 3,
+        "reasons": [
+          "sinal geral: mal-estar",
+          "braco",
+          "característica da picada: queimacao"
+        ],
+        "reason_text": "sinal geral: mal-estar, braco, característica da picada: queimacao",
+        "clinical_evidence": {
+          "raw_score": 7.0,
+          "evidence_score": 13.65,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 2,
+          "negative_evidence_count": 1,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 0,
+          "unique_positive_evidence_count": 3
+        },
+        "evidence_score": 13.65,
+        "absolute_compatibility": 13.65,
+        "relative_score": null,
+        "clinical_compatibility": 0.1118
+      },
+      {
+        "display_name": "Tityus bahiensis",
+        "animal": "escorpiao_marrom",
+        "popular_name": "Escorpiao-marrom",
+        "category": "escorpiao",
+        "severity": "geralmente moderada; pode se tornar grave em criancas e idosos",
+        "risk_level": "medio",
+        "guidance": "Lavar o local e procurar atendimento medico, especialmente se houver crianca, idoso, sintomas sistemicos ou piora.",
+        "dont_do": "Nao cortar, sugar ou usar torniquete.",
+        "alert_signs": "dificuldade respiratoria, vomitos, alteracao cardiaca, suor intenso, piora rapida, sonolencia, convulsoes, edema pulmonar",
+        "symptom_onset": "imediato; segundos a poucos minutos apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada, dias quentes e umidos",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "ponto central evidente",
+          "redness": "moderada",
+          "swelling": "pequeno inchaco",
+          "color_change": "aspecto inflamado leve",
+          "blisters": "raro",
+          "necrosis": "nao esperado",
+          "bleeding": "raro",
+          "inflammation": "regiao dolorida com inflamacao leve",
+          "evolution": "evolucao rapida da dor",
+          "key_visual_clues": [
+            "vermelhidao moderada",
+            "pequeno inchaco",
+            "ponto central evidente",
+            "regiao dolorida",
+            "aspecto inflamado leve",
+            "sensacao de ardencia",
+            "evolucao rapida da dor"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelhidao moderada",
+          "lesion_size": "pequeno",
+          "marks": "ponto central discreto",
+          "bleeding": "raro",
+          "purple_marks": "incomum",
+          "blisters": "raro",
+          "necrosis": "incomum",
+          "swelling": "pequeno a moderado",
+          "pain": "intensa",
+          "evolution": "rapida",
+          "common_places": [
+            "madeira",
+            "pedras",
+            "quintais"
+          ],
+          "common_regions": [
+            "sul",
+            "sudeste"
+          ],
+          "systemic_symptoms": [
+            "dor local forte",
+            "suor leve"
+          ],
+          "uncommon": [
+            "sintomas neurologicos graves"
+          ],
+          "confusion_note": "Parece escorpiao-amarelo, mas geralmente causa menos sintomas sistemicos graves."
+        },
+        "confusion_note": "Parece escorpiao-amarelo, mas geralmente causa menos sintomas sistemicos graves.",
+        "affected_regions": "pe, mao, dedo, perna, braco",
+        "accident_sites": "entulhos, madeiras empilhadas, tijolos, telhas, quintais, ralos, banheiros, garagens, depositos escuros, areas rurais, locais umidos e escondidos, calcados, roupas",
+        "regions": "sao paulo, minas gerais, parana, goias, mato grosso do sul, mato grosso, distrito federal, sudeste, sul, centro-oeste, interior do sudeste e centro-oeste",
+        "environment": "entulhos, madeiras empilhadas, madeiras, tijolos, telhas, quintais, ralos, banheiros, garagens, depositos escuros, areas rurais, locais umidos e escondidos, calcados, roupas",
+        "symptoms_reference": "dor intensa imediata, sensacao de choque, ardencia forte, vermelhidao leve a moderada, pequeno inchaco, dormencia leve, formigamento, sensibilidade ao toque, calor local, suor excessivo, suor frio, agitacao, ansiedade, tremores leves, nausea, vomito, palpitacoes, taquicardia, dor muscular, fraqueza, mal-estar, pressao alta, queda de pressao, dor abdominal, respiracao acelerada, dificuldade respiratoria, sonolencia, convulsoes, edema pulmonar, ponto unico, queimacao, choque local",
+        "score": 7.0,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 5.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 3.0,
+          "bonuses": 0.0,
+          "penalties": -1.0,
+          "absolute_score": 7.0,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:mal-estar",
+          "general_signs:nausea",
+          "perfil_diferencial:sul",
+          "local:braco",
+          "caracteristica:queimacao",
+          "raro:roxo",
+          "regiao:parana"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 4,
+        "reasons": [
+          "sinal geral: mal-estar",
+          "sinal geral: náusea",
+          "braco",
+          "característica da picada: queimacao"
+        ],
+        "reason_text": "sinal geral: mal-estar, sinal geral: náusea, braco, característica da picada: queimacao",
+        "clinical_evidence": {
+          "raw_score": 7.0,
+          "evidence_score": 13.65,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 3,
+          "negative_evidence_count": 1,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 1,
+          "unique_positive_evidence_count": 4
+        },
+        "evidence_score": 13.65,
+        "absolute_compatibility": 13.65,
+        "relative_score": null,
+        "clinical_compatibility": 0.1118
+      },
+      {
+        "display_name": "Phoneutria spp.",
+        "animal": "armadeira",
+        "popular_name": "Aranha-armadeira",
+        "category": "aranha",
+        "severity": "moderada a grave",
+        "risk_level": "alto",
+        "guidance": "Procurar emergencia e manter repouso.",
+        "dont_do": "Nao fazer torniquete.",
+        "alert_signs": "dor extrema, sintomas neurologicos rapidos, espasmos musculares, priapismo, agitacao intensa",
+        "symptom_onset": "minutos apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "dois pequenos pontos da picada",
+          "redness": "intensa",
+          "swelling": "inchaco moderado",
+          "color_change": "vermelhidao forte sem necrose tipica",
+          "blisters": "raro",
+          "necrosis": "nao esperado",
+          "bleeding": "raro",
+          "inflammation": "aspecto inflamado; regiao quente e sensivel",
+          "evolution": "lesao geralmente aparece rapidamente",
+          "key_visual_clues": [
+            "vermelhidao intensa",
+            "inchaco moderado",
+            "dois pequenos pontos",
+            "regiao quente e sensivel",
+            "aspecto inflamado",
+            "dor muito forte no local",
+            "suor ao redor da area",
+            "aparece rapidamente"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha intensa",
+          "lesion_size": "pequeno a medio",
+          "marks": "geralmente duas pequenas perfuracoes",
+          "bleeding": "raro",
+          "purple_marks": "incomum",
+          "blisters": "raro",
+          "necrosis": "geralmente nao acontece",
+          "swelling": "moderado",
+          "pain": "muito intensa imediatamente",
+          "evolution": "sintomas aparecem rapido",
+          "common_places": [
+            "quintal",
+            "bananeiras",
+            "sapatos",
+            "entulhos"
+          ],
+          "common_regions": [
+            "sudeste",
+            "sul"
+          ],
+          "systemic_symptoms": [
+            "suor",
+            "tremores",
+            "coracao acelerado"
+          ],
+          "uncommon": [
+            "necrose extensa"
+          ],
+          "confusion_note": "Parece aranha-marrom, mas a armadeira causa dor imediata muito forte e menos necrose."
+        },
+        "confusion_note": "Parece aranha-marrom, mas a armadeira causa dor imediata muito forte e menos necrose.",
+        "affected_regions": "pe, mao, perna",
+        "accident_sites": "bananeiras, jardins, quintais, entulhos, sapatos, roupas, dentro de casa, locais escuros",
+        "regions": "sul, sudeste, centro-oeste",
+        "environment": "bananeiras, jardins, quintais, entulhos, sapatos, roupas, dentro de casa, locais escuros",
+        "symptoms_reference": "dor intensa imediata, vermelhidao forte, inchaco, ardencia, suor local, suor excessivo, tremores, agitacao, palpitacoes, nausea, dor extremamente intensa imediata, sintomas neurologicos rapidos, espasmos musculares, priapismo, agitacao intensa, duas marcas pequenas, queimacao, formigamento, calor local",
+        "score": 5.5,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 4.5,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 2.0,
+          "bonuses": 0.0,
+          "penalties": -1.0,
+          "absolute_score": 5.5,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "perfil_diferencial:sul",
+          "caracteristica:queimacao",
+          "raro:roxo",
+          "regiao:sul",
+          "estruturado:systemic_gi"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 5,
+        "reasons": [
+          "característica da picada: queimacao"
+        ],
+        "reason_text": "característica da picada: queimacao",
+        "clinical_evidence": {
+          "raw_score": 5.5,
+          "evidence_score": 15.12,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 2,
+          "negative_evidence_count": 1,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 1,
+          "unique_positive_evidence_count": 3
+        },
+        "evidence_score": 15.12,
+        "absolute_compatibility": 15.12,
+        "relative_score": null,
+        "clinical_compatibility": 0.0879
+      },
+      {
+        "display_name": "Lachesis muta",
+        "animal": "surucucu",
+        "popular_name": "Surucucu",
+        "category": "cobra",
+        "severity": "muito grave",
+        "risk_level": "muito alto",
+        "guidance": "Atendimento imediato, nao andar e manter calma.",
+        "dont_do": "Nao cortar, sugar ou fazer torniquete.",
+        "alert_signs": "hipotensao intensa, bradicardia, desmaios, choque, edema extremamente rapido",
+        "symptom_onset": "minutos",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "duas perfuracoes visiveis",
+          "redness": "intensa",
+          "swelling": "inchaco importante",
+          "color_change": "manchas escuras ou arroxeadas",
+          "blisters": "bolhas possiveis",
+          "necrosis": "pode apresentar necrose em casos graves",
+          "bleeding": "sangramento",
+          "inflammation": "pele muito inflamada; aspecto agressivo da lesao",
+          "evolution": "quadro visual pode piorar rapidamente",
+          "key_visual_clues": [
+            "duas perfuracoes visiveis",
+            "inchaco importante",
+            "vermelhidao intensa",
+            "sangramento",
+            "manchas escuras ou arroxeadas",
+            "bolhas possiveis",
+            "pele muito inflamada",
+            "aspecto agressivo",
+            "necrose em casos graves",
+            "sangramento continuo",
+            "manchas escuras",
+            "manchas arroxeadas"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha escura ou arroxeada",
+          "lesion_size": "grande",
+          "marks": "duas perfuracoes profundas",
+          "bleeding": "muito comum",
+          "purple_marks": "muito comum",
+          "blisters": "comum",
+          "necrosis": "pode acontecer",
+          "swelling": "muito grande",
+          "pain": "extremamente intensa",
+          "evolution": "rapida e agressiva",
+          "common_places": [
+            "mata fechada",
+            "floresta",
+            "regioes umidas"
+          ],
+          "common_regions": [
+            "amazonia",
+            "mata atlantica"
+          ],
+          "systemic_symptoms": [
+            "queda de pressao",
+            "suor intenso",
+            "diarreia",
+            "nausea"
+          ],
+          "uncommon": [
+            "sintomas leves",
+            "sintomas discretos"
+          ],
+          "confusion_note": "Parece jararaca, mas a surucucu costuma causar sintomas sistemicos mais agressivos e maior queda de pressao."
+        },
+        "confusion_note": "Parece jararaca, mas a surucucu costuma causar sintomas sistemicos mais agressivos e maior queda de pressao.",
+        "affected_regions": "pe, perna, mao",
+        "accident_sites": "florestas, areas umidas, matas fechadas, regioes isoladas, vegetacao fechada, sitio, area de vegetacao fechada",
+        "regions": "amazonia, mata atlantica, norte",
+        "environment": "florestas, areas umidas, matas fechadas, regioes isoladas, vegetacao fechada, sitio, area de vegetacao fechada, mata fechada proxima a sitio",
+        "symptoms_reference": "dor intensa, grande inchaco, vermelhidao, sangramento, calor local, edema progressivo, vomito, diarreia, suor frio, tontura, fraqueza, queda de pressao, bradicardia, hipotensao intensa, sintomas vagais fortes, desmaios, edema extremamente rapido, choque, sintomas gastrointestinais intensos, queda rapida da pressao, dor extremamente intensa, sangramento local, suor excessivo, dor muito intensa, dificuldade para caminhar, manchas escuras, manchas arroxeadas, sangramento continuo, duas perfuracoes visiveis",
+        "score": 4.6,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 3.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 1.6,
+          "score_location_context": 0.0,
+          "bonuses": 4.0,
+          "penalties": -4.0,
+          "absolute_score": 4.6,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "possivel:queimacao",
+          "caracteristica:roxo",
+          "estruturado:systemic_gi",
+          "tempo:systemic_gi"
+        ],
+        "temporal_explanations": [
+          "systemic gi apos varias horas e compativel com evolucao de surucucu."
+        ],
+        "probability": null,
+        "rank_position": 6,
+        "reasons": [
+          "característica possível: queimacao",
+          "característica da picada: roxo",
+          "evolução temporal: systemic gi"
+        ],
+        "reason_text": "característica possível: queimacao, característica da picada: roxo, evolução temporal: systemic gi",
+        "clinical_evidence": {
+          "raw_score": 4.6,
+          "evidence_score": 18.81,
+          "specific_evidence_count": 2,
+          "generic_evidence_count": 1,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 0,
+          "unique_positive_evidence_count": 3
+        },
+        "evidence_score": 18.81,
+        "absolute_compatibility": 18.81,
+        "relative_score": null,
+        "clinical_compatibility": 0.0735
+      },
+      {
+        "display_name": "Latrodectus spp.",
+        "animal": "viuva_negra",
+        "popular_name": "Viuva-negra",
+        "category": "aranha",
+        "severity": "moderada a grave",
+        "risk_level": "alto",
+        "guidance": "Procurar atendimento rapido, manter repouso e monitorar pressao.",
+        "dont_do": "Nao cortar, sugar ou usar produtos caseiros.",
+        "alert_signs": "espasmos musculares intensos, dor abdominal forte, rigidez muscular, pressao no peito, dor muscular forte",
+        "symptom_onset": "30 minutos a poucas horas",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "pequeno ponto avermelhado",
+          "redness": "leve",
+          "swelling": "discreto inchaco",
+          "color_change": "pouca alteracao visual inicial",
+          "blisters": "raro",
+          "necrosis": "geralmente sem necrose",
+          "bleeding": "raro",
+          "inflammation": "aparencia pequena e pouco agressiva",
+          "evolution": "pode haver dor mesmo com pouca lesao visivel",
+          "key_visual_clues": [
+            "pequeno ponto avermelhado",
+            "pouca alteracao visual inicial",
+            "leve vermelhidao",
+            "discreto inchaco",
+            "aparencia pequena",
+            "pouco agressiva",
+            "regiao dolorida",
+            "sem necrose"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "pequena vermelhidao",
+          "lesion_size": "pequeno",
+          "marks": "ponto discreto",
+          "bleeding": "raro",
+          "purple_marks": "incomum",
+          "blisters": "raro",
+          "necrosis": "praticamente nunca",
+          "swelling": "pequeno",
+          "pain": "moderada no local",
+          "evolution": "sintomas gerais aparecem rapido",
+          "common_places": [
+            "madeira",
+            "depositos",
+            "telhados",
+            "areas escuras"
+          ],
+          "common_regions": [
+            "varias regioes do brasil"
+          ],
+          "systemic_symptoms": [
+            "caimbras",
+            "tremores",
+            "dor muscular forte"
+          ],
+          "uncommon": [
+            "necrose grande",
+            "muito inchaco"
+          ],
+          "confusion_note": "Parece aranha-marrom, mas a viuva-negra costuma ter pouca alteracao visual e muitos sintomas musculares."
+        },
+        "confusion_note": "Parece aranha-marrom, mas a viuva-negra costuma ter pouca alteracao visual e muitos sintomas musculares.",
+        "affected_regions": "mao, pe, braco",
+        "accident_sites": "cercas, jardins, madeiras, entulhos, areas rurais",
+        "regions": "nordeste, centro-oeste, litoral brasileiro, sudeste, sul",
+        "environment": "cercas, jardins, madeiras, entulhos, areas rurais",
+        "symptoms_reference": "dor moderada inicial, ardencia, pequena vermelhidao, sensibilidade ao toque, dores musculares, suor excessivo, tremores, ansiedade, nausea, palpitacoes, espasmos musculares intensos, dor abdominal forte, rigidez muscular, pressao no peito, dores musculares progressivas, ponto unico, vermelhidao leve, inchaco leve, queimacao, pouca lesao visivel",
+        "score": 4.0,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 2.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 3.0,
+          "bonuses": 0.0,
+          "penalties": -1.0,
+          "absolute_score": 4.0,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:nausea",
+          "local:braco",
+          "caracteristica:queimacao",
+          "raro:roxo",
+          "regiao:sul"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 7,
+        "reasons": [
+          "sinal geral: náusea",
+          "braco",
+          "característica da picada: queimacao"
+        ],
+        "reason_text": "sinal geral: náusea, braco, característica da picada: queimacao",
+        "clinical_evidence": {
+          "raw_score": 4.0,
+          "evidence_score": 6.6,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 1,
+          "negative_evidence_count": 1,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 0,
+          "unique_positive_evidence_count": 2
+        },
+        "evidence_score": 6.6,
+        "absolute_compatibility": 6.6,
+        "relative_score": null,
+        "clinical_compatibility": 0.0639
+      }
+    ]
+  },
+  "gemini_audit": {
+    "calls": [
+      {
+        "timestamp": "2026-11-05T12:29:24.461740Z",
+        "model": "gemini-3.5-flash-lite",
+        "call_number": 1,
+        "input": {
+          "visual_group": "picada_aranha",
+          "visual_top1": "picada_aranha",
+          "visual_top1_confidence": 0.6103402376,
+          "visual_top2": "",
+          "visual_top2_confidence": null,
+          "visual_margin": 0.2323740721,
+          "identification_status": "candidate",
+          "clinical_group": "",
+          "clinical_species": "",
+          "clinical_evidence_score": null,
+          "compatibility": "",
+          "qa_answer_count": 0,
+          "answered_question_ids": [],
+          "qa_answers": [],
+          "report": "Acordei com uma pequena marca no braço esquerdo, mas inicialmente não senti muita dor. Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação. A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar. Não consegui identificar o animal responsável pela picada",
+          "city": "Campo Largo",
+          "state": "Paraná",
+          "time_since_bite_hours": 18.0,
+          "clinical_evidence": [
+            {
+              "description": "braco",
+              "value": "braco"
+            },
+            {
+              "description": "Tempo desde a picada: 18 horas",
+              "value": "18 horas"
+            },
+            {
+              "description": "A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar",
+              "value": "aumentando"
+            },
+            {
+              "description": "Com o passar das horas, o local começou a ficar vermelho, inchado e dolorido, apresentando uma mancha arroxeada no centro e uma sensação de queimação",
+              "value": true
+            },
+            {
+              "description": "A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar",
+              "value": true
+            },
+            {
+              "description": "A dor foi aumentando gradualmente e comecei a sentir náusea e mal-estar",
+              "value": "piorando"
+            }
+          ],
+          "groups_allowed": [
+            "picada_aranha"
+          ],
+          "species_allowed": [
+            "aranha_marrom",
+            "armadeira",
+            "viuva_negra"
+          ],
+          "remaining_controlled_question_count": 0,
+          "remaining_question_concepts": []
+        },
+        "output": {
+          "status": "ok",
+          "fallback": false,
+          "species": "aranha_marrom",
+          "group": "picada_aranha",
+          "compatibility": "alta",
+          "confidence": 0.85,
+          "needs_more_questions": false,
+          "next_question_concept": "",
+          "decision_reason": "",
+          "elapsed_seconds": 9.1925
+        },
+        "followup": null,
+        "fusion": {
+          "visual_candidate": "picada_aranha",
+          "clinical_candidate": {
+            "group": "picada_aranha",
+            "species": "aranha_marrom"
+          },
+          "gemini_candidate": {
+            "group": "picada_aranha",
+            "species": "aranha_marrom"
+          },
+          "applied": false,
+          "decision_reason": "gemini_confirms_existing_result",
+          "final_result": "moderate_compatibility",
+          "final_group": "picada_aranha",
+          "final_species": "aranha_marrom"
+        }
+      }
+    ]
+  }
+}

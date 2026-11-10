@@ -1,0 +1,1299 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "d5c1d909ebd8438e8816fbab008c2d50",
+  "case_id": "PUBLIC-20261020T171833359963Z",
+  "test_id": "PUBLIC-20261020T171833359963Z",
+  "status": "IN_PROGRESS",
+  "started_at": "2026-10-20T17:18:33.359963Z",
+  "completed_at": null,
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "Captura de tela 2026-10-16 143825.png",
+    "sha256": "94c849d9c72e968c2066ca096942ee97f8afe804b25ab1505e4d6c25d507ff3f",
+    "bytes": 104999,
+    "width": 187,
+    "height": 325
+  },
+  "questions": [],
+  "turns": [],
+  "derived_metrics": {},
+  "input": {
+    "initial_narrative": "Fui picado no pé enquanto trabalhava em uma propriedade rural. A picada provocou pouca dor e praticamente nenhum inchaço. Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos. Agora estou sentindo dificuldade para respirar.\r\nCidade: recife\r\nEstado: pe\r\nTempo desde a picada: 6 horas\r\nImagem anexada.",
+    "raw_question": "Fui picado no pé enquanto trabalhava em uma propriedade rural. A picada provocou pouca dor e praticamente nenhum inchaço. Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos. Agora estou sentindo dificuldade para respirar.",
+    "normalized_question": "Fui picado no pé enquanto trabalhava em uma propriedade rural. A picada provocou pouca dor e praticamente nenhum inchaço. Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos. Agora estou sentindo dificuldade para respirar.",
+    "structured_input": {
+      "structured_time_since_bite": "6 horas",
+      "city": "recife",
+      "state": "pe",
+      "body_location": {
+        "value": "pe",
+        "confidence": 0.9,
+        "source": "initial_description",
+        "evidence": "pe",
+        "status": "present"
+      },
+      "location": {
+        "city": "Recife",
+        "state": "Pernambuco",
+        "uf": "PE",
+        "region": "Nordeste"
+      },
+      "answered_question_id": ""
+    },
+    "assembled_report_text": "Fui picado no pé enquanto trabalhava em uma propriedade rural. A picada provocou pouca dor e praticamente nenhum inchaço. Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos. Agora estou sentindo dificuldade para respirar.\r\nCidade: recife\r\nEstado: pe\r\nTempo desde a picada: 6 horas\r\nImagem anexada.. Cidade: Recife. Estado: Pernambuco. UF: PE. Região: Nordeste. Tempo desde a picada: 6 horas"
+  },
+  "initial_narrative": "Fui picado no pé enquanto trabalhava em uma propriedade rural. A picada provocou pouca dor e praticamente nenhum inchaço. Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos. Agora estou sentindo dificuldade para respirar.\r\nCidade: recife\r\nEstado: pe\r\nTempo desde a picada: 6 horas\r\nImagem anexada.",
+  "structured_time_since_bite": "6 horas",
+  "location": {
+    "city": "Recife",
+    "state": "Pernambuco",
+    "uf": "PE",
+    "region": "Nordeste"
+  },
+  "body_location": {
+    "value": "pe",
+    "confidence": 0.9,
+    "source": "initial_description",
+    "evidence": "pe",
+    "status": "present"
+  },
+  "extracted_clinical_features": {
+    "bite_location": {
+      "value": "pe",
+      "confidence": 0.9,
+      "source": "initial_description",
+      "evidence": "pe",
+      "status": "present"
+    },
+    "time_since_bite": {
+      "value": "6 horas",
+      "confidence": 0.82,
+      "source": "initial_description",
+      "evidence": "Tempo desde a picada: 6 horas",
+      "status": "present"
+    },
+    "pain_onset": {
+      "value": "tardio",
+      "confidence": 0.95,
+      "source": "initial_description",
+      "evidence": "Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos",
+      "status": "present"
+    },
+    "swelling": {
+      "value": true,
+      "confidence": 0.9,
+      "source": "initial_description",
+      "evidence": "A picada provocou pouca dor e praticamente nenhum inchaço",
+      "status": "present"
+    },
+    "weakness": {
+      "value": true,
+      "confidence": 0.84,
+      "source": "initial_description",
+      "evidence": "Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos",
+      "status": "present"
+    },
+    "shortness_of_breath": {
+      "value": true,
+      "confidence": 0.96,
+      "source": "initial_description",
+      "evidence": "Agora estou sentindo dificuldade para respirar",
+      "status": "present"
+    },
+    "context": {
+      "value": "rural",
+      "confidence": 0.78,
+      "source": "initial_description",
+      "evidence": "Fui picado no pé enquanto trabalhava em uma propriedade rural",
+      "status": "present"
+    }
+  },
+  "clinical_only_snapshot": {
+    "clinical_only_top1": {
+      "display_name": "Micrurus spp.",
+      "animal": "coral_verdadeira",
+      "popular_name": "Coral-verdadeira",
+      "category": "cobra",
+      "severity": "muito grave",
+      "risk_level": "muito alto",
+      "guidance": "Emergencia imediata e manter repouso total.",
+      "dont_do": "Nao cortar, sugar ou fazer torniquete.",
+      "alert_signs": "paralisia progressiva, dificuldade para engolir, dificuldade para respirar, queda das palpebras, paralisia respiratoria",
+      "symptom_onset": "30 minutos a poucas horas",
+      "evolution": "",
+      "color": "",
+      "size": "",
+      "activity_period": "dia, final da tarde",
+      "behavior": "",
+      "visual_profile": {
+        "puncture_marks": "pequeno ponto da picada",
+        "redness": "pouca vermelhidao",
+        "swelling": "quase nenhum inchaco",
+        "color_change": "aparencia discreta",
+        "blisters": "raro",
+        "necrosis": "sem necrose na maioria dos casos",
+        "bleeding": "raro",
+        "inflammation": "lesao pequena e dificil identificacao visual",
+        "evolution": "sintomas podem ser graves mesmo com lesao pequena",
+        "key_visual_clues": [
+          "pequeno ponto da picada",
+          "pouca vermelhidao",
+          "quase nenhum inchaco",
+          "aparencia discreta",
+          "lesao pequena",
+          "dificil identificacao visual",
+          "sem necrose"
+        ]
+      },
+      "differential_profile": {
+        "lesion_color": "discreta",
+        "lesion_size": "pequeno",
+        "marks": "pequenas perfuracoes",
+        "bleeding": "raro",
+        "purple_marks": "raro",
+        "blisters": "praticamente nunca",
+        "necrosis": "nao costuma acontecer",
+        "swelling": "muito pequeno",
+        "pain": "geralmente leve",
+        "evolution": "sintomas neurologicos progressivos",
+        "common_places": [
+          "matas",
+          "jardins",
+          "areas rurais"
+        ],
+        "common_regions": [
+          "varias regioes do brasil"
+        ],
+        "systemic_symptoms": [
+          "dificuldade para respirar",
+          "dificuldade para falar",
+          "dificuldade para engolir"
+        ],
+        "uncommon": [
+          "grande inchaco",
+          "necrose"
+        ],
+        "confusion_note": "Parece cascavel, mas a coral verdadeira costuma causar menos alteracao local e mais paralisia progressiva."
+      },
+      "confusion_note": "Parece cascavel, mas a coral verdadeira costuma causar menos alteracao local e mais paralisia progressiva.",
+      "affected_regions": "mao, pe, dedo",
+      "accident_sites": "matas, jardins, areas rurais, entulhos, locais umidos",
+      "regions": "todo o brasil",
+      "environment": "matas, jardins, areas rurais, entulhos, locais umidos",
+      "symptoms_reference": "dor leve, pequena vermelhidao, dormencia, formigamento, fraqueza, visao turva, sonolencia, dificuldade respiratoria, dificuldade para falar, paralisia progressiva, dificuldade para engolir, dificuldade para respirar, sintomas neurologicos rapidos, queda das palpebras, fala enrolada, fraqueza muscular progressiva, paralisia respiratoria, pouca dor local",
+      "score": 19.4,
+      "score_debug": {
+        "score_visual": 0.0,
+        "score_symptoms": 14.5,
+        "score_absent_symptoms": 0.0,
+        "score_time": 0.0,
+        "score_location_context": 3.9,
+        "bonuses": 1.0,
+        "penalties": 0.0,
+        "absolute_score": 19.4,
+        "included": true,
+        "reason": "minimum_diagnostic_evidence_met"
+      },
+      "matched_features": [
+        "specific_signs:dificuldade para respirar",
+        "local:pe",
+        "diferencial:jararaca:dificuldade para falar",
+        "regiao:todo o brasil",
+        "estruturado:weakness",
+        "estruturado:shortness_of_breath",
+        "contexto_acidente:wild_rural"
+      ],
+      "temporal_explanations": [],
+      "probability": null,
+      "rank_position": 1,
+      "reasons": [
+        "sinal específico: dificuldade para respirar",
+        "pe",
+        "diferencial contra jararaca: dificuldade para falar",
+        "contexto do acidente: wild rural"
+      ],
+      "reason_text": "sinal específico: dificuldade para respirar, pe, diferencial contra jararaca: dificuldade para falar, contexto do acidente: wild rural",
+      "clinical_evidence": {
+        "raw_score": 19.4,
+        "evidence_score": 46.79,
+        "specific_evidence_count": 3,
+        "generic_evidence_count": 1,
+        "negative_evidence_count": 0,
+        "syndromic_evidence_count": 0,
+        "discriminative_evidence_count": 2,
+        "unique_positive_evidence_count": 4
+      },
+      "evidence_score": 46.79,
+      "absolute_compatibility": 46.79,
+      "relative_score": null,
+      "clinical_compatibility": 0.3027
+    },
+    "clinical_only_top2": {
+      "display_name": "Crotalus durissus",
+      "animal": "cascavel",
+      "popular_name": "Cascavel",
+      "category": "cobra",
+      "severity": "grave",
+      "risk_level": "muito alto",
+      "guidance": "Procurar hospital urgente e evitar esforco fisico.",
+      "dont_do": "Nao cortar, sugar ou fazer torniquete.",
+      "alert_signs": "visao dupla, urina escura, dificuldade para abrir os olhos, paralisia muscular progressiva, insuficiencia renal",
+      "symptom_onset": "30 minutos a poucas horas",
+      "evolution": "",
+      "color": "",
+      "size": "",
+      "activity_period": "final da tarde, noite",
+      "behavior": "",
+      "visual_profile": {
+        "puncture_marks": "duas perfuracoes visiveis",
+        "redness": "leve",
+        "swelling": "pouco inchaco inicialmente",
+        "color_change": "coloracao arroxeada possivel com evolucao",
+        "blisters": "raro",
+        "necrosis": "raro",
+        "bleeding": "raro",
+        "inflammation": "lesao geralmente menos inflamada visualmente",
+        "evolution": "regiao aparentemente pouco alterada no comeco; pele pode ficar endurecida",
+        "key_visual_clues": [
+          "duas perfuracoes visiveis",
+          "pouco inchaco inicialmente",
+          "vermelhidao leve",
+          "regiao pouco alterada no comeco",
+          "coloracao arroxeada possivel",
+          "pele endurecida",
+          "menos inflamada visualmente"
+        ]
+      },
+      "differential_profile": {
+        "lesion_color": "pouco alterada inicialmente",
+        "lesion_size": "medio",
+        "marks": "duas perfuracoes",
+        "bleeding": "pouco comum",
+        "purple_marks": "pode aparecer depois",
+        "blisters": "incomum",
+        "necrosis": "rara",
+        "swelling": "pequeno no inicio",
+        "pain": "moderada",
+        "evolution": "sintomas neurologicos rapidos",
+        "common_places": [
+          "areas secas",
+          "fazendas",
+          "pastos"
+        ],
+        "common_regions": [
+          "centro-oeste",
+          "sudeste",
+          "nordeste"
+        ],
+        "systemic_symptoms": [
+          "visao embacada",
+          "fraqueza muscular"
+        ],
+        "uncommon": [
+          "grande necrose logo no inicio"
+        ],
+        "confusion_note": "Parece coral verdadeira em sintomas neurologicos, mas a cascavel costuma causar mais fraqueza muscular e menos alteracao respiratoria inicial."
+      },
+      "confusion_note": "Parece coral verdadeira em sintomas neurologicos, mas a cascavel costuma causar mais fraqueza muscular e menos alteracao respiratoria inicial.",
+      "affected_regions": "pe, perna, mao",
+      "accident_sites": "areas secas, pastos, cerrado, estradas rurais, plantacoes",
+      "regions": "centro-oeste, sudeste, nordeste, cerrado brasileiro",
+      "environment": "areas secas, pastos, cerrado, estradas rurais, plantacoes",
+      "symptoms_reference": "dor moderada, leve inchaco, dormencia, formigamento, fraqueza, sonolencia, nausea, visao turva, tontura, dificuldade para andar, visao dupla, urina escura, dificuldade para abrir os olhos, palpebras caidas, paralisia muscular progressiva, insuficiencia renal, dor muscular generalizada, alteracao neuromuscular, pouco inchaco, fraqueza muscular progressiva",
+      "score": 14.0,
+      "score_debug": {
+        "score_visual": 0.0,
+        "score_symptoms": 7.0,
+        "score_absent_symptoms": 0.0,
+        "score_time": 1.8,
+        "score_location_context": 5.2,
+        "bonuses": 0.0,
+        "penalties": 0.0,
+        "absolute_score": 14.0,
+        "included": true,
+        "reason": "minimum_diagnostic_evidence_met"
+      },
+      "matched_features": [
+        "perfil_diferencial:nordeste",
+        "local:perna",
+        "local:pe",
+        "regiao:nordeste",
+        "estruturado:weakness",
+        "estruturado:shortness_of_breath",
+        "tempo:weakness",
+        "contexto_acidente:wild_rural"
+      ],
+      "temporal_explanations": [
+        "weakness apos varias horas e compativel com evolucao de cascavel."
+      ],
+      "probability": null,
+      "rank_position": 2,
+      "reasons": [
+        "perna",
+        "pe",
+        "evolução temporal: weakness",
+        "contexto do acidente: wild rural"
+      ],
+      "reason_text": "perna, pe, evolução temporal: weakness, contexto do acidente: wild rural",
+      "clinical_evidence": {
+        "raw_score": 14.0,
+        "evidence_score": 28.9,
+        "specific_evidence_count": 2,
+        "generic_evidence_count": 1,
+        "negative_evidence_count": 0,
+        "syndromic_evidence_count": 0,
+        "discriminative_evidence_count": 1,
+        "unique_positive_evidence_count": 3
+      },
+      "evidence_score": 28.9,
+      "absolute_compatibility": 28.9,
+      "relative_score": null,
+      "clinical_compatibility": 0.2184
+    },
+    "clinical_only_top3": {
+      "display_name": "Bothrops jararaca",
+      "animal": "jararaca",
+      "popular_name": "Jararaca",
+      "category": "cobra",
+      "severity": "grave",
+      "risk_level": "muito alto",
+      "guidance": "Emergencia imediata e manter a pessoa parada.",
+      "dont_do": "Nao fazer torniquete.",
+      "alert_signs": "sangramento importante, sangramentos espontaneos, alteracao de coagulacao, edema progressivo rapido, necrose",
+      "symptom_onset": "minutos apos a picada",
+      "evolution": "",
+      "color": "",
+      "size": "",
+      "activity_period": "final da tarde, noite, madrugada",
+      "behavior": "",
+      "visual_profile": {
+        "puncture_marks": "duas marcas profundas",
+        "redness": "intensa",
+        "swelling": "muito inchaco",
+        "color_change": "manchas roxas",
+        "blisters": "bolhas possiveis",
+        "necrosis": "possivel em alguns casos",
+        "bleeding": "sangramento no local",
+        "inflammation": "pele quente e inflamada; aparencia agressiva da lesao",
+        "evolution": "pode evoluir rapidamente",
+        "key_visual_clues": [
+          "duas marcas profundas",
+          "muito inchaco",
+          "vermelhidao intensa",
+          "sangramento no local",
+          "manchas roxas",
+          "bolhas possiveis",
+          "pele quente e inflamada",
+          "aparencia agressiva",
+          "evolucao rapida"
+        ]
+      },
+      "differential_profile": {
+        "lesion_color": "vermelha e arroxeada",
+        "lesion_size": "grande",
+        "marks": "duas perfuracoes profundas",
+        "bleeding": "comum",
+        "purple_marks": "muito comum",
+        "blisters": "possivel",
+        "necrosis": "pode acontecer",
+        "swelling": "muito grande",
+        "pain": "muito intensa",
+        "evolution": "rapida",
+        "common_places": [
+          "mato",
+          "sitios",
+          "plantacoes",
+          "rios"
+        ],
+        "common_regions": [
+          "praticamente todo o brasil"
+        ],
+        "systemic_symptoms": [
+          "tontura",
+          "nausea",
+          "sangramentos"
+        ],
+        "uncommon": [
+          "poucos sintomas locais"
+        ],
+        "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa."
+      },
+      "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa.",
+      "affected_regions": "pe, tornozelo, perna, mao",
+      "accident_sites": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+      "regions": "sudeste, sul, nordeste, centro-oeste, mata atlantica",
+      "environment": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+      "symptoms_reference": "dor intensa, grande inchaco, vermelhidao forte, sangramento, bolhas, pele arroxeada, calor local, edema progressivo, nausea, vomito, suor frio, fraqueza, tontura, queda de pressao, mal-estar, alteracao de coagulacao, sangramentos espontaneos, edema progressivo rapido, necrose, sangramento pela gengiva, sangramento pela urina, duas marcas profundas, dor forte com edema crescente",
+      "score": 12.4,
+      "score_debug": {
+        "score_visual": 0.0,
+        "score_symptoms": 1.0,
+        "score_absent_symptoms": 0.0,
+        "score_time": 0.0,
+        "score_location_context": 5.4,
+        "bonuses": 6.0,
+        "penalties": 0.0,
+        "absolute_score": 12.4,
+        "included": true,
+        "reason": "minimum_diagnostic_evidence_met"
+      },
+      "matched_features": [
+        "general_signs:fraqueza",
+        "local:perna",
+        "local:pe",
+        "diferencial:cascavel:dor",
+        "diferencial:coral_verdadeira:inchaco",
+        "regiao:nordeste",
+        "contexto_acidente:wild_rural"
+      ],
+      "temporal_explanations": [],
+      "probability": null,
+      "rank_position": 3,
+      "reasons": [
+        "sinal geral: fraqueza",
+        "perna",
+        "pe",
+        "diferencial contra cascavel: dor",
+        "diferencial contra coral verdadeira: inchaço",
+        "contexto do acidente: wild rural"
+      ],
+      "reason_text": "sinal geral: fraqueza, perna, pe, diferencial contra cascavel: dor, diferencial contra coral verdadeira: inchaço, contexto do acidente: wild rural",
+      "clinical_evidence": {
+        "raw_score": 12.4,
+        "evidence_score": 13.34,
+        "specific_evidence_count": 1,
+        "generic_evidence_count": 2,
+        "negative_evidence_count": 0,
+        "syndromic_evidence_count": 0,
+        "discriminative_evidence_count": 2,
+        "unique_positive_evidence_count": 3
+      },
+      "evidence_score": 13.34,
+      "absolute_compatibility": 13.34,
+      "relative_score": null,
+      "clinical_compatibility": 0.1934
+    },
+    "clinical_only_candidate": "coral_verdadeira",
+    "clinical_only_acceptance": {
+      "top1_score": 19.4,
+      "top1_evidence": 46.79
+    },
+    "clinical_only_ranking": [
+      {
+        "display_name": "Micrurus spp.",
+        "animal": "coral_verdadeira",
+        "popular_name": "Coral-verdadeira",
+        "category": "cobra",
+        "severity": "muito grave",
+        "risk_level": "muito alto",
+        "guidance": "Emergencia imediata e manter repouso total.",
+        "dont_do": "Nao cortar, sugar ou fazer torniquete.",
+        "alert_signs": "paralisia progressiva, dificuldade para engolir, dificuldade para respirar, queda das palpebras, paralisia respiratoria",
+        "symptom_onset": "30 minutos a poucas horas",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "dia, final da tarde",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "pequeno ponto da picada",
+          "redness": "pouca vermelhidao",
+          "swelling": "quase nenhum inchaco",
+          "color_change": "aparencia discreta",
+          "blisters": "raro",
+          "necrosis": "sem necrose na maioria dos casos",
+          "bleeding": "raro",
+          "inflammation": "lesao pequena e dificil identificacao visual",
+          "evolution": "sintomas podem ser graves mesmo com lesao pequena",
+          "key_visual_clues": [
+            "pequeno ponto da picada",
+            "pouca vermelhidao",
+            "quase nenhum inchaco",
+            "aparencia discreta",
+            "lesao pequena",
+            "dificil identificacao visual",
+            "sem necrose"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "discreta",
+          "lesion_size": "pequeno",
+          "marks": "pequenas perfuracoes",
+          "bleeding": "raro",
+          "purple_marks": "raro",
+          "blisters": "praticamente nunca",
+          "necrosis": "nao costuma acontecer",
+          "swelling": "muito pequeno",
+          "pain": "geralmente leve",
+          "evolution": "sintomas neurologicos progressivos",
+          "common_places": [
+            "matas",
+            "jardins",
+            "areas rurais"
+          ],
+          "common_regions": [
+            "varias regioes do brasil"
+          ],
+          "systemic_symptoms": [
+            "dificuldade para respirar",
+            "dificuldade para falar",
+            "dificuldade para engolir"
+          ],
+          "uncommon": [
+            "grande inchaco",
+            "necrose"
+          ],
+          "confusion_note": "Parece cascavel, mas a coral verdadeira costuma causar menos alteracao local e mais paralisia progressiva."
+        },
+        "confusion_note": "Parece cascavel, mas a coral verdadeira costuma causar menos alteracao local e mais paralisia progressiva.",
+        "affected_regions": "mao, pe, dedo",
+        "accident_sites": "matas, jardins, areas rurais, entulhos, locais umidos",
+        "regions": "todo o brasil",
+        "environment": "matas, jardins, areas rurais, entulhos, locais umidos",
+        "symptoms_reference": "dor leve, pequena vermelhidao, dormencia, formigamento, fraqueza, visao turva, sonolencia, dificuldade respiratoria, dificuldade para falar, paralisia progressiva, dificuldade para engolir, dificuldade para respirar, sintomas neurologicos rapidos, queda das palpebras, fala enrolada, fraqueza muscular progressiva, paralisia respiratoria, pouca dor local",
+        "score": 19.4,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 14.5,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 3.9,
+          "bonuses": 1.0,
+          "penalties": 0.0,
+          "absolute_score": 19.4,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "specific_signs:dificuldade para respirar",
+          "local:pe",
+          "diferencial:jararaca:dificuldade para falar",
+          "regiao:todo o brasil",
+          "estruturado:weakness",
+          "estruturado:shortness_of_breath",
+          "contexto_acidente:wild_rural"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 1,
+        "reasons": [
+          "sinal específico: dificuldade para respirar",
+          "pe",
+          "diferencial contra jararaca: dificuldade para falar",
+          "contexto do acidente: wild rural"
+        ],
+        "reason_text": "sinal específico: dificuldade para respirar, pe, diferencial contra jararaca: dificuldade para falar, contexto do acidente: wild rural",
+        "clinical_evidence": {
+          "raw_score": 19.4,
+          "evidence_score": 46.79,
+          "specific_evidence_count": 3,
+          "generic_evidence_count": 1,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 2,
+          "unique_positive_evidence_count": 4
+        },
+        "evidence_score": 46.79,
+        "absolute_compatibility": 46.79,
+        "relative_score": null,
+        "clinical_compatibility": 0.3027
+      },
+      {
+        "display_name": "Crotalus durissus",
+        "animal": "cascavel",
+        "popular_name": "Cascavel",
+        "category": "cobra",
+        "severity": "grave",
+        "risk_level": "muito alto",
+        "guidance": "Procurar hospital urgente e evitar esforco fisico.",
+        "dont_do": "Nao cortar, sugar ou fazer torniquete.",
+        "alert_signs": "visao dupla, urina escura, dificuldade para abrir os olhos, paralisia muscular progressiva, insuficiencia renal",
+        "symptom_onset": "30 minutos a poucas horas",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "final da tarde, noite",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "duas perfuracoes visiveis",
+          "redness": "leve",
+          "swelling": "pouco inchaco inicialmente",
+          "color_change": "coloracao arroxeada possivel com evolucao",
+          "blisters": "raro",
+          "necrosis": "raro",
+          "bleeding": "raro",
+          "inflammation": "lesao geralmente menos inflamada visualmente",
+          "evolution": "regiao aparentemente pouco alterada no comeco; pele pode ficar endurecida",
+          "key_visual_clues": [
+            "duas perfuracoes visiveis",
+            "pouco inchaco inicialmente",
+            "vermelhidao leve",
+            "regiao pouco alterada no comeco",
+            "coloracao arroxeada possivel",
+            "pele endurecida",
+            "menos inflamada visualmente"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "pouco alterada inicialmente",
+          "lesion_size": "medio",
+          "marks": "duas perfuracoes",
+          "bleeding": "pouco comum",
+          "purple_marks": "pode aparecer depois",
+          "blisters": "incomum",
+          "necrosis": "rara",
+          "swelling": "pequeno no inicio",
+          "pain": "moderada",
+          "evolution": "sintomas neurologicos rapidos",
+          "common_places": [
+            "areas secas",
+            "fazendas",
+            "pastos"
+          ],
+          "common_regions": [
+            "centro-oeste",
+            "sudeste",
+            "nordeste"
+          ],
+          "systemic_symptoms": [
+            "visao embacada",
+            "fraqueza muscular"
+          ],
+          "uncommon": [
+            "grande necrose logo no inicio"
+          ],
+          "confusion_note": "Parece coral verdadeira em sintomas neurologicos, mas a cascavel costuma causar mais fraqueza muscular e menos alteracao respiratoria inicial."
+        },
+        "confusion_note": "Parece coral verdadeira em sintomas neurologicos, mas a cascavel costuma causar mais fraqueza muscular e menos alteracao respiratoria inicial.",
+        "affected_regions": "pe, perna, mao",
+        "accident_sites": "areas secas, pastos, cerrado, estradas rurais, plantacoes",
+        "regions": "centro-oeste, sudeste, nordeste, cerrado brasileiro",
+        "environment": "areas secas, pastos, cerrado, estradas rurais, plantacoes",
+        "symptoms_reference": "dor moderada, leve inchaco, dormencia, formigamento, fraqueza, sonolencia, nausea, visao turva, tontura, dificuldade para andar, visao dupla, urina escura, dificuldade para abrir os olhos, palpebras caidas, paralisia muscular progressiva, insuficiencia renal, dor muscular generalizada, alteracao neuromuscular, pouco inchaco, fraqueza muscular progressiva",
+        "score": 14.0,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 7.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 1.8,
+          "score_location_context": 5.2,
+          "bonuses": 0.0,
+          "penalties": 0.0,
+          "absolute_score": 14.0,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "perfil_diferencial:nordeste",
+          "local:perna",
+          "local:pe",
+          "regiao:nordeste",
+          "estruturado:weakness",
+          "estruturado:shortness_of_breath",
+          "tempo:weakness",
+          "contexto_acidente:wild_rural"
+        ],
+        "temporal_explanations": [
+          "weakness apos varias horas e compativel com evolucao de cascavel."
+        ],
+        "probability": null,
+        "rank_position": 2,
+        "reasons": [
+          "perna",
+          "pe",
+          "evolução temporal: weakness",
+          "contexto do acidente: wild rural"
+        ],
+        "reason_text": "perna, pe, evolução temporal: weakness, contexto do acidente: wild rural",
+        "clinical_evidence": {
+          "raw_score": 14.0,
+          "evidence_score": 28.9,
+          "specific_evidence_count": 2,
+          "generic_evidence_count": 1,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 1,
+          "unique_positive_evidence_count": 3
+        },
+        "evidence_score": 28.9,
+        "absolute_compatibility": 28.9,
+        "relative_score": null,
+        "clinical_compatibility": 0.2184
+      },
+      {
+        "display_name": "Bothrops jararaca",
+        "animal": "jararaca",
+        "popular_name": "Jararaca",
+        "category": "cobra",
+        "severity": "grave",
+        "risk_level": "muito alto",
+        "guidance": "Emergencia imediata e manter a pessoa parada.",
+        "dont_do": "Nao fazer torniquete.",
+        "alert_signs": "sangramento importante, sangramentos espontaneos, alteracao de coagulacao, edema progressivo rapido, necrose",
+        "symptom_onset": "minutos apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "final da tarde, noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "duas marcas profundas",
+          "redness": "intensa",
+          "swelling": "muito inchaco",
+          "color_change": "manchas roxas",
+          "blisters": "bolhas possiveis",
+          "necrosis": "possivel em alguns casos",
+          "bleeding": "sangramento no local",
+          "inflammation": "pele quente e inflamada; aparencia agressiva da lesao",
+          "evolution": "pode evoluir rapidamente",
+          "key_visual_clues": [
+            "duas marcas profundas",
+            "muito inchaco",
+            "vermelhidao intensa",
+            "sangramento no local",
+            "manchas roxas",
+            "bolhas possiveis",
+            "pele quente e inflamada",
+            "aparencia agressiva",
+            "evolucao rapida"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha e arroxeada",
+          "lesion_size": "grande",
+          "marks": "duas perfuracoes profundas",
+          "bleeding": "comum",
+          "purple_marks": "muito comum",
+          "blisters": "possivel",
+          "necrosis": "pode acontecer",
+          "swelling": "muito grande",
+          "pain": "muito intensa",
+          "evolution": "rapida",
+          "common_places": [
+            "mato",
+            "sitios",
+            "plantacoes",
+            "rios"
+          ],
+          "common_regions": [
+            "praticamente todo o brasil"
+          ],
+          "systemic_symptoms": [
+            "tontura",
+            "nausea",
+            "sangramentos"
+          ],
+          "uncommon": [
+            "poucos sintomas locais"
+          ],
+          "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa."
+        },
+        "confusion_note": "Parece surucucu, mas a jararaca costuma causar menos sintomas vagais como queda forte de pressao e diarreia intensa.",
+        "affected_regions": "pe, tornozelo, perna, mao",
+        "accident_sites": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+        "regions": "sudeste, sul, nordeste, centro-oeste, mata atlantica",
+        "environment": "matas, areas rurais, plantacoes, pastos, trilhas, beiras de rios, locais umidos",
+        "symptoms_reference": "dor intensa, grande inchaco, vermelhidao forte, sangramento, bolhas, pele arroxeada, calor local, edema progressivo, nausea, vomito, suor frio, fraqueza, tontura, queda de pressao, mal-estar, alteracao de coagulacao, sangramentos espontaneos, edema progressivo rapido, necrose, sangramento pela gengiva, sangramento pela urina, duas marcas profundas, dor forte com edema crescente",
+        "score": 12.4,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 1.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 5.4,
+          "bonuses": 6.0,
+          "penalties": 0.0,
+          "absolute_score": 12.4,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:fraqueza",
+          "local:perna",
+          "local:pe",
+          "diferencial:cascavel:dor",
+          "diferencial:coral_verdadeira:inchaco",
+          "regiao:nordeste",
+          "contexto_acidente:wild_rural"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 3,
+        "reasons": [
+          "sinal geral: fraqueza",
+          "perna",
+          "pe",
+          "diferencial contra cascavel: dor",
+          "diferencial contra coral verdadeira: inchaço",
+          "contexto do acidente: wild rural"
+        ],
+        "reason_text": "sinal geral: fraqueza, perna, pe, diferencial contra cascavel: dor, diferencial contra coral verdadeira: inchaço, contexto do acidente: wild rural",
+        "clinical_evidence": {
+          "raw_score": 12.4,
+          "evidence_score": 13.34,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 2,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 2,
+          "unique_positive_evidence_count": 3
+        },
+        "evidence_score": 13.34,
+        "absolute_compatibility": 13.34,
+        "relative_score": null,
+        "clinical_compatibility": 0.1934
+      },
+      {
+        "display_name": "Tityus serrulatus",
+        "animal": "escorpiao_amarelo",
+        "popular_name": "Escorpiao-amarelo",
+        "category": "escorpiao",
+        "severity": "moderada a grave; alto potencial de complicacoes sistemicas",
+        "risk_level": "muito alto",
+        "guidance": "Procurar hospital imediatamente e manter o local limpo, especialmente se a vitima for crianca, idosa ou apresentar vomitos, sonolencia, suor intenso ou dificuldade respiratoria.",
+        "dont_do": "Nao cortar, sugar, fazer torniquete ou passar alcool.",
+        "alert_signs": "dificuldade respiratoria, sonolencia, vomitos intensos, alteracao cardiaca, suor intenso, tremores, convulsoes, edema pulmonar, piora rapida, crianca com vomitos e sonolencia",
+        "symptom_onset": "imediato; segundos a poucos minutos apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada, dias quentes, periodos chuvosos",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "ponto pequeno no local",
+          "redness": "pouca vermelhidao",
+          "swelling": "pouco ou nenhum inchaco",
+          "color_change": "aparencia discreta; quase sem marca visivel em alguns casos",
+          "blisters": "sem bolhas na maioria dos casos",
+          "necrosis": "nao esperado",
+          "bleeding": "raro",
+          "inflammation": "pele pode ficar sensivel, mas com pouca alteracao visual",
+          "evolution": "dor e sintomas podem ser rapidos apesar da lesao discreta",
+          "key_visual_clues": [
+            "ponto pequeno no local",
+            "pouca vermelhidao",
+            "pouco ou nenhum inchaco",
+            "aparencia discreta",
+            "quase sem marca visivel",
+            "pele sensivel",
+            "sem bolhas"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "pouca alteracao visual",
+          "lesion_size": "muito pequeno",
+          "marks": "um ponto pequeno",
+          "bleeding": "raro",
+          "purple_marks": "raro",
+          "blisters": "praticamente nunca",
+          "necrosis": "nao costuma acontecer",
+          "swelling": "pequeno",
+          "pain": "muito intensa tipo choque",
+          "evolution": "muito rapida",
+          "common_places": [
+            "casas",
+            "entulhos",
+            "esgoto",
+            "quintais"
+          ],
+          "common_regions": [
+            "sudeste",
+            "nordeste",
+            "centro-oeste"
+          ],
+          "systemic_symptoms": [
+            "suor",
+            "nausea",
+            "vomito",
+            "agitacao"
+          ],
+          "uncommon": [
+            "necrose",
+            "bolhas grandes"
+          ],
+          "confusion_note": "Parece escorpiao-marrom, mas o amarelo geralmente causa sintomas sistemicos mais intensos."
+        },
+        "confusion_note": "Parece escorpiao-marrom, mas o amarelo geralmente causa sintomas sistemicos mais intensos.",
+        "affected_regions": "pe, mao, dedo, perna, braco",
+        "accident_sites": "entulhos, tijolos, telhas, madeiras empilhadas, quintais, esgotos, ralos, banheiros, garagens, depositos escuros, areas urbanas, lixo acumulado, sapatos, roupas, locais quentes e umidos",
+        "regions": "sao paulo, minas gerais, goias, parana, bahia, pernambuco, ceara, tocantins, distrito federal, mato grosso do sul, mato grosso, sudeste, sul, centro-oeste, nordeste, norte",
+        "environment": "entulhos, tijolos, telhas, madeiras empilhadas, quintais, esgotos, esgoto, ralos, banheiros, garagens, depositos escuros, areas urbanas, lixo acumulado, lixo, sapatos, roupas, locais quentes e umidos",
+        "symptoms_reference": "dor extremamente intensa, sensacao de choque eletrico, ardencia forte, vermelhidao leve, pequeno inchaco, formigamento, dormencia leve, dor irradiando pelo membro, suor excessivo, suor frio, agitacao, ansiedade, tremores, nausea, vomito, palpitacoes, taquicardia, aumento da pressao arterial, queda de pressao, dor abdominal, salivacao excessiva, dificuldade para respirar, respiracao acelerada, fraqueza, mal-estar, sonolencia, espasmos musculares, convulsoes, edema pulmonar, alteracao cardiaca, ponto unico, dor intensa, queimacao, choque local, calor local",
+        "score": 9.8,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 7.0,
+          "score_absent_symptoms": -2.2,
+          "score_time": 0.0,
+          "score_location_context": 5.0,
+          "bonuses": 0.0,
+          "penalties": 0.0,
+          "absolute_score": 9.8,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:dificuldade para respirar",
+          "general_signs:fraqueza",
+          "perfil_diferencial:nordeste",
+          "local:perna",
+          "local:braco",
+          "local:pe",
+          "regiao:pernambuco",
+          "estruturado:shortness_of_breath",
+          "evidencia_negativa:immediate_severe_pain:-2.2"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 4,
+        "reasons": [
+          "sinal geral: dificuldade para respirar",
+          "sinal geral: fraqueza",
+          "perna",
+          "braco",
+          "pe",
+          "evidência negativa moderada: immediate severe pain"
+        ],
+        "reason_text": "sinal geral: dificuldade para respirar, sinal geral: fraqueza, perna, braco, pe, evidência negativa moderada: immediate severe pain",
+        "clinical_evidence": {
+          "raw_score": 9.8,
+          "evidence_score": 23.43,
+          "specific_evidence_count": 2,
+          "generic_evidence_count": 2,
+          "negative_evidence_count": 1,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 1,
+          "unique_positive_evidence_count": 4
+        },
+        "evidence_score": 23.43,
+        "absolute_compatibility": 23.43,
+        "relative_score": null,
+        "clinical_compatibility": 0.1529
+      },
+      {
+        "display_name": "Lachesis muta",
+        "animal": "surucucu",
+        "popular_name": "Surucucu",
+        "category": "cobra",
+        "severity": "muito grave",
+        "risk_level": "muito alto",
+        "guidance": "Atendimento imediato, nao andar e manter calma.",
+        "dont_do": "Nao cortar, sugar ou fazer torniquete.",
+        "alert_signs": "hipotensao intensa, bradicardia, desmaios, choque, edema extremamente rapido",
+        "symptom_onset": "minutos",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "duas perfuracoes visiveis",
+          "redness": "intensa",
+          "swelling": "inchaco importante",
+          "color_change": "manchas escuras ou arroxeadas",
+          "blisters": "bolhas possiveis",
+          "necrosis": "pode apresentar necrose em casos graves",
+          "bleeding": "sangramento",
+          "inflammation": "pele muito inflamada; aspecto agressivo da lesao",
+          "evolution": "quadro visual pode piorar rapidamente",
+          "key_visual_clues": [
+            "duas perfuracoes visiveis",
+            "inchaco importante",
+            "vermelhidao intensa",
+            "sangramento",
+            "manchas escuras ou arroxeadas",
+            "bolhas possiveis",
+            "pele muito inflamada",
+            "aspecto agressivo",
+            "necrose em casos graves",
+            "sangramento continuo",
+            "manchas escuras",
+            "manchas arroxeadas"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha escura ou arroxeada",
+          "lesion_size": "grande",
+          "marks": "duas perfuracoes profundas",
+          "bleeding": "muito comum",
+          "purple_marks": "muito comum",
+          "blisters": "comum",
+          "necrosis": "pode acontecer",
+          "swelling": "muito grande",
+          "pain": "extremamente intensa",
+          "evolution": "rapida e agressiva",
+          "common_places": [
+            "mata fechada",
+            "floresta",
+            "regioes umidas"
+          ],
+          "common_regions": [
+            "amazonia",
+            "mata atlantica"
+          ],
+          "systemic_symptoms": [
+            "queda de pressao",
+            "suor intenso",
+            "diarreia",
+            "nausea"
+          ],
+          "uncommon": [
+            "sintomas leves",
+            "sintomas discretos"
+          ],
+          "confusion_note": "Parece jararaca, mas a surucucu costuma causar sintomas sistemicos mais agressivos e maior queda de pressao."
+        },
+        "confusion_note": "Parece jararaca, mas a surucucu costuma causar sintomas sistemicos mais agressivos e maior queda de pressao.",
+        "affected_regions": "pe, perna, mao",
+        "accident_sites": "florestas, areas umidas, matas fechadas, regioes isoladas, vegetacao fechada, sitio, area de vegetacao fechada",
+        "regions": "amazonia, mata atlantica, norte",
+        "environment": "florestas, areas umidas, matas fechadas, regioes isoladas, vegetacao fechada, sitio, area de vegetacao fechada, mata fechada proxima a sitio",
+        "symptoms_reference": "dor intensa, grande inchaco, vermelhidao, sangramento, calor local, edema progressivo, vomito, diarreia, suor frio, tontura, fraqueza, queda de pressao, bradicardia, hipotensao intensa, sintomas vagais fortes, desmaios, edema extremamente rapido, choque, sintomas gastrointestinais intensos, queda rapida da pressao, dor extremamente intensa, sangramento local, suor excessivo, dor muito intensa, dificuldade para caminhar, manchas escuras, manchas arroxeadas, sangramento continuo, duas perfuracoes visiveis",
+        "score": 4.5,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 1.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 3.5,
+          "bonuses": 0.0,
+          "penalties": 0.0,
+          "absolute_score": 4.5,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:fraqueza",
+          "local:perna",
+          "local:pe",
+          "contexto_acidente:wild_rural"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 5,
+        "reasons": [
+          "sinal geral: fraqueza",
+          "perna",
+          "pe",
+          "contexto do acidente: wild rural"
+        ],
+        "reason_text": "sinal geral: fraqueza, perna, pe, contexto do acidente: wild rural",
+        "clinical_evidence": {
+          "raw_score": 4.5,
+          "evidence_score": 7.58,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 0,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 0,
+          "unique_positive_evidence_count": 1
+        },
+        "evidence_score": 7.58,
+        "absolute_compatibility": 7.58,
+        "relative_score": null,
+        "clinical_compatibility": 0.0702
+      },
+      {
+        "display_name": "Loxosceles spp.",
+        "animal": "aranha_marrom",
+        "popular_name": "Aranha-marrom",
+        "category": "aranha",
+        "severity": "moderada a grave",
+        "risk_level": "alto",
+        "guidance": "Lavar com agua e sabao, nao espremer e procurar hospital.",
+        "dont_do": "Evite receitas caseiras.",
+        "alert_signs": "necrose progressiva, lesao escura central, febre, mal-estar, fraqueza",
+        "symptom_onset": "horas apos a picada",
+        "evolution": "",
+        "color": "",
+        "size": "",
+        "activity_period": "noite, madrugada",
+        "behavior": "",
+        "visual_profile": {
+          "puncture_marks": "ponto discreto ou marcas pouco evidentes",
+          "redness": "moderada",
+          "swelling": "pequeno inchaco",
+          "color_change": "area arroxeada ao redor",
+          "blisters": "bolha escura possivel",
+          "necrosis": "possivel necrose; centro pode ficar preto ou escuro",
+          "bleeding": "raro",
+          "inflammation": "aparencia de queimadura",
+          "evolution": "evolucao lenta nas primeiras horas; lesao pode aumentar com o tempo",
+          "key_visual_clues": [
+            "vermelhidao moderada",
+            "area arroxeada ao redor",
+            "pequeno inchaco",
+            "bolha escura possivel",
+            "centro preto ou escuro",
+            "aparencia de queimadura",
+            "possivel necrose",
+            "evolucao lenta",
+            "lesao aumenta com o tempo"
+          ]
+        },
+        "differential_profile": {
+          "lesion_color": "vermelha com area arroxeada ou escurecida",
+          "lesion_size": "medio, podendo aumentar com o tempo",
+          "marks": "geralmente um ponto central ou marcas discretas",
+          "bleeding": "incomum",
+          "purple_marks": "muito comum",
+          "blisters": "pode aparecer",
+          "necrosis": "pode acontecer em casos moderados ou graves",
+          "swelling": "pequeno ou moderado",
+          "pain": "comeca leve e aumenta depois",
+          "evolution": "piora lentamente em horas",
+          "common_places": [
+            "dentro de casa",
+            "roupas",
+            "armarios",
+            "caixas",
+            "depositos"
+          ],
+          "common_regions": [
+            "sul",
+            "sudeste",
+            "centro-oeste"
+          ],
+          "systemic_symptoms": [
+            "mal-estar",
+            "febre leve",
+            "cansaco"
+          ],
+          "uncommon": [
+            "dor extrema imediata",
+            "muito inchaco no comeco"
+          ],
+          "confusion_note": "Parece viuva-negra, mas a aranha-marrom costuma causar necrose e lesao arroxeada, enquanto a viuva-negra geralmente causa mais sintomas musculares do que lesao visual."
+        },
+        "confusion_note": "Parece viuva-negra, mas a aranha-marrom costuma causar necrose e lesao arroxeada, enquanto a viuva-negra geralmente causa mais sintomas musculares do que lesao visual.",
+        "affected_regions": "pe, mao, perna, braco",
+        "accident_sites": "atras de moveis, roupas guardadas, sapatos, caixas, armarios, locais escuros e secos",
+        "regions": "parana, santa catarina, rio grande do sul, sao paulo, minas gerais, sul, sudeste",
+        "environment": "atras de moveis, roupas guardadas, roupas, sapatos, caixas, armarios, locais escuros e secos",
+        "symptoms_reference": "ardencia, vermelhidao, dor moderada, pele arroxeada, bolhas, necrose, ferida escura, sensibilidade ao toque, febre, nausea, mal-estar, fraqueza, dor no corpo, necrose progressiva, lesao escura central, evolucao lenta, aumento gradual da dor, pele arroxeada ao redor da lesao, ponto unico, inchaco leve, queimacao, dor crescente, bolha escura central",
+        "score": 4.0,
+        "score_debug": {
+          "score_visual": 0.0,
+          "score_symptoms": 1.0,
+          "score_absent_symptoms": 0.0,
+          "score_time": 0.0,
+          "score_location_context": 3.0,
+          "bonuses": 0.0,
+          "penalties": 0.0,
+          "absolute_score": 4.0,
+          "included": true,
+          "reason": "minimum_diagnostic_evidence_met"
+        },
+        "matched_features": [
+          "general_signs:fraqueza",
+          "local:braco",
+          "local:perna",
+          "local:pe"
+        ],
+        "temporal_explanations": [],
+        "probability": null,
+        "rank_position": 6,
+        "reasons": [
+          "sinal geral: fraqueza",
+          "braco",
+          "perna",
+          "pe"
+        ],
+        "reason_text": "sinal geral: fraqueza, braco, perna, pe",
+        "clinical_evidence": {
+          "raw_score": 4.0,
+          "evidence_score": 7.4,
+          "specific_evidence_count": 1,
+          "generic_evidence_count": 0,
+          "negative_evidence_count": 0,
+          "syndromic_evidence_count": 0,
+          "discriminative_evidence_count": 0,
+          "unique_positive_evidence_count": 1
+        },
+        "evidence_score": 7.4,
+        "absolute_compatibility": 7.4,
+        "relative_score": null,
+        "clinical_compatibility": 0.0624
+      }
+    ]
+  },
+  "gemini_audit": {
+    "calls": [
+      {
+        "timestamp": "2026-10-20T17:18:37.939023Z",
+        "model": "gemini-3.5-flash-lite",
+        "call_number": 1,
+        "input": {
+          "visual_group": "sem_picada",
+          "visual_top1": "sem_picada",
+          "visual_top1_confidence": 0.6819258332,
+          "visual_top2": "picada_serpente",
+          "visual_top2_confidence": 0.1039895564,
+          "visual_margin": 0.5779362768,
+          "identification_status": "no_bite",
+          "clinical_group": "picada_serpente",
+          "clinical_species": "coral_verdadeira",
+          "clinical_evidence_score": 46.79,
+          "compatibility": "moderada",
+          "qa_answer_count": 0,
+          "answered_question_ids": [],
+          "qa_answers": [],
+          "report": "Fui picado no pé enquanto trabalhava em uma propriedade rural. A picada provocou pouca dor e praticamente nenhum inchaço. Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos. Agora estou sentindo dificuldade para respirar.",
+          "city": "Recife",
+          "state": "Pernambuco",
+          "time_since_bite_hours": 6.0,
+          "clinical_evidence": [
+            {
+              "description": "pe",
+              "value": "pe"
+            },
+            {
+              "description": "Tempo desde a picada: 6 horas",
+              "value": "6 horas"
+            },
+            {
+              "description": "Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos",
+              "value": "tardio"
+            },
+            {
+              "description": "A picada provocou pouca dor e praticamente nenhum inchaço",
+              "value": true
+            },
+            {
+              "description": "Algumas horas depois, comecei a sentir fraqueza nos braços e nas pernas, dificuldade para falar claramente e para engolir alimentos",
+              "value": true
+            },
+            {
+              "description": "Agora estou sentindo dificuldade para respirar",
+              "value": true
+            },
+            {
+              "description": "Fui picado no pé enquanto trabalhava em uma propriedade rural",
+              "value": "rural"
+            }
+          ],
+          "groups_allowed": [
+            "sem_picada",
+            "picada_serpente"
+          ],
+          "species_allowed": [
+            "cascavel",
+            "coral_verdadeira",
+            "jararaca",
+            "surucucu",
+            "sem_picada"
+          ],
+          "remaining_controlled_question_count": 0,
+          "remaining_question_concepts": []
+        },
+        "output": null,
+        "followup": null,
+        "fusion": null
+      }
+    ]
+  }
+}

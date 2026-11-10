@@ -1,0 +1,1200 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "b99ee9f776f84229b0fe4a14a4caf5ed",
+  "case_id": "PUBLIC-20261002T213200701310Z",
+  "test_id": "PUBLIC-20261002T213200701310Z",
+  "status": "COMPLETE",
+  "started_at": "2026-10-02T21:32:00.701310Z",
+  "completed_at": "2026-10-02T21:32:00.734759Z",
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "bite.jpg",
+    "sha256": "f16d05ec6b29248d2c61adb1e9263f78e4f7bace1b955014a2d17872cfe4064d",
+    "bytes": 7
+  },
+  "questions": [],
+  "turns": [
+    {
+      "observed_at": "2026-10-02T21:32:00.734759Z",
+      "image_analysis": {
+        "image_received": true,
+        "identification_status": "candidate",
+        "class_name": "picada_serpente",
+        "context_id": "e88062e7195b4250b590266a7e6fc788"
+      },
+      "visual": {
+        "top_1": null,
+        "top_2": null,
+        "top_3": null,
+        "visual_group": "picada_serpente",
+        "gate": "candidate",
+        "gate_reason": null,
+        "confidence": null,
+        "confidence_margin": null,
+        "full_ranking": []
+      },
+      "clinical_all_species_matches": null,
+      "species_matches": [],
+      "multimodal_fusion": {
+        "fusion_state": "MULTI_SOURCE_CONVERGENCE",
+        "leading_group": "SNAKE",
+        "group_evidence": {
+          "SNAKE": {
+            "ANIMAL": "NOT_AVAILABLE",
+            "BITE": "SUPPORTED",
+            "CLINICAL": "SUPPORTED"
+          }
+        },
+        "candidate_taxa": [],
+        "conflicts": [],
+        "sources_used": [
+          "BITE",
+          "CLINICAL"
+        ],
+        "sources_unavailable": [
+          "ANIMAL"
+        ],
+        "sources_insufficient": [],
+        "urgent_guidance_required": false,
+        "explanation_codes": [
+          "MULTI_SOURCE_GROUP_CONVERGENCE",
+          "ANIMAL_NOT_AVAILABLE"
+        ],
+        "available": true
+      },
+      "species_gate_trace": null,
+      "decision_debug": null,
+      "identification_status": null,
+      "result_type": null,
+      "selected_group": null,
+      "identification_message": null,
+      "backend_response_payload": {
+        "ok": true,
+        "needs_more_info": false,
+        "answer": "resultado individual",
+        "analysis": {
+          "species_matches": [],
+          "urgent_triage": false,
+          "report_text": "relato",
+          "symptoms": [],
+          "recommendations": [],
+          "input_normalization": {
+            "question_original": "dor e inchaço",
+            "question_normalized": "dor e inchaço",
+            "report_context_original": "dor e inchaço",
+            "report_context_normalized": "dor e inchaço"
+          },
+          "city": "Campinas",
+          "state": "São Paulo",
+          "uf": "SP",
+          "region": "Sudeste",
+          "location_normalization": {
+            "city": "Campinas",
+            "state": "São Paulo",
+            "uf": "SP",
+            "region": "Sudeste"
+          },
+          "clinical_v3": {
+            "known_concepts": [
+              "dor",
+              "edema"
+            ],
+            "profiles": [
+              {
+                "animal": "jararaca",
+                "group": "picada_serpente",
+                "matched_concepts": [
+                  "dor",
+                  "edema"
+                ],
+                "evidence": {
+                  "strong": 2,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 6,
+                "candidate_state": "clinically_supported"
+              },
+              {
+                "animal": "surucucu",
+                "group": "picada_serpente",
+                "matched_concepts": [
+                  "dor",
+                  "edema"
+                ],
+                "evidence": {
+                  "strong": 2,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 6,
+                "candidate_state": "clinically_supported"
+              },
+              {
+                "animal": "armadeira",
+                "group": "picada_aranha",
+                "matched_concepts": [
+                  "edema"
+                ],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 1,
+                  "weak": 0
+                },
+                "ordinal_score": 2,
+                "candidate_state": "clinically_supported"
+              },
+              {
+                "animal": "aranha_marrom",
+                "group": "picada_aranha",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "cascavel",
+                "group": "picada_serpente",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "coral_verdadeira",
+                "group": "picada_serpente",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "escorpiao_amarelo",
+                "group": "picada_escorpiao",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "escorpiao_amarelo_nordeste",
+                "group": "picada_escorpiao",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "escorpiao_marrom",
+                "group": "picada_escorpiao",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "escorpiao_preto_amazonia",
+                "group": "picada_escorpiao",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              },
+              {
+                "animal": "viuva_negra",
+                "group": "picada_aranha",
+                "matched_concepts": [],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 0,
+                "candidate_state": "provisional"
+              }
+            ],
+            "clinical_ranking": [
+              {
+                "animal": "jararaca",
+                "group": "picada_serpente",
+                "matched_concepts": [
+                  "dor",
+                  "edema"
+                ],
+                "evidence": {
+                  "strong": 2,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 6,
+                "candidate_state": "clinically_supported"
+              },
+              {
+                "animal": "surucucu",
+                "group": "picada_serpente",
+                "matched_concepts": [
+                  "dor",
+                  "edema"
+                ],
+                "evidence": {
+                  "strong": 2,
+                  "moderate": 0,
+                  "weak": 0
+                },
+                "ordinal_score": 6,
+                "candidate_state": "clinically_supported"
+              },
+              {
+                "animal": "armadeira",
+                "group": "picada_aranha",
+                "matched_concepts": [
+                  "edema"
+                ],
+                "evidence": {
+                  "strong": 0,
+                  "moderate": 1,
+                  "weak": 0
+                },
+                "ordinal_score": 2,
+                "candidate_state": "clinically_supported"
+              }
+            ],
+            "provisional_candidates": [
+              "aranha_marrom",
+              "cascavel",
+              "coral_verdadeira",
+              "escorpiao_amarelo",
+              "escorpiao_amarelo_nordeste",
+              "escorpiao_marrom",
+              "escorpiao_preto_amazonia",
+              "viuva_negra"
+            ],
+            "has_clinical_support": true,
+            "preferred_group": null,
+            "elapsed_minutes": 30.0
+          },
+          "v3_fusion": {
+            "visual_group": null,
+            "candidates": [],
+            "legacy_candidate_count": 0
+          },
+          "visual_group_ranking": [
+            {
+              "group_name": "picada_serpente",
+              "group_label": "Picada de serpente",
+              "score": 0.0
+            }
+          ],
+          "final_species_ranking": [],
+          "multimodal_fusion": {
+            "fusion_state": "MULTI_SOURCE_CONVERGENCE",
+            "leading_group": "SNAKE",
+            "group_evidence": {
+              "SNAKE": {
+                "ANIMAL": "NOT_AVAILABLE",
+                "BITE": "SUPPORTED",
+                "CLINICAL": "SUPPORTED"
+              }
+            },
+            "candidate_taxa": [],
+            "conflicts": [],
+            "sources_used": [
+              "BITE",
+              "CLINICAL"
+            ],
+            "sources_unavailable": [
+              "ANIMAL"
+            ],
+            "sources_insufficient": [],
+            "urgent_guidance_required": false,
+            "explanation_codes": [
+              "MULTI_SOURCE_GROUP_CONVERGENCE",
+              "ANIMAL_NOT_AVAILABLE"
+            ],
+            "available": true
+          },
+          "image_analysis": {
+            "image_received": true,
+            "identification_status": "candidate",
+            "class_name": "picada_serpente",
+            "context_id": "e88062e7195b4250b590266a7e6fc788"
+          },
+          "asked_questions": [],
+          "performance": {
+            "gemini_normalization_seconds": 0.0,
+            "ibge_normalization_seconds": 0.0049,
+            "symptom_ai_seconds": 0.0023,
+            "total_ask_seconds": 0.0287,
+            "gemini_calls": 0,
+            "ibge_calls": 0
+          },
+          "gemini_clinical": {
+            "status": "gemini_unavailable",
+            "fallback": true,
+            "model": "gemini-3.5-flash-lite",
+            "elapsed_seconds": 0.0,
+            "error_code": "disabled_in_test_mode"
+          },
+          "gemini_fusion": {
+            "applied": false,
+            "fallback": true,
+            "status": "gemini_unavailable",
+            "visual_group": "picada_serpente",
+            "groups_allowed": [
+              "picada_serpente"
+            ],
+            "decision_reason": "disabled_in_test_mode"
+          }
+        },
+        "run_id": "b99ee9f776f84229b0fe4a14a4caf5ed",
+        "request_sequence": 1
+      }
+    }
+  ],
+  "derived_metrics": {
+    "expected_group": "",
+    "visual_group": "picada_serpente",
+    "final_group": "",
+    "final_species": "",
+    "VISUAL_GROUP_CORRECT": "NO",
+    "FINAL_SPECIES_CORRECT": "NOT_APPLICABLE",
+    "FINAL_GROUP_CORRECT": "NO",
+    "Q&A_EFFECT": "MAINTAINED_WRONG"
+  },
+  "input": {
+    "initial_narrative": "dor e inchaço",
+    "raw_question": "dor e inchaço",
+    "normalized_question": "dor e inchaço",
+    "structured_input": {
+      "structured_time_since_bite": "30 minutos",
+      "city": "Campinas",
+      "state": "SP",
+      "body_location": null,
+      "location": {
+        "city": "Campinas",
+        "state": "São Paulo",
+        "uf": "SP",
+        "region": "Sudeste"
+      },
+      "answered_question_id": ""
+    },
+    "assembled_report_text": "dor e inchaço. Cidade: Campinas. Estado: São Paulo. UF: SP. Região: Sudeste. Tempo desde a picada: 30 minutos"
+  },
+  "initial_narrative": "dor e inchaço",
+  "structured_time_since_bite": "30 minutos",
+  "location": {
+    "city": "Campinas",
+    "state": "São Paulo",
+    "uf": "SP",
+    "region": "Sudeste"
+  },
+  "body_location": {},
+  "extracted_clinical_features": {},
+  "clinical_only_snapshot": {
+    "clinical_only_top1": null,
+    "clinical_only_top2": null,
+    "clinical_only_top3": null,
+    "clinical_only_candidate": null,
+    "clinical_only_acceptance": {
+      "top1_score": 0.0,
+      "top1_evidence": 0.0
+    },
+    "clinical_only_ranking": []
+  },
+  "gemini_audit": {
+    "calls": [
+      {
+        "timestamp": "2026-10-02T21:32:00.726883Z",
+        "model": "gemini-3.5-flash-lite",
+        "call_number": 1,
+        "input": {
+          "visual_group": "picada_serpente",
+          "visual_top1": "picada_serpente",
+          "visual_top1_confidence": 0.0,
+          "visual_top2": "",
+          "visual_top2_confidence": null,
+          "visual_margin": 0.0,
+          "identification_status": "candidate",
+          "clinical_group": "",
+          "clinical_species": "",
+          "clinical_evidence_score": null,
+          "compatibility": "",
+          "qa_answer_count": 0,
+          "answered_question_ids": [],
+          "qa_answers": [],
+          "report": "dor e inchaço",
+          "city": "Campinas",
+          "state": "São Paulo",
+          "time_since_bite_hours": 0.5,
+          "clinical_evidence": [],
+          "groups_allowed": [
+            "picada_serpente"
+          ],
+          "species_allowed": [
+            "cascavel",
+            "coral_verdadeira",
+            "jararaca",
+            "surucucu"
+          ],
+          "remaining_controlled_question_count": 0,
+          "remaining_question_concepts": []
+        },
+        "output": {
+          "status": "gemini_unavailable",
+          "fallback": true,
+          "species": "",
+          "group": "",
+          "compatibility": "",
+          "confidence": null,
+          "needs_more_questions": false,
+          "next_question_concept": "",
+          "decision_reason": "disabled_in_test_mode",
+          "elapsed_seconds": 0.0
+        },
+        "followup": null,
+        "fusion": {
+          "visual_candidate": "",
+          "clinical_candidate": {
+            "group": "",
+            "species": ""
+          },
+          "gemini_candidate": {
+            "group": "",
+            "species": ""
+          },
+          "applied": false,
+          "decision_reason": "disabled_in_test_mode",
+          "final_result": "",
+          "final_group": "",
+          "final_species": ""
+        }
+      }
+    ]
+  },
+  "final": {
+    "species_matches": [],
+    "urgent_triage": false,
+    "report_text": "relato",
+    "symptoms": [],
+    "recommendations": [],
+    "input_normalization": {
+      "question_original": "dor e inchaço",
+      "question_normalized": "dor e inchaço",
+      "report_context_original": "dor e inchaço",
+      "report_context_normalized": "dor e inchaço"
+    },
+    "city": "Campinas",
+    "state": "São Paulo",
+    "uf": "SP",
+    "region": "Sudeste",
+    "location_normalization": {
+      "city": "Campinas",
+      "state": "São Paulo",
+      "uf": "SP",
+      "region": "Sudeste"
+    },
+    "clinical_v3": {
+      "known_concepts": [
+        "dor",
+        "edema"
+      ],
+      "profiles": [
+        {
+          "animal": "jararaca",
+          "group": "picada_serpente",
+          "matched_concepts": [
+            "dor",
+            "edema"
+          ],
+          "evidence": {
+            "strong": 2,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 6,
+          "candidate_state": "clinically_supported"
+        },
+        {
+          "animal": "surucucu",
+          "group": "picada_serpente",
+          "matched_concepts": [
+            "dor",
+            "edema"
+          ],
+          "evidence": {
+            "strong": 2,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 6,
+          "candidate_state": "clinically_supported"
+        },
+        {
+          "animal": "armadeira",
+          "group": "picada_aranha",
+          "matched_concepts": [
+            "edema"
+          ],
+          "evidence": {
+            "strong": 0,
+            "moderate": 1,
+            "weak": 0
+          },
+          "ordinal_score": 2,
+          "candidate_state": "clinically_supported"
+        },
+        {
+          "animal": "aranha_marrom",
+          "group": "picada_aranha",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "cascavel",
+          "group": "picada_serpente",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "coral_verdadeira",
+          "group": "picada_serpente",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "escorpiao_amarelo",
+          "group": "picada_escorpiao",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "escorpiao_amarelo_nordeste",
+          "group": "picada_escorpiao",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "escorpiao_marrom",
+          "group": "picada_escorpiao",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "escorpiao_preto_amazonia",
+          "group": "picada_escorpiao",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        },
+        {
+          "animal": "viuva_negra",
+          "group": "picada_aranha",
+          "matched_concepts": [],
+          "evidence": {
+            "strong": 0,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 0,
+          "candidate_state": "provisional"
+        }
+      ],
+      "clinical_ranking": [
+        {
+          "animal": "jararaca",
+          "group": "picada_serpente",
+          "matched_concepts": [
+            "dor",
+            "edema"
+          ],
+          "evidence": {
+            "strong": 2,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 6,
+          "candidate_state": "clinically_supported"
+        },
+        {
+          "animal": "surucucu",
+          "group": "picada_serpente",
+          "matched_concepts": [
+            "dor",
+            "edema"
+          ],
+          "evidence": {
+            "strong": 2,
+            "moderate": 0,
+            "weak": 0
+          },
+          "ordinal_score": 6,
+          "candidate_state": "clinically_supported"
+        },
+        {
+          "animal": "armadeira",
+          "group": "picada_aranha",
+          "matched_concepts": [
+            "edema"
+          ],
+          "evidence": {
+            "strong": 0,
+            "moderate": 1,
+            "weak": 0
+          },
+          "ordinal_score": 2,
+          "candidate_state": "clinically_supported"
+        }
+      ],
+      "provisional_candidates": [
+        "aranha_marrom",
+        "cascavel",
+        "coral_verdadeira",
+        "escorpiao_amarelo",
+        "escorpiao_amarelo_nordeste",
+        "escorpiao_marrom",
+        "escorpiao_preto_amazonia",
+        "viuva_negra"
+      ],
+      "has_clinical_support": true,
+      "preferred_group": null,
+      "elapsed_minutes": 30.0
+    },
+    "v3_fusion": {
+      "visual_group": null,
+      "candidates": [],
+      "legacy_candidate_count": 0
+    },
+    "visual_group_ranking": [
+      {
+        "group_name": "picada_serpente",
+        "group_label": "Picada de serpente",
+        "score": 0.0
+      }
+    ],
+    "final_species_ranking": [],
+    "multimodal_fusion": {
+      "fusion_state": "MULTI_SOURCE_CONVERGENCE",
+      "leading_group": "SNAKE",
+      "group_evidence": {
+        "SNAKE": {
+          "ANIMAL": "NOT_AVAILABLE",
+          "BITE": "SUPPORTED",
+          "CLINICAL": "SUPPORTED"
+        }
+      },
+      "candidate_taxa": [],
+      "conflicts": [],
+      "sources_used": [
+        "BITE",
+        "CLINICAL"
+      ],
+      "sources_unavailable": [
+        "ANIMAL"
+      ],
+      "sources_insufficient": [],
+      "urgent_guidance_required": false,
+      "explanation_codes": [
+        "MULTI_SOURCE_GROUP_CONVERGENCE",
+        "ANIMAL_NOT_AVAILABLE"
+      ],
+      "available": true
+    },
+    "image_analysis": {
+      "image_received": true,
+      "identification_status": "candidate",
+      "class_name": "picada_serpente",
+      "context_id": "e88062e7195b4250b590266a7e6fc788"
+    },
+    "asked_questions": [],
+    "performance": {
+      "gemini_normalization_seconds": 0.0,
+      "ibge_normalization_seconds": 0.0049,
+      "symptom_ai_seconds": 0.0023,
+      "total_ask_seconds": 0.0287,
+      "gemini_calls": 0,
+      "ibge_calls": 0
+    },
+    "gemini_clinical": {
+      "status": "gemini_unavailable",
+      "fallback": true,
+      "model": "gemini-3.5-flash-lite",
+      "elapsed_seconds": 0.0,
+      "error_code": "disabled_in_test_mode"
+    },
+    "gemini_fusion": {
+      "applied": false,
+      "fallback": true,
+      "status": "gemini_unavailable",
+      "visual_group": "picada_serpente",
+      "groups_allowed": [
+        "picada_serpente"
+      ],
+      "decision_reason": "disabled_in_test_mode"
+    }
+  },
+  "backend_response_payload": {
+    "ok": true,
+    "needs_more_info": false,
+    "answer": "resultado individual",
+    "analysis": {
+      "species_matches": [],
+      "urgent_triage": false,
+      "report_text": "relato",
+      "symptoms": [],
+      "recommendations": [],
+      "input_normalization": {
+        "question_original": "dor e inchaço",
+        "question_normalized": "dor e inchaço",
+        "report_context_original": "dor e inchaço",
+        "report_context_normalized": "dor e inchaço"
+      },
+      "city": "Campinas",
+      "state": "São Paulo",
+      "uf": "SP",
+      "region": "Sudeste",
+      "location_normalization": {
+        "city": "Campinas",
+        "state": "São Paulo",
+        "uf": "SP",
+        "region": "Sudeste"
+      },
+      "clinical_v3": {
+        "known_concepts": [
+          "dor",
+          "edema"
+        ],
+        "profiles": [
+          {
+            "animal": "jararaca",
+            "group": "picada_serpente",
+            "matched_concepts": [
+              "dor",
+              "edema"
+            ],
+            "evidence": {
+              "strong": 2,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 6,
+            "candidate_state": "clinically_supported"
+          },
+          {
+            "animal": "surucucu",
+            "group": "picada_serpente",
+            "matched_concepts": [
+              "dor",
+              "edema"
+            ],
+            "evidence": {
+              "strong": 2,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 6,
+            "candidate_state": "clinically_supported"
+          },
+          {
+            "animal": "armadeira",
+            "group": "picada_aranha",
+            "matched_concepts": [
+              "edema"
+            ],
+            "evidence": {
+              "strong": 0,
+              "moderate": 1,
+              "weak": 0
+            },
+            "ordinal_score": 2,
+            "candidate_state": "clinically_supported"
+          },
+          {
+            "animal": "aranha_marrom",
+            "group": "picada_aranha",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "cascavel",
+            "group": "picada_serpente",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "coral_verdadeira",
+            "group": "picada_serpente",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "escorpiao_amarelo",
+            "group": "picada_escorpiao",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "escorpiao_amarelo_nordeste",
+            "group": "picada_escorpiao",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "escorpiao_marrom",
+            "group": "picada_escorpiao",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "escorpiao_preto_amazonia",
+            "group": "picada_escorpiao",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          },
+          {
+            "animal": "viuva_negra",
+            "group": "picada_aranha",
+            "matched_concepts": [],
+            "evidence": {
+              "strong": 0,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 0,
+            "candidate_state": "provisional"
+          }
+        ],
+        "clinical_ranking": [
+          {
+            "animal": "jararaca",
+            "group": "picada_serpente",
+            "matched_concepts": [
+              "dor",
+              "edema"
+            ],
+            "evidence": {
+              "strong": 2,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 6,
+            "candidate_state": "clinically_supported"
+          },
+          {
+            "animal": "surucucu",
+            "group": "picada_serpente",
+            "matched_concepts": [
+              "dor",
+              "edema"
+            ],
+            "evidence": {
+              "strong": 2,
+              "moderate": 0,
+              "weak": 0
+            },
+            "ordinal_score": 6,
+            "candidate_state": "clinically_supported"
+          },
+          {
+            "animal": "armadeira",
+            "group": "picada_aranha",
+            "matched_concepts": [
+              "edema"
+            ],
+            "evidence": {
+              "strong": 0,
+              "moderate": 1,
+              "weak": 0
+            },
+            "ordinal_score": 2,
+            "candidate_state": "clinically_supported"
+          }
+        ],
+        "provisional_candidates": [
+          "aranha_marrom",
+          "cascavel",
+          "coral_verdadeira",
+          "escorpiao_amarelo",
+          "escorpiao_amarelo_nordeste",
+          "escorpiao_marrom",
+          "escorpiao_preto_amazonia",
+          "viuva_negra"
+        ],
+        "has_clinical_support": true,
+        "preferred_group": null,
+        "elapsed_minutes": 30.0
+      },
+      "v3_fusion": {
+        "visual_group": null,
+        "candidates": [],
+        "legacy_candidate_count": 0
+      },
+      "visual_group_ranking": [
+        {
+          "group_name": "picada_serpente",
+          "group_label": "Picada de serpente",
+          "score": 0.0
+        }
+      ],
+      "final_species_ranking": [],
+      "multimodal_fusion": {
+        "fusion_state": "MULTI_SOURCE_CONVERGENCE",
+        "leading_group": "SNAKE",
+        "group_evidence": {
+          "SNAKE": {
+            "ANIMAL": "NOT_AVAILABLE",
+            "BITE": "SUPPORTED",
+            "CLINICAL": "SUPPORTED"
+          }
+        },
+        "candidate_taxa": [],
+        "conflicts": [],
+        "sources_used": [
+          "BITE",
+          "CLINICAL"
+        ],
+        "sources_unavailable": [
+          "ANIMAL"
+        ],
+        "sources_insufficient": [],
+        "urgent_guidance_required": false,
+        "explanation_codes": [
+          "MULTI_SOURCE_GROUP_CONVERGENCE",
+          "ANIMAL_NOT_AVAILABLE"
+        ],
+        "available": true
+      },
+      "image_analysis": {
+        "image_received": true,
+        "identification_status": "candidate",
+        "class_name": "picada_serpente",
+        "context_id": "e88062e7195b4250b590266a7e6fc788"
+      },
+      "asked_questions": [],
+      "performance": {
+        "gemini_normalization_seconds": 0.0,
+        "ibge_normalization_seconds": 0.0049,
+        "symptom_ai_seconds": 0.0023,
+        "total_ask_seconds": 0.0287,
+        "gemini_calls": 0,
+        "ibge_calls": 0
+      },
+      "gemini_clinical": {
+        "status": "gemini_unavailable",
+        "fallback": true,
+        "model": "gemini-3.5-flash-lite",
+        "elapsed_seconds": 0.0,
+        "error_code": "disabled_in_test_mode"
+      },
+      "gemini_fusion": {
+        "applied": false,
+        "fallback": true,
+        "status": "gemini_unavailable",
+        "visual_group": "picada_serpente",
+        "groups_allowed": [
+          "picada_serpente"
+        ],
+        "decision_reason": "disabled_in_test_mode"
+      }
+    },
+    "run_id": "b99ee9f776f84229b0fe4a14a4caf5ed",
+    "request_sequence": 1
+  },
+  "final_visual": {
+    "top_1": null,
+    "top_2": null,
+    "top_3": null,
+    "visual_group": "picada_serpente",
+    "gate": "candidate",
+    "gate_reason": null,
+    "confidence": null,
+    "confidence_margin": null,
+    "full_ranking": []
+  },
+  "image_name": "bite.jpg",
+  "image_sha256": "f16d05ec6b29248d2c61adb1e9263f78e4f7bace1b955014a2d17872cfe4064d",
+  "image_width": null,
+  "image_height": null,
+  "visual_top1": null,
+  "visual_top1_score": null,
+  "visual_top2": null,
+  "visual_top2_score": null,
+  "visual_top3": null,
+  "visual_top3_score": null,
+  "visual_full_ranking": [],
+  "visual_group": "picada_serpente",
+  "visual_gate": "candidate",
+  "visual_gate_reason": null,
+  "visual_confidence_state": {
+    "confidence": null,
+    "margin": null
+  },
+  "questions_asked_count": 0,
+  "question_stop_reason": "",
+  "remaining_discriminative_questions": [],
+  "clinical_all_species_matches": null,
+  "clinical_species_ranking": [],
+  "cross_group_decision_trace": null,
+  "multimodal_fusion": {
+    "fusion_state": "MULTI_SOURCE_CONVERGENCE",
+    "leading_group": "SNAKE",
+    "group_evidence": {
+      "SNAKE": {
+        "ANIMAL": "NOT_AVAILABLE",
+        "BITE": "SUPPORTED",
+        "CLINICAL": "SUPPORTED"
+      }
+    },
+    "candidate_taxa": [],
+    "conflicts": [],
+    "sources_used": [
+      "BITE",
+      "CLINICAL"
+    ],
+    "sources_unavailable": [
+      "ANIMAL"
+    ],
+    "sources_insufficient": [],
+    "urgent_guidance_required": false,
+    "explanation_codes": [
+      "MULTI_SOURCE_GROUP_CONVERGENCE",
+      "ANIMAL_NOT_AVAILABLE"
+    ],
+    "available": true
+  },
+  "candidate_changed_by_visual": "NO",
+  "candidate_change_reason": "no_candidate_change_observed",
+  "species_acceptance": {},
+  "backend_final": {
+    "result_type": null,
+    "identification_status": null,
+    "decision_reason": null,
+    "backend_final_group": "",
+    "backend_final_species": "",
+    "backend_final_state": "INCONCLUSIVE"
+  },
+  "backend_to_frontend_trace": {
+    "http_response_field": "analysis",
+    "javascript_function": "buildResultViewModel",
+    "result_type_source": "analysis.result_type / analysis.result_mode / analysis.identification_status",
+    "ui_compatibility_group_source": "analysis.selected_group || analysis.visual_group",
+    "ui_compatibility_group_value": "",
+    "group_only_ui_collision": false,
+    "group_only_rendered_title": "Espécie não determinada com segurança",
+    "inconclusive_rendered_title": "Resultado inconclusivo"
+  }
+}

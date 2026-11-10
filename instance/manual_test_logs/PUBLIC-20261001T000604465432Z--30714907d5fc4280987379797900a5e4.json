@@ -1,0 +1,1063 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "30714907d5fc4280987379797900a5e4",
+  "case_id": "PUBLIC-20261001T000604465432Z",
+  "test_id": "PUBLIC-20261001T000604465432Z",
+  "status": "COMPLETE",
+  "started_at": "2026-10-01T00:06:04.465432Z",
+  "completed_at": "2026-10-01T00:06:04.812340Z",
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "V6CL074.jpg",
+    "sha256": "fe1f5ad551477e47f1d98abfcfea004dcaa8e2b5d213737fdedee966eab28ae8",
+    "bytes": 16376,
+    "width": 440,
+    "height": 205
+  },
+  "questions": [],
+  "turns": [
+    {
+      "observed_at": "2026-10-01T00:06:04.812340Z",
+      "image_analysis": {
+        "image_received": true,
+        "validity": {
+          "checked": true,
+          "model_available": true,
+          "status": "passed",
+          "reason": "validador binário V1 pele analisável x imagem não analisável",
+          "message": "",
+          "debug": {
+            "technical_check": {
+              "resolution": {
+                "width": 440,
+                "height": 205
+              },
+              "luminance_stddev": 92.192,
+              "thresholds": {
+                "min_analyzable_dimension": 64,
+                "min_luminance_stddev": 4.0
+              },
+              "blocking_rule": "none"
+            },
+            "validator": {
+              "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+              "input_pixel_range": [
+                0.0,
+                255.0
+              ],
+              "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+            }
+          },
+          "validation_state": "PELE_ANALISAVEL",
+          "valid_image_score": 0.9998014569282532,
+          "threshold_accept_pele": 0.75,
+          "threshold_reject_nao_analisavel": 0.25,
+          "threshold": 0.75
+        },
+        "identification_status": "candidate",
+        "class_name": "picada_mosquito",
+        "class_label": "Picada de mosquito",
+        "error": null,
+        "group_name": "picada_mosquito",
+        "group_label": "Picada de mosquito",
+        "predictions": [
+          {
+            "class_name": "picada_mosquito",
+            "class_label": "Picada de mosquito",
+            "confidence": 0.48798614740371704,
+            "source": "neural_model",
+            "source_class_name": "picada_mosquito",
+            "source_classes": [
+              "picada_mosquito"
+            ]
+          },
+          {
+            "class_name": "picada_serpente",
+            "class_label": "Picada de serpente",
+            "confidence": 0.1582314819097519,
+            "source": "neural_model",
+            "source_class_name": "picada_serpente",
+            "source_classes": [
+              "picada_serpente"
+            ]
+          },
+          {
+            "class_name": "sem_picada",
+            "class_label": "Sem indícios suficientes de picada",
+            "confidence": 0.12088310718536377,
+            "source": "neural_model",
+            "source_class_name": "sem_picada",
+            "source_classes": [
+              "sem_picada"
+            ]
+          },
+          {
+            "class_name": "picada_escorpiao",
+            "class_label": "Picada de escorpião",
+            "confidence": 0.10324980318546295,
+            "source": "neural_model",
+            "source_class_name": "picada_escorpiao",
+            "source_classes": [
+              "picada_escorpiao"
+            ]
+          },
+          {
+            "class_name": "picada_carrapato",
+            "class_label": "Picada de carrapato",
+            "confidence": 0.07273084670305252,
+            "source": "neural_model",
+            "source_class_name": "picada_carrapato",
+            "source_classes": [
+              "picada_carrapato"
+            ]
+          }
+        ],
+        "raw_predictions": [
+          {
+            "class_name": "picada_mosquito",
+            "class_label": "Picada de mosquito",
+            "confidence": 0.48798614740371704,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "picada_serpente",
+            "class_label": "Picada de serpente",
+            "confidence": 0.1582314819097519,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "sem_picada",
+            "class_label": "Sem indícios suficientes de picada",
+            "confidence": 0.12088310718536377,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "picada_escorpiao",
+            "class_label": "Picada de escorpião",
+            "confidence": 0.10324980318546295,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "picada_carrapato",
+            "class_label": "Picada de carrapato",
+            "confidence": 0.07273084670305252,
+            "source": "neural_model"
+          }
+        ],
+        "fingerprint_predictions": [],
+        "prediction_source": "neural_model",
+        "confidence": 0.48798614740371704,
+        "confidence_margin": 0.32975466549396515,
+        "is_uncertain": false,
+        "model_identification_grade": false,
+        "model_evaluation_source": "testing",
+        "model_evaluation_overall_accuracy": 0.6275,
+        "model_evaluation_threshold": 0.7,
+        "model_operational_warning": "modelo visual abaixo do threshold global de identificação",
+        "class_reliability": 0.5357,
+        "visual_acceptance_reason": "predição aceita por confiança e margem da imagem atual",
+        "visual_acceptance_code": "accepted_by_current_prediction",
+        "context_id": "f47b6359394d43509b2c056f5851fcd4"
+      },
+      "visual": {
+        "top_1": {
+          "class_name": "picada_mosquito",
+          "class_label": "Picada de mosquito",
+          "confidence": 0.48798614740371704,
+          "source": "neural_model",
+          "source_class_name": "picada_mosquito",
+          "source_classes": [
+            "picada_mosquito"
+          ]
+        },
+        "top_2": {
+          "class_name": "picada_serpente",
+          "class_label": "Picada de serpente",
+          "confidence": 0.1582314819097519,
+          "source": "neural_model",
+          "source_class_name": "picada_serpente",
+          "source_classes": [
+            "picada_serpente"
+          ]
+        },
+        "top_3": {
+          "class_name": "sem_picada",
+          "class_label": "Sem indícios suficientes de picada",
+          "confidence": 0.12088310718536377,
+          "source": "neural_model",
+          "source_class_name": "sem_picada",
+          "source_classes": [
+            "sem_picada"
+          ]
+        },
+        "visual_group": "picada_mosquito",
+        "gate": {
+          "checked": true,
+          "model_available": true,
+          "status": "passed",
+          "reason": "validador binário V1 pele analisável x imagem não analisável",
+          "message": "",
+          "debug": {
+            "technical_check": {
+              "resolution": {
+                "width": 440,
+                "height": 205
+              },
+              "luminance_stddev": 92.192,
+              "thresholds": {
+                "min_analyzable_dimension": 64,
+                "min_luminance_stddev": 4.0
+              },
+              "blocking_rule": "none"
+            },
+            "validator": {
+              "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+              "input_pixel_range": [
+                0.0,
+                255.0
+              ],
+              "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+            }
+          },
+          "validation_state": "PELE_ANALISAVEL",
+          "valid_image_score": 0.9998014569282532,
+          "threshold_accept_pele": 0.75,
+          "threshold_reject_nao_analisavel": 0.25,
+          "threshold": 0.75
+        },
+        "gate_reason": null,
+        "confidence": 0.48798614740371704,
+        "confidence_margin": 0.32975466549396515,
+        "full_ranking": [
+          {
+            "class_name": "picada_mosquito",
+            "class_label": "Picada de mosquito",
+            "confidence": 0.48798614740371704,
+            "source": "neural_model",
+            "source_class_name": "picada_mosquito",
+            "source_classes": [
+              "picada_mosquito"
+            ]
+          },
+          {
+            "class_name": "picada_serpente",
+            "class_label": "Picada de serpente",
+            "confidence": 0.1582314819097519,
+            "source": "neural_model",
+            "source_class_name": "picada_serpente",
+            "source_classes": [
+              "picada_serpente"
+            ]
+          },
+          {
+            "class_name": "sem_picada",
+            "class_label": "Sem indícios suficientes de picada",
+            "confidence": 0.12088310718536377,
+            "source": "neural_model",
+            "source_class_name": "sem_picada",
+            "source_classes": [
+              "sem_picada"
+            ]
+          },
+          {
+            "class_name": "picada_escorpiao",
+            "class_label": "Picada de escorpião",
+            "confidence": 0.10324980318546295,
+            "source": "neural_model",
+            "source_class_name": "picada_escorpiao",
+            "source_classes": [
+              "picada_escorpiao"
+            ]
+          },
+          {
+            "class_name": "picada_carrapato",
+            "class_label": "Picada de carrapato",
+            "confidence": 0.07273084670305252,
+            "source": "neural_model",
+            "source_class_name": "picada_carrapato",
+            "source_classes": [
+              "picada_carrapato"
+            ]
+          }
+        ]
+      },
+      "clinical_all_species_matches": null,
+      "species_matches": [],
+      "multimodal_fusion": null,
+      "species_gate_trace": null,
+      "decision_debug": null,
+      "identification_status": "invalid_input",
+      "result_type": null,
+      "selected_group": null,
+      "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+      "backend_response_payload": {
+        "ok": true,
+        "needs_more_info": false,
+        "answer": "Análise inicial da IA\nO texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.\n\nAviso: isso é apenas apoio inicial e não substitui avaliação médica.",
+        "analysis": {
+          "report_text": "",
+          "symptoms": [],
+          "city": "Curitiba",
+          "state": "Paraná",
+          "region": "",
+          "bite_location": "",
+          "species_matches": [],
+          "recommendations": [
+            "Lave o local com água e sabão.",
+            "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+            "Se houver piora importante, procure atendimento médico imediatamente."
+          ],
+          "image_analysis": {
+            "image_received": true,
+            "validity": {
+              "checked": true,
+              "model_available": true,
+              "status": "passed",
+              "reason": "validador binário V1 pele analisável x imagem não analisável",
+              "message": "",
+              "debug": {
+                "technical_check": {
+                  "resolution": {
+                    "width": 440,
+                    "height": 205
+                  },
+                  "luminance_stddev": 92.192,
+                  "thresholds": {
+                    "min_analyzable_dimension": 64,
+                    "min_luminance_stddev": 4.0
+                  },
+                  "blocking_rule": "none"
+                },
+                "validator": {
+                  "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+                  "input_pixel_range": [
+                    0.0,
+                    255.0
+                  ],
+                  "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+                }
+              },
+              "validation_state": "PELE_ANALISAVEL",
+              "valid_image_score": 0.9998014569282532,
+              "threshold_accept_pele": 0.75,
+              "threshold_reject_nao_analisavel": 0.25,
+              "threshold": 0.75
+            },
+            "identification_status": "candidate",
+            "class_name": "picada_mosquito",
+            "class_label": "Picada de mosquito",
+            "error": null,
+            "group_name": "picada_mosquito",
+            "group_label": "Picada de mosquito",
+            "predictions": [
+              {
+                "class_name": "picada_mosquito",
+                "class_label": "Picada de mosquito",
+                "confidence": 0.48798614740371704,
+                "source": "neural_model",
+                "source_class_name": "picada_mosquito",
+                "source_classes": [
+                  "picada_mosquito"
+                ]
+              },
+              {
+                "class_name": "picada_serpente",
+                "class_label": "Picada de serpente",
+                "confidence": 0.1582314819097519,
+                "source": "neural_model",
+                "source_class_name": "picada_serpente",
+                "source_classes": [
+                  "picada_serpente"
+                ]
+              },
+              {
+                "class_name": "sem_picada",
+                "class_label": "Sem indícios suficientes de picada",
+                "confidence": 0.12088310718536377,
+                "source": "neural_model",
+                "source_class_name": "sem_picada",
+                "source_classes": [
+                  "sem_picada"
+                ]
+              },
+              {
+                "class_name": "picada_escorpiao",
+                "class_label": "Picada de escorpião",
+                "confidence": 0.10324980318546295,
+                "source": "neural_model",
+                "source_class_name": "picada_escorpiao",
+                "source_classes": [
+                  "picada_escorpiao"
+                ]
+              },
+              {
+                "class_name": "picada_carrapato",
+                "class_label": "Picada de carrapato",
+                "confidence": 0.07273084670305252,
+                "source": "neural_model",
+                "source_class_name": "picada_carrapato",
+                "source_classes": [
+                  "picada_carrapato"
+                ]
+              }
+            ],
+            "raw_predictions": [
+              {
+                "class_name": "picada_mosquito",
+                "class_label": "Picada de mosquito",
+                "confidence": 0.48798614740371704,
+                "source": "neural_model"
+              },
+              {
+                "class_name": "picada_serpente",
+                "class_label": "Picada de serpente",
+                "confidence": 0.1582314819097519,
+                "source": "neural_model"
+              },
+              {
+                "class_name": "sem_picada",
+                "class_label": "Sem indícios suficientes de picada",
+                "confidence": 0.12088310718536377,
+                "source": "neural_model"
+              },
+              {
+                "class_name": "picada_escorpiao",
+                "class_label": "Picada de escorpião",
+                "confidence": 0.10324980318546295,
+                "source": "neural_model"
+              },
+              {
+                "class_name": "picada_carrapato",
+                "class_label": "Picada de carrapato",
+                "confidence": 0.07273084670305252,
+                "source": "neural_model"
+              }
+            ],
+            "fingerprint_predictions": [],
+            "prediction_source": "neural_model",
+            "confidence": 0.48798614740371704,
+            "confidence_margin": 0.32975466549396515,
+            "is_uncertain": false,
+            "model_identification_grade": false,
+            "model_evaluation_source": "testing",
+            "model_evaluation_overall_accuracy": 0.6275,
+            "model_evaluation_threshold": 0.7,
+            "model_operational_warning": "modelo visual abaixo do threshold global de identificação",
+            "class_reliability": 0.5357,
+            "visual_acceptance_reason": "predição aceita por confiança e margem da imagem atual",
+            "visual_acceptance_code": "accepted_by_current_prediction",
+            "context_id": "f47b6359394d43509b2c056f5851fcd4"
+          },
+          "identification_status": "invalid_input",
+          "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+          "text_validation": {
+            "valid": false,
+            "reason": "sem sintomas, sinais locais ou contexto de picada"
+          },
+          "asked_questions": []
+        },
+        "run_id": "30714907d5fc4280987379797900a5e4",
+        "request_sequence": 1,
+        "client_request_sequence": 1
+      }
+    }
+  ],
+  "derived_metrics": {
+    "expected_group": "",
+    "visual_group": "picada_mosquito",
+    "final_group": "",
+    "final_species": "",
+    "VISUAL_GROUP_CORRECT": "NO",
+    "FINAL_SPECIES_CORRECT": "NOT_APPLICABLE",
+    "FINAL_GROUP_CORRECT": "INCONCLUSIVE",
+    "Q&A_EFFECT": "INCONCLUSIVE"
+  },
+  "final": {
+    "report_text": "",
+    "symptoms": [],
+    "city": "Curitiba",
+    "state": "Paraná",
+    "region": "",
+    "bite_location": "",
+    "species_matches": [],
+    "recommendations": [
+      "Lave o local com água e sabão.",
+      "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+      "Se houver piora importante, procure atendimento médico imediatamente."
+    ],
+    "image_analysis": {
+      "image_received": true,
+      "validity": {
+        "checked": true,
+        "model_available": true,
+        "status": "passed",
+        "reason": "validador binário V1 pele analisável x imagem não analisável",
+        "message": "",
+        "debug": {
+          "technical_check": {
+            "resolution": {
+              "width": 440,
+              "height": 205
+            },
+            "luminance_stddev": 92.192,
+            "thresholds": {
+              "min_analyzable_dimension": 64,
+              "min_luminance_stddev": 4.0
+            },
+            "blocking_rule": "none"
+          },
+          "validator": {
+            "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+            "input_pixel_range": [
+              0.0,
+              255.0
+            ],
+            "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+          }
+        },
+        "validation_state": "PELE_ANALISAVEL",
+        "valid_image_score": 0.9998014569282532,
+        "threshold_accept_pele": 0.75,
+        "threshold_reject_nao_analisavel": 0.25,
+        "threshold": 0.75
+      },
+      "identification_status": "candidate",
+      "class_name": "picada_mosquito",
+      "class_label": "Picada de mosquito",
+      "error": null,
+      "group_name": "picada_mosquito",
+      "group_label": "Picada de mosquito",
+      "predictions": [
+        {
+          "class_name": "picada_mosquito",
+          "class_label": "Picada de mosquito",
+          "confidence": 0.48798614740371704,
+          "source": "neural_model",
+          "source_class_name": "picada_mosquito",
+          "source_classes": [
+            "picada_mosquito"
+          ]
+        },
+        {
+          "class_name": "picada_serpente",
+          "class_label": "Picada de serpente",
+          "confidence": 0.1582314819097519,
+          "source": "neural_model",
+          "source_class_name": "picada_serpente",
+          "source_classes": [
+            "picada_serpente"
+          ]
+        },
+        {
+          "class_name": "sem_picada",
+          "class_label": "Sem indícios suficientes de picada",
+          "confidence": 0.12088310718536377,
+          "source": "neural_model",
+          "source_class_name": "sem_picada",
+          "source_classes": [
+            "sem_picada"
+          ]
+        },
+        {
+          "class_name": "picada_escorpiao",
+          "class_label": "Picada de escorpião",
+          "confidence": 0.10324980318546295,
+          "source": "neural_model",
+          "source_class_name": "picada_escorpiao",
+          "source_classes": [
+            "picada_escorpiao"
+          ]
+        },
+        {
+          "class_name": "picada_carrapato",
+          "class_label": "Picada de carrapato",
+          "confidence": 0.07273084670305252,
+          "source": "neural_model",
+          "source_class_name": "picada_carrapato",
+          "source_classes": [
+            "picada_carrapato"
+          ]
+        }
+      ],
+      "raw_predictions": [
+        {
+          "class_name": "picada_mosquito",
+          "class_label": "Picada de mosquito",
+          "confidence": 0.48798614740371704,
+          "source": "neural_model"
+        },
+        {
+          "class_name": "picada_serpente",
+          "class_label": "Picada de serpente",
+          "confidence": 0.1582314819097519,
+          "source": "neural_model"
+        },
+        {
+          "class_name": "sem_picada",
+          "class_label": "Sem indícios suficientes de picada",
+          "confidence": 0.12088310718536377,
+          "source": "neural_model"
+        },
+        {
+          "class_name": "picada_escorpiao",
+          "class_label": "Picada de escorpião",
+          "confidence": 0.10324980318546295,
+          "source": "neural_model"
+        },
+        {
+          "class_name": "picada_carrapato",
+          "class_label": "Picada de carrapato",
+          "confidence": 0.07273084670305252,
+          "source": "neural_model"
+        }
+      ],
+      "fingerprint_predictions": [],
+      "prediction_source": "neural_model",
+      "confidence": 0.48798614740371704,
+      "confidence_margin": 0.32975466549396515,
+      "is_uncertain": false,
+      "model_identification_grade": false,
+      "model_evaluation_source": "testing",
+      "model_evaluation_overall_accuracy": 0.6275,
+      "model_evaluation_threshold": 0.7,
+      "model_operational_warning": "modelo visual abaixo do threshold global de identificação",
+      "class_reliability": 0.5357,
+      "visual_acceptance_reason": "predição aceita por confiança e margem da imagem atual",
+      "visual_acceptance_code": "accepted_by_current_prediction",
+      "context_id": "f47b6359394d43509b2c056f5851fcd4"
+    },
+    "identification_status": "invalid_input",
+    "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+    "text_validation": {
+      "valid": false,
+      "reason": "sem sintomas, sinais locais ou contexto de picada"
+    },
+    "asked_questions": []
+  },
+  "backend_response_payload": {
+    "ok": true,
+    "needs_more_info": false,
+    "answer": "Análise inicial da IA\nO texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.\n\nAviso: isso é apenas apoio inicial e não substitui avaliação médica.",
+    "analysis": {
+      "report_text": "",
+      "symptoms": [],
+      "city": "Curitiba",
+      "state": "Paraná",
+      "region": "",
+      "bite_location": "",
+      "species_matches": [],
+      "recommendations": [
+        "Lave o local com água e sabão.",
+        "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+        "Se houver piora importante, procure atendimento médico imediatamente."
+      ],
+      "image_analysis": {
+        "image_received": true,
+        "validity": {
+          "checked": true,
+          "model_available": true,
+          "status": "passed",
+          "reason": "validador binário V1 pele analisável x imagem não analisável",
+          "message": "",
+          "debug": {
+            "technical_check": {
+              "resolution": {
+                "width": 440,
+                "height": 205
+              },
+              "luminance_stddev": 92.192,
+              "thresholds": {
+                "min_analyzable_dimension": 64,
+                "min_luminance_stddev": 4.0
+              },
+              "blocking_rule": "none"
+            },
+            "validator": {
+              "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+              "input_pixel_range": [
+                0.0,
+                255.0
+              ],
+              "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+            }
+          },
+          "validation_state": "PELE_ANALISAVEL",
+          "valid_image_score": 0.9998014569282532,
+          "threshold_accept_pele": 0.75,
+          "threshold_reject_nao_analisavel": 0.25,
+          "threshold": 0.75
+        },
+        "identification_status": "candidate",
+        "class_name": "picada_mosquito",
+        "class_label": "Picada de mosquito",
+        "error": null,
+        "group_name": "picada_mosquito",
+        "group_label": "Picada de mosquito",
+        "predictions": [
+          {
+            "class_name": "picada_mosquito",
+            "class_label": "Picada de mosquito",
+            "confidence": 0.48798614740371704,
+            "source": "neural_model",
+            "source_class_name": "picada_mosquito",
+            "source_classes": [
+              "picada_mosquito"
+            ]
+          },
+          {
+            "class_name": "picada_serpente",
+            "class_label": "Picada de serpente",
+            "confidence": 0.1582314819097519,
+            "source": "neural_model",
+            "source_class_name": "picada_serpente",
+            "source_classes": [
+              "picada_serpente"
+            ]
+          },
+          {
+            "class_name": "sem_picada",
+            "class_label": "Sem indícios suficientes de picada",
+            "confidence": 0.12088310718536377,
+            "source": "neural_model",
+            "source_class_name": "sem_picada",
+            "source_classes": [
+              "sem_picada"
+            ]
+          },
+          {
+            "class_name": "picada_escorpiao",
+            "class_label": "Picada de escorpião",
+            "confidence": 0.10324980318546295,
+            "source": "neural_model",
+            "source_class_name": "picada_escorpiao",
+            "source_classes": [
+              "picada_escorpiao"
+            ]
+          },
+          {
+            "class_name": "picada_carrapato",
+            "class_label": "Picada de carrapato",
+            "confidence": 0.07273084670305252,
+            "source": "neural_model",
+            "source_class_name": "picada_carrapato",
+            "source_classes": [
+              "picada_carrapato"
+            ]
+          }
+        ],
+        "raw_predictions": [
+          {
+            "class_name": "picada_mosquito",
+            "class_label": "Picada de mosquito",
+            "confidence": 0.48798614740371704,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "picada_serpente",
+            "class_label": "Picada de serpente",
+            "confidence": 0.1582314819097519,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "sem_picada",
+            "class_label": "Sem indícios suficientes de picada",
+            "confidence": 0.12088310718536377,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "picada_escorpiao",
+            "class_label": "Picada de escorpião",
+            "confidence": 0.10324980318546295,
+            "source": "neural_model"
+          },
+          {
+            "class_name": "picada_carrapato",
+            "class_label": "Picada de carrapato",
+            "confidence": 0.07273084670305252,
+            "source": "neural_model"
+          }
+        ],
+        "fingerprint_predictions": [],
+        "prediction_source": "neural_model",
+        "confidence": 0.48798614740371704,
+        "confidence_margin": 0.32975466549396515,
+        "is_uncertain": false,
+        "model_identification_grade": false,
+        "model_evaluation_source": "testing",
+        "model_evaluation_overall_accuracy": 0.6275,
+        "model_evaluation_threshold": 0.7,
+        "model_operational_warning": "modelo visual abaixo do threshold global de identificação",
+        "class_reliability": 0.5357,
+        "visual_acceptance_reason": "predição aceita por confiança e margem da imagem atual",
+        "visual_acceptance_code": "accepted_by_current_prediction",
+        "context_id": "f47b6359394d43509b2c056f5851fcd4"
+      },
+      "identification_status": "invalid_input",
+      "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+      "text_validation": {
+        "valid": false,
+        "reason": "sem sintomas, sinais locais ou contexto de picada"
+      },
+      "asked_questions": []
+    },
+    "run_id": "30714907d5fc4280987379797900a5e4",
+    "request_sequence": 1,
+    "client_request_sequence": 1
+  },
+  "final_visual": {
+    "top_1": {
+      "class_name": "picada_mosquito",
+      "class_label": "Picada de mosquito",
+      "confidence": 0.48798614740371704,
+      "source": "neural_model",
+      "source_class_name": "picada_mosquito",
+      "source_classes": [
+        "picada_mosquito"
+      ]
+    },
+    "top_2": {
+      "class_name": "picada_serpente",
+      "class_label": "Picada de serpente",
+      "confidence": 0.1582314819097519,
+      "source": "neural_model",
+      "source_class_name": "picada_serpente",
+      "source_classes": [
+        "picada_serpente"
+      ]
+    },
+    "top_3": {
+      "class_name": "sem_picada",
+      "class_label": "Sem indícios suficientes de picada",
+      "confidence": 0.12088310718536377,
+      "source": "neural_model",
+      "source_class_name": "sem_picada",
+      "source_classes": [
+        "sem_picada"
+      ]
+    },
+    "visual_group": "picada_mosquito",
+    "gate": {
+      "checked": true,
+      "model_available": true,
+      "status": "passed",
+      "reason": "validador binário V1 pele analisável x imagem não analisável",
+      "message": "",
+      "debug": {
+        "technical_check": {
+          "resolution": {
+            "width": 440,
+            "height": 205
+          },
+          "luminance_stddev": 92.192,
+          "thresholds": {
+            "min_analyzable_dimension": 64,
+            "min_luminance_stddev": 4.0
+          },
+          "blocking_rule": "none"
+        },
+        "validator": {
+          "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+          "input_pixel_range": [
+            0.0,
+            255.0
+          ],
+          "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+        }
+      },
+      "validation_state": "PELE_ANALISAVEL",
+      "valid_image_score": 0.9998014569282532,
+      "threshold_accept_pele": 0.75,
+      "threshold_reject_nao_analisavel": 0.25,
+      "threshold": 0.75
+    },
+    "gate_reason": null,
+    "confidence": 0.48798614740371704,
+    "confidence_margin": 0.32975466549396515,
+    "full_ranking": [
+      {
+        "class_name": "picada_mosquito",
+        "class_label": "Picada de mosquito",
+        "confidence": 0.48798614740371704,
+        "source": "neural_model",
+        "source_class_name": "picada_mosquito",
+        "source_classes": [
+          "picada_mosquito"
+        ]
+      },
+      {
+        "class_name": "picada_serpente",
+        "class_label": "Picada de serpente",
+        "confidence": 0.1582314819097519,
+        "source": "neural_model",
+        "source_class_name": "picada_serpente",
+        "source_classes": [
+          "picada_serpente"
+        ]
+      },
+      {
+        "class_name": "sem_picada",
+        "class_label": "Sem indícios suficientes de picada",
+        "confidence": 0.12088310718536377,
+        "source": "neural_model",
+        "source_class_name": "sem_picada",
+        "source_classes": [
+          "sem_picada"
+        ]
+      },
+      {
+        "class_name": "picada_escorpiao",
+        "class_label": "Picada de escorpião",
+        "confidence": 0.10324980318546295,
+        "source": "neural_model",
+        "source_class_name": "picada_escorpiao",
+        "source_classes": [
+          "picada_escorpiao"
+        ]
+      },
+      {
+        "class_name": "picada_carrapato",
+        "class_label": "Picada de carrapato",
+        "confidence": 0.07273084670305252,
+        "source": "neural_model",
+        "source_class_name": "picada_carrapato",
+        "source_classes": [
+          "picada_carrapato"
+        ]
+      }
+    ]
+  },
+  "image_name": "V6CL074.jpg",
+  "image_sha256": "fe1f5ad551477e47f1d98abfcfea004dcaa8e2b5d213737fdedee966eab28ae8",
+  "image_width": 440,
+  "image_height": 205,
+  "visual_top1": "picada_mosquito",
+  "visual_top1_score": 0.48798614740371704,
+  "visual_top2": "picada_serpente",
+  "visual_top2_score": 0.1582314819097519,
+  "visual_top3": "sem_picada",
+  "visual_top3_score": 0.12088310718536377,
+  "visual_full_ranking": [
+    {
+      "class_name": "picada_mosquito",
+      "class_label": "Picada de mosquito",
+      "confidence": 0.48798614740371704,
+      "source": "neural_model",
+      "source_class_name": "picada_mosquito",
+      "source_classes": [
+        "picada_mosquito"
+      ]
+    },
+    {
+      "class_name": "picada_serpente",
+      "class_label": "Picada de serpente",
+      "confidence": 0.1582314819097519,
+      "source": "neural_model",
+      "source_class_name": "picada_serpente",
+      "source_classes": [
+        "picada_serpente"
+      ]
+    },
+    {
+      "class_name": "sem_picada",
+      "class_label": "Sem indícios suficientes de picada",
+      "confidence": 0.12088310718536377,
+      "source": "neural_model",
+      "source_class_name": "sem_picada",
+      "source_classes": [
+        "sem_picada"
+      ]
+    },
+    {
+      "class_name": "picada_escorpiao",
+      "class_label": "Picada de escorpião",
+      "confidence": 0.10324980318546295,
+      "source": "neural_model",
+      "source_class_name": "picada_escorpiao",
+      "source_classes": [
+        "picada_escorpiao"
+      ]
+    },
+    {
+      "class_name": "picada_carrapato",
+      "class_label": "Picada de carrapato",
+      "confidence": 0.07273084670305252,
+      "source": "neural_model",
+      "source_class_name": "picada_carrapato",
+      "source_classes": [
+        "picada_carrapato"
+      ]
+    }
+  ],
+  "visual_group": "picada_mosquito",
+  "visual_gate": {
+    "checked": true,
+    "model_available": true,
+    "status": "passed",
+    "reason": "validador binário V1 pele analisável x imagem não analisável",
+    "message": "",
+    "debug": {
+      "technical_check": {
+        "resolution": {
+          "width": 440,
+          "height": 205
+        },
+        "luminance_stddev": 92.192,
+        "thresholds": {
+          "min_analyzable_dimension": 64,
+          "min_luminance_stddev": 4.0
+        },
+        "blocking_rule": "none"
+      },
+      "validator": {
+        "validator_model": "C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\models\\image_validator_v1.keras",
+        "input_pixel_range": [
+          0.0,
+          255.0
+        ],
+        "preprocessing": "modelo_v1_embutido_rgb_0_255_para_mobilenet_-1_1"
+      }
+    },
+    "validation_state": "PELE_ANALISAVEL",
+    "valid_image_score": 0.9998014569282532,
+    "threshold_accept_pele": 0.75,
+    "threshold_reject_nao_analisavel": 0.25,
+    "threshold": 0.75
+  },
+  "visual_gate_reason": null,
+  "visual_confidence_state": {
+    "confidence": 0.48798614740371704,
+    "margin": 0.32975466549396515
+  },
+  "questions_asked_count": 0,
+  "question_stop_reason": "",
+  "remaining_discriminative_questions": [],
+  "clinical_all_species_matches": null,
+  "clinical_species_ranking": [],
+  "cross_group_decision_trace": null,
+  "multimodal_fusion": null,
+  "candidate_changed_by_visual": "NO",
+  "candidate_change_reason": "no_candidate_change_observed",
+  "species_acceptance": {},
+  "backend_final": {
+    "result_type": null,
+    "identification_status": "invalid_input",
+    "decision_reason": null,
+    "backend_final_group": "",
+    "backend_final_species": "",
+    "backend_final_state": "INCONCLUSIVE"
+  },
+  "backend_to_frontend_trace": {
+    "http_response_field": "analysis",
+    "javascript_function": "buildResultViewModel",
+    "result_type_source": "analysis.result_type / analysis.result_mode / analysis.identification_status",
+    "ui_compatibility_group_source": "analysis.selected_group || analysis.visual_group",
+    "ui_compatibility_group_value": "",
+    "group_only_ui_collision": false,
+    "group_only_rendered_title": "Espécie não determinada com segurança",
+    "inconclusive_rendered_title": "Resultado inconclusivo"
+  }
+}

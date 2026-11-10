@@ -1,0 +1,24 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "6010171121ad4033ac396596b283b81e",
+  "case_id": "COR-TESTE-01",
+  "test_id": "COR-TESTE-01",
+  "status": "IN_PROGRESS",
+  "started_at": "2026-10-20T17:35:39.437404Z",
+  "completed_at": null,
+  "real": {
+    "category": "picada_serpente",
+    "species": "coral_verdadeira",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "V4_ORIGINAL_BDS_coral_verdadeira_BDS_coral_verdadeira_8.png",
+    "sha256": "9c47aec9648f51014e3f6eff434855a1642cb6f602b6395c37bcfeff743e07f2",
+    "bytes": 451961,
+    "width": 1920,
+    "height": 1080
+  },
+  "questions": [],
+  "turns": [],
+  "derived_metrics": {}
+}

@@ -1,0 +1,9 @@
+56/56 - 55s - 989ms/step - accuracy: 0.7185 - loss: 0.6690 - val_accuracy: 0.7814 - val_loss: 0.5243
+Epoch 2/2
+56/56 - 82s - 1s/step - accuracy: 0.8842 - loss: 0.3131 - val_accuracy: 0.8090 - val_loss: 0.4960
+Epoch 3/3
+56/56 - 58s - 1s/step - accuracy: 0.9065 - loss: 0.2464 - val_accuracy: 0.8040 - val_loss: 0.4958
+Epoch 4/4
+56/56 - 51s - 902ms/step - accuracy: 0.9043 - loss: 0.2509 - val_accuracy: 0.8065 - val_loss: 0.5369
+Epoch 5/5
+56/56 - 51s - 918ms/step - accuracy: 0.9491 - loss: 0.1428 - val_accuracy: 0.8065 - val_loss: 0.5971

@@ -1,0 +1,3491 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "3d12665c69214971aae6b7e85c7cd81b",
+  "case_id": "PUBLIC-20261001T204117124817Z",
+  "test_id": "PUBLIC-20261001T204117124817Z",
+  "status": "IN_PROGRESS",
+  "started_at": "2026-10-01T20:41:17.124817Z",
+  "completed_at": null,
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "case.jpg",
+    "sha256": "a0bfc32ae013af12a3955e385ac584acc40fe0e77fdb23e9c441eb4387e49c42",
+    "bytes": 20
+  },
+  "questions": [
+    {
+      "question_id": "urgent_breathing_standing",
+      "text": "A vítima está com falta de ar, desmaio, confusão, convulsão ou muita dificuldade para ficar em pé?",
+      "options": [
+        "Sim",
+        "Não",
+        "Não sei"
+      ],
+      "presented_at": "2026-10-01T20:41:17.363135Z",
+      "species_affected": {},
+      "answer": "Nao",
+      "answer_normalized": {
+        "answer": "no",
+        "normalized_value": false,
+        "confidence": 0.75
+      },
+      "clinical_feature_generated": "Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.",
+      "answered_at": "2026-10-01T20:41:17.580458Z"
+    },
+    {
+      "question_id": "urgent_systemic_worsening",
+      "text": "Teve vômitos repetidos, suor intenso, sangramento importante, urina escura ou piora rápida?",
+      "options": [
+        "Sim",
+        "Não",
+        "Não sei"
+      ],
+      "presented_at": "2026-10-01T20:41:17.662654Z",
+      "species_affected": {},
+      "answer": "Nao",
+      "answer_normalized": {
+        "answer": "no",
+        "normalized_value": false,
+        "confidence": 0.75
+      },
+      "clinical_feature_generated": "Resposta clinica: question_id=urgent_systemic_worsening target_field=urgent_systemic_screen answer=no normalized_value=false confidence=0.75.",
+      "answered_at": "2026-10-01T20:41:17.910196Z"
+    },
+    {
+      "question_id": "carrapato_febre",
+      "text": "Nos dias seguintes surgiram febre, dor de cabeça forte, dores musculares, náusea/vômitos ou manchas?",
+      "options": [
+        "Sim",
+        "Não",
+        "Não sei"
+      ],
+      "presented_at": "2026-10-01T20:41:18.013048Z",
+      "species_affected": {}
+    }
+  ],
+  "turns": [
+    {
+      "observed_at": "2026-10-01T20:41:17.363135Z",
+      "image_analysis": {
+        "image_received": true,
+        "identification_status": "inconclusive",
+        "class_name": "picada_carrapato",
+        "class_label": "Picada de carrapato",
+        "group_name": "picada_carrapato",
+        "group_label": "Picada de carrapato",
+        "confidence": 0.5125885009765625,
+        "confidence_margin": 0.03931015729904175,
+        "is_uncertain": true,
+        "predictions": [
+          {
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625
+          },
+          {
+            "class_name": "picada_aranha",
+            "confidence": 0.47327834367752075
+          }
+        ],
+        "context_id": "9d765bd1a22f4ac89d7bd928b2b31610"
+      },
+      "visual": {
+        "top_1": {
+          "class_name": "picada_carrapato",
+          "confidence": 0.5125885009765625
+        },
+        "top_2": {
+          "class_name": "picada_aranha",
+          "confidence": 0.47327834367752075
+        },
+        "top_3": null,
+        "visual_group": "picada_carrapato",
+        "gate": "inconclusive",
+        "gate_reason": null,
+        "confidence": 0.5125885009765625,
+        "confidence_margin": 0.03931015729904175,
+        "full_ranking": [
+          {
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625
+          },
+          {
+            "class_name": "picada_aranha",
+            "confidence": 0.47327834367752075
+          }
+        ]
+      },
+      "clinical_all_species_matches": [],
+      "species_matches": [],
+      "multimodal_fusion": {
+        "fusion_state": "INSUFFICIENT_EVIDENCE",
+        "leading_group": null,
+        "group_evidence": {},
+        "candidate_taxa": [],
+        "conflicts": [],
+        "sources_used": [],
+        "sources_unavailable": [
+          "ANIMAL"
+        ],
+        "sources_insufficient": [
+          "BITE",
+          "CLINICAL"
+        ],
+        "urgent_guidance_required": false,
+        "explanation_codes": [
+          "ANIMAL_NOT_AVAILABLE",
+          "BITE_INSUFFICIENT",
+          "CLINICAL_INSUFFICIENT"
+        ],
+        "available": true
+      },
+      "species_gate_trace": {},
+      "decision_debug": {
+        "reason": "unified_group_absolute_score_or_margin_too_low",
+        "visual_status": "inconclusive",
+        "visual_group": "picada_carrapato",
+        "visual_confidence": 0.5125885009765625,
+        "visual_margin": 0.03931015729904175,
+        "candidates": []
+      },
+      "identification_status": "inconclusive",
+      "result_type": "inconclusivo",
+      "selected_group": null,
+      "identification_message": "Os dados informados não apresentam compatibilidade suficiente com os padrões atualmente reconhecidos pelo BDS. A picada pode pertencer a um animal, inseto ou situação que ainda não faz parte das classes analisadas pelo sistema.",
+      "backend_response_payload": {
+        "ok": true,
+        "needs_more_info": true,
+        "answer": "Pergunta da IA:\nA vítima está com falta de ar, desmaio, confusão, convulsão ou muita dificuldade para ficar em pé?",
+        "triage_question": "A vítima está com falta de ar, desmaio, confusão, convulsão ou muita dificuldade para ficar em pé?",
+        "triage_question_id": "urgent_breathing_standing",
+        "triage_options": [
+          "Sim",
+          "Não",
+          "Não sei"
+        ],
+        "triage_answer_type": "single_choice",
+        "question_count": 1,
+        "analysis": {
+          "report_text": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+          "symptoms": [
+            "dor",
+            "vermelhidão",
+            "ardor"
+          ],
+          "city": "Campo Largo",
+          "state": "PR",
+          "region": "sul",
+          "bite_location": "braço",
+          "clinical_profile": {
+            "bite_location": {
+              "value": "braco",
+              "confidence": 0.9,
+              "source": "initial_description",
+              "evidence": "braco",
+              "status": "present"
+            },
+            "time_since_bite": {
+              "value": "12 horas",
+              "confidence": 0.82,
+              "source": "initial_description",
+              "evidence": "Tempo desde a picada: 12 horas",
+              "status": "present"
+            },
+            "pain_onset": {
+              "value": "tardio",
+              "confidence": 0.95,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "burning": {
+              "value": true,
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "redness": {
+              "value": true,
+              "confidence": 0.88,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "symptom_onset": {
+              "value": "imediato",
+              "confidence": 0.8,
+              "source": "initial_description",
+              "evidence": "Na hora quase nao doeu",
+              "status": "present"
+            }
+          },
+          "bite_time_analysis": {
+            "minutes": 720,
+            "bucket": "LATE",
+            "evidence": "12 horas"
+          },
+          "bug_matches": [
+            {
+              "bug": "spiders",
+              "bug_pt": "Aranhas",
+              "score": 4,
+              "matched_features": [
+                "dor",
+                "vermelhidao"
+              ],
+              "symptoms_reference": "coceira, erupção cutânea, dor, dor muscular, cãibra, bolha vermelha ou roxa, suor, dificuldade para respirar, dor de cabeça, náusea, vômito, febre, calafrios, ansiedade, gânglios inchados, pressão alta",
+              "treatment": "atenção médica, compressa gelada, elevar a área afetada, anti-histamínico (Benadryl), limpar com água e sabão, pomada antibiótica se surgirem bolhas",
+              "look": "inchaço, vergão vermelho, lesão na pele",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/spider-bites#spider-bites"
+            },
+            {
+              "bug": "ticks",
+              "bug_pt": "Carrapatos",
+              "score": 4,
+              "matched_features": [
+                "dor",
+                "vermelhidao"
+              ],
+              "symptoms_reference": "dor, inchaço, erupção cutânea, coceira, ardor, bolhas, dificuldade para respirar se for grave",
+              "treatment": "atenção médica, antibióticos",
+              "look": "",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/tick-bites"
+            },
+            {
+              "bug": "fire_ants",
+              "bug_pt": "Formigas de fogo",
+              "score": 2,
+              "matched_features": [
+                "dor"
+              ],
+              "symptoms_reference": "ardor, coceira, dor",
+              "treatment": "compressa gelada, limpar com água e sabão, texas a&m recommends meia parte água sanitária, meia parte água, solução de amônio diluída, babosa, hamamelis",
+              "look": "",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/fire-ant-bites"
+            }
+          ],
+          "species_matches": [],
+          "recommendations": [
+            "Lave o local com água e sabão.",
+            "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+            "Se houver piora importante, procure atendimento médico imediatamente."
+          ],
+          "urgent_triage": false,
+          "clinical_v2": {
+            "concept_states": {},
+            "ranking": [
+              {
+                "class_id": "aranha_marrom",
+                "display_name": "Aranha-marrom",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "armadeira",
+                "display_name": "Aranha-armadeira",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "carrapato",
+                "display_name": "Carrapato",
+                "parent_group": "picada_carrapato",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "cascavel",
+                "display_name": "Cascavel",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "coral_verdadeira",
+                "display_name": "Coral-verdadeira",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "escorpiao_amarelo",
+                "display_name": "Escorpiao-amarelo",
+                "parent_group": "picada_escorpiao",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "escorpiao_marrom",
+                "display_name": "Escorpiao-marrom/preto",
+                "parent_group": "picada_escorpiao",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "formiga",
+                "display_name": "Formiga",
+                "parent_group": "picada_formiga",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "jararaca",
+                "display_name": "Jararaca",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "mosquito",
+                "display_name": "Mosquito",
+                "parent_group": "picada_mosquito",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "percevejo",
+                "display_name": "Percevejo",
+                "parent_group": "picada_percevejo",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "pulga",
+                "display_name": "Pulga",
+                "parent_group": "picada_pulga",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "surucucu",
+                "display_name": "Surucucu",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "viuva_negra",
+                "display_name": "Viuva-negra",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              }
+            ],
+            "top": {
+              "class_id": "aranha_marrom",
+              "display_name": "Aranha-marrom",
+              "parent_group": "picada_aranha",
+              "heuristic_score": 0.0,
+              "score_is_probability": false,
+              "compatibility": "insuficiente",
+              "positive_evidence_count": 0,
+              "contrary_evidence_count": 0,
+              "active_syndromes": [],
+              "urgency_evidence": [],
+              "classification_evidence": [],
+              "evidence_ledger": []
+            },
+            "urgency_high": false
+          },
+          "clinical_v3": {
+            "known_concepts": [
+              "dor_em_queimacao",
+              "eritema",
+              "palidez_central",
+              "picada_quase_imperceptivel",
+              "roupas_ou_objetos_armazenados"
+            ],
+            "profiles": [],
+            "clinical_ranking": [],
+            "provisional_candidates": [],
+            "has_clinical_support": false,
+            "preferred_group": "picada_carrapato",
+            "elapsed_minutes": 720.0
+          },
+          "question_selection_log": {
+            "visual_group": "picada_carrapato",
+            "known_evidence": {
+              "onset_imediato": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.8,
+                "source": "initial_description",
+                "evidence": "Na hora quase nao doeu"
+              },
+              "ardor": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.92,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "vermelhidao": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.88,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "onset_minutos_horas": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.75,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "localizacao": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.9,
+                "source": "initial_description",
+                "evidence": "braco"
+              },
+              "queimacao": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.92,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              }
+            },
+            "current_ranking": [],
+            "compared_species": [],
+            "candidates": [
+              {
+                "question_id": "purple_skin",
+                "target_field": "purple_skin",
+                "category": "group_differential",
+                "diagnostic_gain": 0.74,
+                "time_relevance": 1.0,
+                "priority": 1.15,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "blister",
+                "target_field": "blister",
+                "category": "group_differential",
+                "diagnostic_gain": 0.68,
+                "time_relevance": 1.0,
+                "priority": 1.15,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "swelling_progression",
+                "target_field": "swelling_progression",
+                "category": "group_differential",
+                "diagnostic_gain": 0.4,
+                "time_relevance": 1.0,
+                "priority": 0.94,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "bleeding",
+                "target_field": "bleeding",
+                "category": "group_differential",
+                "diagnostic_gain": 0.14,
+                "time_relevance": 1.0,
+                "priority": 0.69,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "muscle_spasms",
+                "target_field": "spasms",
+                "category": "group_differential",
+                "diagnostic_gain": 0.88,
+                "time_relevance": 1.0,
+                "priority": 1.15,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "urine_change",
+                "target_field": "urine_change",
+                "category": "group_differential",
+                "diagnostic_gain": 0.4,
+                "time_relevance": 1.0,
+                "priority": 0.91,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "accident_context",
+                "target_field": "context",
+                "category": "group_differential",
+                "diagnostic_gain": 0.24,
+                "time_relevance": 1.0,
+                "priority": 0.61,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__armadeira_a",
+                "target_field": "initial_bite_unnoticed",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__armadeira_b",
+                "target_field": "immediate_severe_pain",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__viuva_negra_a",
+                "target_field": "mottled_pallor_ecchymosis",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__viuva_negra_b",
+                "target_field": "muscle_spasm_rigidity",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_formiga__mosquito_a",
+                "target_field": "sterile_pustule_later",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_mosquito__percevejo_b",
+                "target_field": "mattress_evidence",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_pulga__percevejo_b",
+                "target_field": "mattress_evidence",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_carrapato__mosquito_a",
+                "target_field": "tick_attached_site",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_carrapato__aranha_marrom_a",
+                "target_field": "tick_attached_site",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_carrapato__aranha_marrom_b",
+                "target_field": "progressive_skin_lesion",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "urgent_breathing_standing",
+                "target_field": "shortness_of_breath",
+                "category": "urgency",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 2.45
+              },
+              {
+                "question_id": "urgent_systemic_worsening",
+                "target_field": "urgent_systemic_screen",
+                "category": "urgency",
+                "diagnostic_gain": 0.25,
+                "time_relevance": 1.0,
+                "priority": 2.2
+              },
+              {
+                "question_id": "urgent_vulnerable_person",
+                "target_field": "vulnerable_person",
+                "category": "urgency",
+                "diagnostic_gain": 0.1,
+                "time_relevance": 1.0,
+                "priority": 1.75
+              },
+              {
+                "question_id": "accident_context",
+                "target_field": "context",
+                "category": "context",
+                "diagnostic_gain": 0.38,
+                "time_relevance": 1.0,
+                "priority": 0.63
+              },
+              {
+                "question_id": "animal_seen",
+                "target_field": "animal_seen",
+                "category": "context",
+                "diagnostic_gain": 0.3,
+                "time_relevance": 1.0,
+                "priority": 0.55
+              },
+              {
+                "question_id": "carrapato_febre",
+                "target_field": "group_carrapato_febre",
+                "category": "group_specific",
+                "diagnostic_gain": 0.9,
+                "time_relevance": 1.0,
+                "priority": 1.28
+              }
+            ],
+            "ignored_repetition": [],
+            "ignored_answered": [
+              {
+                "question_id": "immediate_severe_pain",
+                "target_field": "pain_onset",
+                "reason": "campo de grupo ja conhecido"
+              },
+              {
+                "question_id": "pain_delayed_worsening",
+                "target_field": "pain_progression",
+                "reason": "campo de grupo ja conhecido"
+              },
+              {
+                "question_id": "immediate_severe_pain",
+                "target_field": "pain_onset",
+                "reason": "campo clinico ja preenchido"
+              },
+              {
+                "question_id": "pain_delayed_worsening",
+                "target_field": "pain_progression",
+                "reason": "campo clinico ja preenchido"
+              }
+            ],
+            "ignored_low_gain": [
+              {
+                "question_id": "purple_skin",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "blister",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "swelling_progression",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "bleeding",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "muscle_spasms",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "tingling_numbness",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "neuro_ocular",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "muscle_weakness",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "urine_change",
+                "reason": "baixo ganho para top 3 atual"
+              }
+            ],
+            "chosen": {
+              "question_id": "urgent_breathing_standing",
+              "target_field": "shortness_of_breath",
+              "priority": 2.45
+            },
+            "reason": "safety_question_can_change_urgency",
+            "adaptive_decision": {
+              "decision": "ask_question",
+              "reason": "safety_question_can_change_urgency",
+              "top1": null,
+              "top1_evidence": 0.0,
+              "top2": null,
+              "top2_evidence": 0.0,
+              "margin": 0.0,
+              "specific_evidence_count": 0,
+              "generic_evidence_count": 0,
+              "selected_question": "urgent_breathing_standing",
+              "question_category": "urgency",
+              "question_utility": 0.95,
+              "utility_reason": "safety_question_can_change_urgency"
+            }
+          },
+          "input_normalization": {
+            "question_original": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.",
+            "question_normalized": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.",
+            "report_context_original": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.",
+            "report_context_normalized": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro."
+          },
+          "uf": "PR",
+          "location_normalization": {
+            "city": "Campo Largo",
+            "state": "PR",
+            "uf": "PR",
+            "region": ""
+          },
+          "clinical_all_species_matches": [],
+          "clinical_group_hypotheses": [],
+          "clinical_group_candidate": null,
+          "unified_group_hypotheses": [
+            {
+              "group_name": "picada_carrapato",
+              "group_label": "Picada de carrapato",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 15.38,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 15.38,
+                "included": true,
+                "reason": "clinical_or_visual_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 1
+            },
+            {
+              "group_name": "picada_aranha",
+              "group_label": "Picada de aranha",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 14.2,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 14.2,
+                "included": true,
+                "reason": "clinical_or_visual_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 2
+            },
+            {
+              "group_name": "picada_escorpiao",
+              "group_label": "Picada de escorpião",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 3
+            },
+            {
+              "group_name": "picada_formiga",
+              "group_label": "Picada/ferroada de formiga",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 4
+            },
+            {
+              "group_name": "picada_mosquito",
+              "group_label": "Picada de mosquito",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 5
+            },
+            {
+              "group_name": "picada_percevejo",
+              "group_label": "Picada de percevejo",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 6
+            },
+            {
+              "group_name": "picada_pulga",
+              "group_label": "Picada de pulga",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 7
+            },
+            {
+              "group_name": "picada_serpente",
+              "group_label": "Picada de serpente",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 8
+            }
+          ],
+          "unified_group_candidate": {
+            "group_name": "picada_carrapato",
+            "group_label": "Picada de carrapato",
+            "compatibility": "insuficiente",
+            "evidence": [],
+            "score_debug": {
+              "score_visual": 15.38,
+              "score_symptoms": 0.0,
+              "score_absent_symptoms": 0.0,
+              "score_time": 0.0,
+              "score_location_context": 0.0,
+              "bonuses": 0.0,
+              "penalties": 0.0,
+              "score_clinical_absolute": 0.0,
+              "absolute_score": 15.38,
+              "included": true,
+              "reason": "clinical_or_visual_evidence",
+              "source": "clinical_group_profile"
+            },
+            "rank_position": 1
+          },
+          "visual_group": "picada_carrapato",
+          "visual_group_label": "Picada de carrapato",
+          "visual_confidence": 51,
+          "result_mode": "inconclusive",
+          "allowed_species": [],
+          "needs_group_disambiguation": true,
+          "competing_groups": [
+            "picada_carrapato",
+            "picada_aranha"
+          ],
+          "visual_group_candidate": "picada_carrapato",
+          "confidence_level": "baixa",
+          "result_type": "inconclusivo",
+          "clinical_severity": "sem sinais de emergência relatados",
+          "clinical_urgency": "observar evolução",
+          "clinical_risk_level": "baixo/moderado conforme evolução",
+          "clinical_risk_reason": "apenas sinais locais ou inespecificos relatados",
+          "identification_status": "inconclusive",
+          "identification_message": "Os dados informados não apresentam compatibilidade suficiente com os padrões atualmente reconhecidos pelo BDS. A picada pode pertencer a um animal, inseto ou situação que ainda não faz parte das classes analisadas pelo sistema.",
+          "decision_reason": "unified_group_absolute_score_or_margin_too_low",
+          "clinical_compatibility": "insuficiente",
+          "decision_debug": {
+            "reason": "unified_group_absolute_score_or_margin_too_low",
+            "visual_status": "inconclusive",
+            "visual_group": "picada_carrapato",
+            "visual_confidence": 0.5125885009765625,
+            "visual_margin": 0.03931015729904175,
+            "candidates": []
+          },
+          "species_gate_trace": {},
+          "differential_matches": [],
+          "v3_fusion": {
+            "visual_group": "picada_carrapato",
+            "candidates": [],
+            "legacy_candidate_count": 0
+          },
+          "visual_group_ranking": [
+            {
+              "group_name": "picada_carrapato",
+              "group_label": "Picada de carrapato",
+              "score": 0.5125885009765625
+            },
+            {
+              "group_name": "picada_aranha",
+              "group_label": "Picada de aranha",
+              "score": 0.47327834367752075
+            }
+          ],
+          "final_species_ranking": [],
+          "multimodal_fusion": {
+            "fusion_state": "INSUFFICIENT_EVIDENCE",
+            "leading_group": null,
+            "group_evidence": {},
+            "candidate_taxa": [],
+            "conflicts": [],
+            "sources_used": [],
+            "sources_unavailable": [
+              "ANIMAL"
+            ],
+            "sources_insufficient": [
+              "BITE",
+              "CLINICAL"
+            ],
+            "urgent_guidance_required": false,
+            "explanation_codes": [
+              "ANIMAL_NOT_AVAILABLE",
+              "BITE_INSUFFICIENT",
+              "CLINICAL_INSUFFICIENT"
+            ],
+            "available": true
+          },
+          "image_analysis": {
+            "image_received": true,
+            "identification_status": "inconclusive",
+            "class_name": "picada_carrapato",
+            "class_label": "Picada de carrapato",
+            "group_name": "picada_carrapato",
+            "group_label": "Picada de carrapato",
+            "confidence": 0.5125885009765625,
+            "confidence_margin": 0.03931015729904175,
+            "is_uncertain": true,
+            "predictions": [
+              {
+                "class_name": "picada_carrapato",
+                "confidence": 0.5125885009765625
+              },
+              {
+                "class_name": "picada_aranha",
+                "confidence": 0.47327834367752075
+              }
+            ],
+            "context_id": "9d765bd1a22f4ac89d7bd928b2b31610"
+          },
+          "asked_questions": [],
+          "performance": {
+            "gemini_normalization_seconds": 0.0,
+            "ibge_normalization_seconds": 0.0,
+            "symptom_ai_seconds": 0.1661,
+            "total_ask_seconds": 0.2754,
+            "gemini_calls": 0,
+            "ibge_calls": 0
+          },
+          "known_evidence": {
+            "onset_imediato": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.8,
+              "source": "initial_description",
+              "evidence": "Na hora quase nao doeu"
+            },
+            "ardor": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "vermelhidao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.88,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "onset_minutos_horas": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.75,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "localizacao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.9,
+              "source": "initial_description",
+              "evidence": "braco"
+            },
+            "queimacao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            }
+          }
+        },
+        "run_id": "3d12665c69214971aae6b7e85c7cd81b",
+        "request_sequence": 1
+      },
+      "next_question": {
+        "id": "urgent_breathing_standing",
+        "question_id": "urgent_breathing_standing",
+        "target_field": "shortness_of_breath",
+        "category": "urgency",
+        "text": "A vítima está com falta de ar, desmaio, confusão, convulsão ou muita dificuldade para ficar em pé?",
+        "options": [
+          "Sim",
+          "Não",
+          "Não sei"
+        ],
+        "priority": 2.45,
+        "diagnostic_gain": 0.2,
+        "answer_type": "single_choice"
+      }
+    },
+    {
+      "observed_at": "2026-10-01T20:41:17.662654Z",
+      "image_analysis": {
+        "class_label": "Picada de carrapato",
+        "class_name": "picada_carrapato",
+        "confidence": 0.5125885009765625,
+        "confidence_margin": 0.03931015729904175,
+        "context_id": "9d765bd1a22f4ac89d7bd928b2b31610",
+        "group_label": "Picada de carrapato",
+        "group_name": "picada_carrapato",
+        "identification_status": "inconclusive",
+        "image_received": true,
+        "is_uncertain": true,
+        "predictions": [
+          {
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625
+          },
+          {
+            "class_name": "picada_aranha",
+            "confidence": 0.47327834367752075
+          }
+        ]
+      },
+      "visual": {
+        "top_1": {
+          "class_name": "picada_carrapato",
+          "confidence": 0.5125885009765625
+        },
+        "top_2": {
+          "class_name": "picada_aranha",
+          "confidence": 0.47327834367752075
+        },
+        "top_3": null,
+        "visual_group": "picada_carrapato",
+        "gate": "inconclusive",
+        "gate_reason": null,
+        "confidence": 0.5125885009765625,
+        "confidence_margin": 0.03931015729904175,
+        "full_ranking": [
+          {
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625
+          },
+          {
+            "class_name": "picada_aranha",
+            "confidence": 0.47327834367752075
+          }
+        ]
+      },
+      "clinical_all_species_matches": [],
+      "species_matches": [],
+      "multimodal_fusion": {
+        "fusion_state": "INSUFFICIENT_EVIDENCE",
+        "leading_group": null,
+        "group_evidence": {},
+        "candidate_taxa": [],
+        "conflicts": [],
+        "sources_used": [],
+        "sources_unavailable": [
+          "ANIMAL"
+        ],
+        "sources_insufficient": [
+          "BITE",
+          "CLINICAL"
+        ],
+        "urgent_guidance_required": false,
+        "explanation_codes": [
+          "ANIMAL_NOT_AVAILABLE",
+          "BITE_INSUFFICIENT",
+          "CLINICAL_INSUFFICIENT"
+        ],
+        "available": true
+      },
+      "species_gate_trace": {},
+      "decision_debug": {
+        "reason": "unified_group_absolute_score_or_margin_too_low",
+        "visual_status": "inconclusive",
+        "visual_group": "picada_carrapato",
+        "visual_confidence": 0.5125885009765625,
+        "visual_margin": 0.03931015729904175,
+        "candidates": []
+      },
+      "identification_status": "inconclusive",
+      "result_type": "inconclusivo",
+      "selected_group": null,
+      "identification_message": "Os dados informados não apresentam compatibilidade suficiente com os padrões atualmente reconhecidos pelo BDS. A picada pode pertencer a um animal, inseto ou situação que ainda não faz parte das classes analisadas pelo sistema.",
+      "backend_response_payload": {
+        "ok": true,
+        "needs_more_info": true,
+        "answer": "Pergunta da IA:\nTeve vômitos repetidos, suor intenso, sangramento importante, urina escura ou piora rápida?",
+        "triage_question": "Teve vômitos repetidos, suor intenso, sangramento importante, urina escura ou piora rápida?",
+        "triage_question_id": "urgent_systemic_worsening",
+        "triage_options": [
+          "Sim",
+          "Não",
+          "Não sei"
+        ],
+        "triage_answer_type": "single_choice",
+        "question_count": 2,
+        "analysis": {
+          "report_text": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+          "symptoms": [
+            "dor",
+            "vermelhidão",
+            "ardor"
+          ],
+          "city": "Campo Largo",
+          "state": "PR",
+          "region": "sul",
+          "bite_location": "braço",
+          "clinical_profile": {
+            "bite_location": {
+              "value": "braco",
+              "confidence": 0.9,
+              "source": "initial_description",
+              "evidence": "braco",
+              "status": "present"
+            },
+            "time_since_bite": {
+              "value": "12 horas",
+              "confidence": 0.82,
+              "source": "initial_description",
+              "evidence": "Tempo desde a picada: 12 horas",
+              "status": "present"
+            },
+            "pain_onset": {
+              "value": "tardio",
+              "confidence": 0.95,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "burning": {
+              "value": true,
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "redness": {
+              "value": true,
+              "confidence": 0.88,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "symptom_onset": {
+              "value": "imediato",
+              "confidence": 0.8,
+              "source": "initial_description",
+              "evidence": "Na hora quase nao doeu",
+              "status": "present"
+            },
+            "shortness_of_breath": {
+              "value": false,
+              "confidence": 0.85,
+              "source": "triage_answer",
+              "evidence": "question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75..",
+              "status": "absent",
+              "question_id": "urgent_breathing_standing"
+            }
+          },
+          "bite_time_analysis": {
+            "minutes": 720,
+            "bucket": "LATE",
+            "evidence": "12 horas"
+          },
+          "bug_matches": [
+            {
+              "bug": "spiders",
+              "bug_pt": "Aranhas",
+              "score": 4,
+              "matched_features": [
+                "dor",
+                "vermelhidao"
+              ],
+              "symptoms_reference": "coceira, erupção cutânea, dor, dor muscular, cãibra, bolha vermelha ou roxa, suor, dificuldade para respirar, dor de cabeça, náusea, vômito, febre, calafrios, ansiedade, gânglios inchados, pressão alta",
+              "treatment": "atenção médica, compressa gelada, elevar a área afetada, anti-histamínico (Benadryl), limpar com água e sabão, pomada antibiótica se surgirem bolhas",
+              "look": "inchaço, vergão vermelho, lesão na pele",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/spider-bites#spider-bites"
+            },
+            {
+              "bug": "ticks",
+              "bug_pt": "Carrapatos",
+              "score": 4,
+              "matched_features": [
+                "dor",
+                "vermelhidao"
+              ],
+              "symptoms_reference": "dor, inchaço, erupção cutânea, coceira, ardor, bolhas, dificuldade para respirar se for grave",
+              "treatment": "atenção médica, antibióticos",
+              "look": "",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/tick-bites"
+            },
+            {
+              "bug": "fire_ants",
+              "bug_pt": "Formigas de fogo",
+              "score": 2,
+              "matched_features": [
+                "dor"
+              ],
+              "symptoms_reference": "ardor, coceira, dor",
+              "treatment": "compressa gelada, limpar com água e sabão, texas a&m recommends meia parte água sanitária, meia parte água, solução de amônio diluída, babosa, hamamelis",
+              "look": "",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/fire-ant-bites"
+            }
+          ],
+          "species_matches": [],
+          "recommendations": [
+            "Lave o local com água e sabão.",
+            "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+            "Se houver piora importante, procure atendimento médico imediatamente."
+          ],
+          "urgent_triage": false,
+          "clinical_v2": {
+            "concept_states": {},
+            "ranking": [
+              {
+                "class_id": "aranha_marrom",
+                "display_name": "Aranha-marrom",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "armadeira",
+                "display_name": "Aranha-armadeira",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "carrapato",
+                "display_name": "Carrapato",
+                "parent_group": "picada_carrapato",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "cascavel",
+                "display_name": "Cascavel",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "coral_verdadeira",
+                "display_name": "Coral-verdadeira",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "escorpiao_amarelo",
+                "display_name": "Escorpiao-amarelo",
+                "parent_group": "picada_escorpiao",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "escorpiao_marrom",
+                "display_name": "Escorpiao-marrom/preto",
+                "parent_group": "picada_escorpiao",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "formiga",
+                "display_name": "Formiga",
+                "parent_group": "picada_formiga",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "jararaca",
+                "display_name": "Jararaca",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "mosquito",
+                "display_name": "Mosquito",
+                "parent_group": "picada_mosquito",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "percevejo",
+                "display_name": "Percevejo",
+                "parent_group": "picada_percevejo",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "pulga",
+                "display_name": "Pulga",
+                "parent_group": "picada_pulga",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "surucucu",
+                "display_name": "Surucucu",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "viuva_negra",
+                "display_name": "Viuva-negra",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              }
+            ],
+            "top": {
+              "class_id": "aranha_marrom",
+              "display_name": "Aranha-marrom",
+              "parent_group": "picada_aranha",
+              "heuristic_score": 0.0,
+              "score_is_probability": false,
+              "compatibility": "insuficiente",
+              "positive_evidence_count": 0,
+              "contrary_evidence_count": 0,
+              "active_syndromes": [],
+              "urgency_evidence": [],
+              "classification_evidence": [],
+              "evidence_ledger": []
+            },
+            "urgency_high": false
+          },
+          "clinical_v3": {
+            "known_concepts": [
+              "dor_em_queimacao",
+              "eritema",
+              "palidez_central",
+              "picada_quase_imperceptivel",
+              "roupas_ou_objetos_armazenados"
+            ],
+            "profiles": [],
+            "clinical_ranking": [],
+            "provisional_candidates": [],
+            "has_clinical_support": false,
+            "preferred_group": "picada_carrapato",
+            "elapsed_minutes": 720.0
+          },
+          "question_selection_log": {
+            "visual_group": "picada_carrapato",
+            "known_evidence": {
+              "onset_imediato": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.8,
+                "source": "initial_description",
+                "evidence": "Na hora quase nao doeu"
+              },
+              "ardor": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.92,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "vermelhidao": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.88,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "onset_minutos_horas": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.75,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "localizacao": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.9,
+                "source": "initial_description",
+                "evidence": "braco"
+              },
+              "queimacao": {
+                "value": true,
+                "status": "present",
+                "confidence": 0.92,
+                "source": "initial_description",
+                "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+              },
+              "falta_de_ar": {
+                "value": false,
+                "status": "absent",
+                "confidence": 0.85,
+                "source": "triage_answer",
+                "evidence": "question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.."
+              }
+            },
+            "current_ranking": [],
+            "compared_species": [],
+            "candidates": [
+              {
+                "question_id": "purple_skin",
+                "target_field": "purple_skin",
+                "category": "group_differential",
+                "diagnostic_gain": 0.74,
+                "time_relevance": 1.0,
+                "priority": 1.15,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "blister",
+                "target_field": "blister",
+                "category": "group_differential",
+                "diagnostic_gain": 0.68,
+                "time_relevance": 1.0,
+                "priority": 1.15,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "swelling_progression",
+                "target_field": "swelling_progression",
+                "category": "group_differential",
+                "diagnostic_gain": 0.4,
+                "time_relevance": 1.0,
+                "priority": 0.94,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "bleeding",
+                "target_field": "bleeding",
+                "category": "group_differential",
+                "diagnostic_gain": 0.14,
+                "time_relevance": 1.0,
+                "priority": 0.69,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "muscle_spasms",
+                "target_field": "spasms",
+                "category": "group_differential",
+                "diagnostic_gain": 0.88,
+                "time_relevance": 1.0,
+                "priority": 1.15,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "urine_change",
+                "target_field": "urine_change",
+                "category": "group_differential",
+                "diagnostic_gain": 0.4,
+                "time_relevance": 1.0,
+                "priority": 0.91,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "accident_context",
+                "target_field": "context",
+                "category": "group_differential",
+                "diagnostic_gain": 0.24,
+                "time_relevance": 1.0,
+                "priority": 0.61,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__armadeira_a",
+                "target_field": "initial_bite_unnoticed",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__armadeira_b",
+                "target_field": "immediate_severe_pain",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__viuva_negra_a",
+                "target_field": "mottled_pallor_ecchymosis",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_aranha_marrom__viuva_negra_b",
+                "target_field": "muscle_spasm_rigidity",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_formiga__mosquito_a",
+                "target_field": "sterile_pustule_later",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_mosquito__percevejo_b",
+                "target_field": "mattress_evidence",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_pulga__percevejo_b",
+                "target_field": "mattress_evidence",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_carrapato__mosquito_a",
+                "target_field": "tick_attached_site",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_carrapato__aranha_marrom_a",
+                "target_field": "tick_attached_site",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "v2_carrapato__aranha_marrom_b",
+                "target_field": "progressive_skin_lesion",
+                "category": "group_differential",
+                "diagnostic_gain": 0.2,
+                "time_relevance": 1.0,
+                "priority": 0.85,
+                "competing_groups": [
+                  "picada_carrapato",
+                  "picada_aranha"
+                ]
+              },
+              {
+                "question_id": "urgent_systemic_worsening",
+                "target_field": "urgent_systemic_screen",
+                "category": "urgency",
+                "diagnostic_gain": 0.25,
+                "time_relevance": 1.0,
+                "priority": 2.2
+              },
+              {
+                "question_id": "urgent_vulnerable_person",
+                "target_field": "vulnerable_person",
+                "category": "urgency",
+                "diagnostic_gain": 0.1,
+                "time_relevance": 1.0,
+                "priority": 1.75
+              },
+              {
+                "question_id": "accident_context",
+                "target_field": "context",
+                "category": "context",
+                "diagnostic_gain": 0.38,
+                "time_relevance": 1.0,
+                "priority": 0.63
+              },
+              {
+                "question_id": "animal_seen",
+                "target_field": "animal_seen",
+                "category": "context",
+                "diagnostic_gain": 0.3,
+                "time_relevance": 1.0,
+                "priority": 0.55
+              },
+              {
+                "question_id": "carrapato_febre",
+                "target_field": "group_carrapato_febre",
+                "category": "group_specific",
+                "diagnostic_gain": 0.9,
+                "time_relevance": 1.0,
+                "priority": 1.28
+              }
+            ],
+            "ignored_repetition": [
+              {
+                "question_id": "urgent_breathing_standing",
+                "reason": "question_id ja perguntado"
+              }
+            ],
+            "ignored_answered": [
+              {
+                "question_id": "immediate_severe_pain",
+                "target_field": "pain_onset",
+                "reason": "campo de grupo ja conhecido"
+              },
+              {
+                "question_id": "pain_delayed_worsening",
+                "target_field": "pain_progression",
+                "reason": "campo de grupo ja conhecido"
+              },
+              {
+                "question_id": "immediate_severe_pain",
+                "target_field": "pain_onset",
+                "reason": "campo clinico ja preenchido"
+              },
+              {
+                "question_id": "pain_delayed_worsening",
+                "target_field": "pain_progression",
+                "reason": "campo clinico ja preenchido"
+              }
+            ],
+            "ignored_low_gain": [
+              {
+                "question_id": "purple_skin",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "blister",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "swelling_progression",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "bleeding",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "muscle_spasms",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "tingling_numbness",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "neuro_ocular",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "muscle_weakness",
+                "reason": "baixo ganho para top 3 atual"
+              },
+              {
+                "question_id": "urine_change",
+                "reason": "baixo ganho para top 3 atual"
+              }
+            ],
+            "chosen": {
+              "question_id": "urgent_systemic_worsening",
+              "target_field": "urgent_systemic_screen",
+              "priority": 2.2
+            },
+            "reason": "safety_question_can_change_urgency",
+            "adaptive_decision": {
+              "decision": "ask_question",
+              "reason": "safety_question_can_change_urgency",
+              "top1": null,
+              "top1_evidence": 0.0,
+              "top2": null,
+              "top2_evidence": 0.0,
+              "margin": 0.0,
+              "specific_evidence_count": 0,
+              "generic_evidence_count": 0,
+              "selected_question": "urgent_systemic_worsening",
+              "question_category": "urgency",
+              "question_utility": 1.0,
+              "utility_reason": "safety_question_can_change_urgency"
+            }
+          },
+          "input_normalization": {
+            "question_original": "Nao",
+            "question_normalized": "Nao",
+            "report_context_original": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+            "report_context_normalized": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas"
+          },
+          "uf": "PR",
+          "location_normalization": {
+            "city": "Campo Largo",
+            "state": "PR",
+            "uf": "PR",
+            "region": ""
+          },
+          "clinical_all_species_matches": [],
+          "clinical_group_hypotheses": [],
+          "clinical_group_candidate": null,
+          "unified_group_hypotheses": [
+            {
+              "group_name": "picada_carrapato",
+              "group_label": "Picada de carrapato",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 15.38,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 15.38,
+                "included": true,
+                "reason": "clinical_or_visual_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 1
+            },
+            {
+              "group_name": "picada_aranha",
+              "group_label": "Picada de aranha",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 14.2,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 14.2,
+                "included": true,
+                "reason": "clinical_or_visual_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 2
+            },
+            {
+              "group_name": "picada_escorpiao",
+              "group_label": "Picada de escorpião",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 3
+            },
+            {
+              "group_name": "picada_formiga",
+              "group_label": "Picada/ferroada de formiga",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 4
+            },
+            {
+              "group_name": "picada_mosquito",
+              "group_label": "Picada de mosquito",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 5
+            },
+            {
+              "group_name": "picada_percevejo",
+              "group_label": "Picada de percevejo",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 6
+            },
+            {
+              "group_name": "picada_pulga",
+              "group_label": "Picada de pulga",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 7
+            },
+            {
+              "group_name": "picada_serpente",
+              "group_label": "Picada de serpente",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 8
+            }
+          ],
+          "unified_group_candidate": {
+            "group_name": "picada_carrapato",
+            "group_label": "Picada de carrapato",
+            "compatibility": "insuficiente",
+            "evidence": [],
+            "score_debug": {
+              "score_visual": 15.38,
+              "score_symptoms": 0.0,
+              "score_absent_symptoms": 0.0,
+              "score_time": 0.0,
+              "score_location_context": 0.0,
+              "bonuses": 0.0,
+              "penalties": 0.0,
+              "score_clinical_absolute": 0.0,
+              "absolute_score": 15.38,
+              "included": true,
+              "reason": "clinical_or_visual_evidence",
+              "source": "clinical_group_profile"
+            },
+            "rank_position": 1
+          },
+          "visual_group": "picada_carrapato",
+          "visual_group_label": "Picada de carrapato",
+          "visual_confidence": 51,
+          "result_mode": "inconclusive",
+          "allowed_species": [],
+          "needs_group_disambiguation": true,
+          "competing_groups": [
+            "picada_carrapato",
+            "picada_aranha"
+          ],
+          "visual_group_candidate": "picada_carrapato",
+          "confidence_level": "baixa",
+          "result_type": "inconclusivo",
+          "clinical_severity": "sem sinais de emergência relatados",
+          "clinical_urgency": "observar evolução",
+          "clinical_risk_level": "baixo/moderado conforme evolução",
+          "clinical_risk_reason": "apenas sinais locais ou inespecificos relatados",
+          "identification_status": "inconclusive",
+          "identification_message": "Os dados informados não apresentam compatibilidade suficiente com os padrões atualmente reconhecidos pelo BDS. A picada pode pertencer a um animal, inseto ou situação que ainda não faz parte das classes analisadas pelo sistema.",
+          "decision_reason": "unified_group_absolute_score_or_margin_too_low",
+          "clinical_compatibility": "insuficiente",
+          "decision_debug": {
+            "reason": "unified_group_absolute_score_or_margin_too_low",
+            "visual_status": "inconclusive",
+            "visual_group": "picada_carrapato",
+            "visual_confidence": 0.5125885009765625,
+            "visual_margin": 0.03931015729904175,
+            "candidates": []
+          },
+          "species_gate_trace": {},
+          "differential_matches": [],
+          "v3_fusion": {
+            "visual_group": "picada_carrapato",
+            "candidates": [],
+            "legacy_candidate_count": 0
+          },
+          "visual_group_ranking": [
+            {
+              "group_name": "picada_carrapato",
+              "group_label": "Picada de carrapato",
+              "score": 0.5125885009765625
+            },
+            {
+              "group_name": "picada_aranha",
+              "group_label": "Picada de aranha",
+              "score": 0.47327834367752075
+            }
+          ],
+          "final_species_ranking": [],
+          "multimodal_fusion": {
+            "fusion_state": "INSUFFICIENT_EVIDENCE",
+            "leading_group": null,
+            "group_evidence": {},
+            "candidate_taxa": [],
+            "conflicts": [],
+            "sources_used": [],
+            "sources_unavailable": [
+              "ANIMAL"
+            ],
+            "sources_insufficient": [
+              "BITE",
+              "CLINICAL"
+            ],
+            "urgent_guidance_required": false,
+            "explanation_codes": [
+              "ANIMAL_NOT_AVAILABLE",
+              "BITE_INSUFFICIENT",
+              "CLINICAL_INSUFFICIENT"
+            ],
+            "available": true
+          },
+          "image_analysis": {
+            "class_label": "Picada de carrapato",
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625,
+            "confidence_margin": 0.03931015729904175,
+            "context_id": "9d765bd1a22f4ac89d7bd928b2b31610",
+            "group_label": "Picada de carrapato",
+            "group_name": "picada_carrapato",
+            "identification_status": "inconclusive",
+            "image_received": true,
+            "is_uncertain": true,
+            "predictions": [
+              {
+                "class_name": "picada_carrapato",
+                "confidence": 0.5125885009765625
+              },
+              {
+                "class_name": "picada_aranha",
+                "confidence": 0.47327834367752075
+              }
+            ]
+          },
+          "asked_questions": [
+            "urgent_breathing_standing"
+          ],
+          "performance": {
+            "gemini_normalization_seconds": 0.0,
+            "ibge_normalization_seconds": 0.0,
+            "symptom_ai_seconds": 0.2122,
+            "total_ask_seconds": 0.2793,
+            "gemini_calls": 0,
+            "ibge_calls": 0
+          },
+          "known_evidence": {
+            "onset_imediato": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.8,
+              "source": "initial_description",
+              "evidence": "Na hora quase nao doeu"
+            },
+            "ardor": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "vermelhidao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.88,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "onset_minutos_horas": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.75,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "localizacao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.9,
+              "source": "initial_description",
+              "evidence": "braco"
+            },
+            "queimacao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "falta_de_ar": {
+              "value": false,
+              "status": "absent",
+              "confidence": 0.85,
+              "source": "triage_answer",
+              "evidence": "question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.."
+            }
+          }
+        },
+        "run_id": "3d12665c69214971aae6b7e85c7cd81b",
+        "request_sequence": 2
+      },
+      "next_question": {
+        "id": "urgent_systemic_worsening",
+        "question_id": "urgent_systemic_worsening",
+        "target_field": "urgent_systemic_screen",
+        "category": "urgency",
+        "text": "Teve vômitos repetidos, suor intenso, sangramento importante, urina escura ou piora rápida?",
+        "options": [
+          "Sim",
+          "Não",
+          "Não sei"
+        ],
+        "priority": 2.2,
+        "diagnostic_gain": 0.25,
+        "answer_type": "single_choice"
+      }
+    },
+    {
+      "observed_at": "2026-10-01T20:41:18.013048Z",
+      "image_analysis": {
+        "class_label": "Picada de carrapato",
+        "class_name": "picada_carrapato",
+        "confidence": 0.5125885009765625,
+        "confidence_margin": 0.03931015729904175,
+        "context_id": "9d765bd1a22f4ac89d7bd928b2b31610",
+        "group_label": "Picada de carrapato",
+        "group_name": "picada_carrapato",
+        "identification_status": "inconclusive",
+        "image_received": true,
+        "is_uncertain": true,
+        "predictions": [
+          {
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625
+          },
+          {
+            "class_name": "picada_aranha",
+            "confidence": 0.47327834367752075
+          }
+        ]
+      },
+      "visual": {
+        "top_1": {
+          "class_name": "picada_carrapato",
+          "confidence": 0.5125885009765625
+        },
+        "top_2": {
+          "class_name": "picada_aranha",
+          "confidence": 0.47327834367752075
+        },
+        "top_3": null,
+        "visual_group": "picada_carrapato",
+        "gate": "inconclusive",
+        "gate_reason": null,
+        "confidence": 0.5125885009765625,
+        "confidence_margin": 0.03931015729904175,
+        "full_ranking": [
+          {
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625
+          },
+          {
+            "class_name": "picada_aranha",
+            "confidence": 0.47327834367752075
+          }
+        ]
+      },
+      "clinical_all_species_matches": [],
+      "species_matches": [],
+      "multimodal_fusion": {
+        "fusion_state": "INSUFFICIENT_EVIDENCE",
+        "leading_group": null,
+        "group_evidence": {},
+        "candidate_taxa": [],
+        "conflicts": [],
+        "sources_used": [],
+        "sources_unavailable": [
+          "ANIMAL"
+        ],
+        "sources_insufficient": [
+          "BITE",
+          "CLINICAL"
+        ],
+        "urgent_guidance_required": false,
+        "explanation_codes": [
+          "ANIMAL_NOT_AVAILABLE",
+          "BITE_INSUFFICIENT",
+          "CLINICAL_INSUFFICIENT"
+        ],
+        "available": true
+      },
+      "species_gate_trace": {},
+      "decision_debug": {
+        "reason": "unified_group_absolute_score_or_margin_too_low",
+        "visual_status": "inconclusive",
+        "visual_group": "picada_carrapato",
+        "visual_confidence": 0.5125885009765625,
+        "visual_margin": 0.03931015729904175,
+        "candidates": []
+      },
+      "identification_status": "inconclusive",
+      "result_type": "inconclusivo",
+      "selected_group": null,
+      "identification_message": "Os dados informados não apresentam compatibilidade suficiente com os padrões atualmente reconhecidos pelo BDS. A picada pode pertencer a um animal, inseto ou situação que ainda não faz parte das classes analisadas pelo sistema.",
+      "backend_response_payload": {
+        "ok": true,
+        "needs_more_info": true,
+        "answer": "Pergunta da IA:\nNos dias seguintes surgiram febre, dor de cabeça forte, dores musculares, náusea/vômitos ou manchas?",
+        "triage_question": "Nos dias seguintes surgiram febre, dor de cabeça forte, dores musculares, náusea/vômitos ou manchas?",
+        "triage_question_id": "carrapato_febre",
+        "triage_options": [
+          "Sim",
+          "Não",
+          "Não sei"
+        ],
+        "triage_answer_type": "single_choice",
+        "question_count": 3,
+        "analysis": {
+          "report_text": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_systemic_worsening target_field=urgent_systemic_screen answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+          "symptoms": [
+            "dor",
+            "vermelhidão",
+            "ardor"
+          ],
+          "city": "Campo Largo",
+          "state": "PR",
+          "region": "sul",
+          "bite_location": "braço",
+          "clinical_profile": {
+            "bite_location": {
+              "value": "braco",
+              "confidence": 0.9,
+              "source": "initial_description",
+              "evidence": "braco",
+              "status": "present"
+            },
+            "time_since_bite": {
+              "value": "12 horas",
+              "confidence": 0.82,
+              "source": "initial_description",
+              "evidence": "Tempo desde a picada: 12 horas",
+              "status": "present"
+            },
+            "pain_onset": {
+              "value": "tardio",
+              "confidence": 0.95,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "burning": {
+              "value": true,
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "redness": {
+              "value": true,
+              "confidence": 0.88,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+              "status": "present"
+            },
+            "symptom_onset": {
+              "value": "imediato",
+              "confidence": 0.8,
+              "source": "initial_description",
+              "evidence": "Na hora quase nao doeu",
+              "status": "present"
+            },
+            "shortness_of_breath": {
+              "value": false,
+              "confidence": 0.85,
+              "source": "triage_answer",
+              "evidence": "question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75..",
+              "status": "absent",
+              "question_id": "urgent_breathing_standing"
+            },
+            "urgent_systemic_screen": {
+              "value": false,
+              "confidence": 0.85,
+              "source": "triage_answer",
+              "evidence": "question_id=urgent_systemic_worsening target_field=urgent_systemic_screen answer=no normalized_value=false confidence=0.75..",
+              "status": "absent",
+              "question_id": "urgent_systemic_worsening"
+            }
+          },
+          "bite_time_analysis": {
+            "minutes": 720,
+            "bucket": "LATE",
+            "evidence": "12 horas"
+          },
+          "bug_matches": [
+            {
+              "bug": "spiders",
+              "bug_pt": "Aranhas",
+              "score": 4,
+              "matched_features": [
+                "dor",
+                "vermelhidao"
+              ],
+              "symptoms_reference": "coceira, erupção cutânea, dor, dor muscular, cãibra, bolha vermelha ou roxa, suor, dificuldade para respirar, dor de cabeça, náusea, vômito, febre, calafrios, ansiedade, gânglios inchados, pressão alta",
+              "treatment": "atenção médica, compressa gelada, elevar a área afetada, anti-histamínico (Benadryl), limpar com água e sabão, pomada antibiótica se surgirem bolhas",
+              "look": "inchaço, vergão vermelho, lesão na pele",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/spider-bites#spider-bites"
+            },
+            {
+              "bug": "ticks",
+              "bug_pt": "Carrapatos",
+              "score": 4,
+              "matched_features": [
+                "dor",
+                "vermelhidao"
+              ],
+              "symptoms_reference": "dor, inchaço, erupção cutânea, coceira, ardor, bolhas, dificuldade para respirar se for grave",
+              "treatment": "atenção médica, antibióticos",
+              "look": "",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/tick-bites"
+            },
+            {
+              "bug": "fire_ants",
+              "bug_pt": "Formigas de fogo",
+              "score": 2,
+              "matched_features": [
+                "dor"
+              ],
+              "symptoms_reference": "ardor, coceira, dor",
+              "treatment": "compressa gelada, limpar com água e sabão, texas a&m recommends meia parte água sanitária, meia parte água, solução de amônio diluída, babosa, hamamelis",
+              "look": "",
+              "location_reference": "",
+              "resource": "https://www.healthline.com/health/fire-ant-bites"
+            }
+          ],
+          "species_matches": [],
+          "recommendations": [
+            "Lave o local com água e sabão.",
+            "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+            "Se houver piora importante, procure atendimento médico imediatamente."
+          ],
+          "urgent_triage": false,
+          "clinical_v2": {
+            "concept_states": {},
+            "ranking": [
+              {
+                "class_id": "aranha_marrom",
+                "display_name": "Aranha-marrom",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "armadeira",
+                "display_name": "Aranha-armadeira",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "carrapato",
+                "display_name": "Carrapato",
+                "parent_group": "picada_carrapato",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "cascavel",
+                "display_name": "Cascavel",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "coral_verdadeira",
+                "display_name": "Coral-verdadeira",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "escorpiao_amarelo",
+                "display_name": "Escorpiao-amarelo",
+                "parent_group": "picada_escorpiao",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "escorpiao_marrom",
+                "display_name": "Escorpiao-marrom/preto",
+                "parent_group": "picada_escorpiao",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "formiga",
+                "display_name": "Formiga",
+                "parent_group": "picada_formiga",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "jararaca",
+                "display_name": "Jararaca",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "mosquito",
+                "display_name": "Mosquito",
+                "parent_group": "picada_mosquito",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "percevejo",
+                "display_name": "Percevejo",
+                "parent_group": "picada_percevejo",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "pulga",
+                "display_name": "Pulga",
+                "parent_group": "picada_pulga",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "surucucu",
+                "display_name": "Surucucu",
+                "parent_group": "picada_serpente",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              },
+              {
+                "class_id": "viuva_negra",
+                "display_name": "Viuva-negra",
+                "parent_group": "picada_aranha",
+                "heuristic_score": 0.0,
+                "score_is_probability": false,
+                "compatibility": "insuficiente",
+                "positive_evidence_count": 0,
+                "contrary_evidence_count": 0,
+                "active_syndromes": [],
+                "urgency_evidence": [],
+                "classification_evidence": [],
+                "evidence_ledger": []
+              }
+            ],
+            "top": {
+              "class_id": "aranha_marrom",
+              "display_name": "Aranha-marrom",
+              "parent_group": "picada_aranha",
+              "heuristic_score": 0.0,
+              "score_is_probability": false,
+              "compatibility": "insuficiente",
+              "positive_evidence_count": 0,
+              "contrary_evidence_count": 0,
+              "active_syndromes": [],
+              "urgency_evidence": [],
+              "classification_evidence": [],
+              "evidence_ledger": []
+            },
+            "urgency_high": false
+          },
+          "clinical_v3": {
+            "known_concepts": [
+              "dor_em_queimacao",
+              "eritema",
+              "palidez_central",
+              "picada_quase_imperceptivel",
+              "roupas_ou_objetos_armazenados"
+            ],
+            "profiles": [],
+            "clinical_ranking": [],
+            "provisional_candidates": [],
+            "has_clinical_support": false,
+            "preferred_group": "picada_carrapato",
+            "elapsed_minutes": 720.0
+          },
+          "question_selection_log": {
+            "visual_group": null,
+            "known_evidence": {},
+            "current_ranking": [],
+            "compared_species": [],
+            "candidates": [],
+            "ignored_repetition": [],
+            "ignored_answered": [],
+            "ignored_low_gain": [],
+            "chosen": {
+              "question_id": "carrapato_febre",
+              "target_field": "group_carrapato_febre",
+              "priority": 1.28
+            },
+            "reason": "gemini_requested_controlled_question",
+            "adaptive_decision": {
+              "decision": "ask_question",
+              "reason": "gemini_requested_controlled_question",
+              "selected_question": "carrapato_febre",
+              "question_category": "group_specific"
+            }
+          },
+          "input_normalization": {
+            "question_original": "Nao",
+            "question_normalized": "Nao",
+            "report_context_original": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+            "report_context_normalized": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas"
+          },
+          "uf": "PR",
+          "location_normalization": {
+            "city": "Campo Largo",
+            "state": "PR",
+            "uf": "PR",
+            "region": ""
+          },
+          "clinical_all_species_matches": [],
+          "clinical_group_hypotheses": [],
+          "clinical_group_candidate": null,
+          "unified_group_hypotheses": [
+            {
+              "group_name": "picada_carrapato",
+              "group_label": "Picada de carrapato",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 15.38,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 15.38,
+                "included": true,
+                "reason": "clinical_or_visual_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 1
+            },
+            {
+              "group_name": "picada_aranha",
+              "group_label": "Picada de aranha",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 14.2,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 14.2,
+                "included": true,
+                "reason": "clinical_or_visual_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 2
+            },
+            {
+              "group_name": "picada_escorpiao",
+              "group_label": "Picada de escorpião",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 3
+            },
+            {
+              "group_name": "picada_formiga",
+              "group_label": "Picada/ferroada de formiga",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 4
+            },
+            {
+              "group_name": "picada_mosquito",
+              "group_label": "Picada de mosquito",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 5
+            },
+            {
+              "group_name": "picada_percevejo",
+              "group_label": "Picada de percevejo",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 6
+            },
+            {
+              "group_name": "picada_pulga",
+              "group_label": "Picada de pulga",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_group_profile"
+              },
+              "rank_position": 7
+            },
+            {
+              "group_name": "picada_serpente",
+              "group_label": "Picada de serpente",
+              "compatibility": "insuficiente",
+              "evidence": [],
+              "score_debug": {
+                "score_visual": 0.0,
+                "score_symptoms": 0.0,
+                "score_absent_symptoms": 0.0,
+                "score_time": 0.0,
+                "score_location_context": 0.0,
+                "bonuses": 0.0,
+                "penalties": 0.0,
+                "score_clinical_absolute": 0.0,
+                "absolute_score": 0.0,
+                "included": false,
+                "reason": "no_positive_evidence",
+                "source": "clinical_species"
+              },
+              "rank_position": 8
+            }
+          ],
+          "unified_group_candidate": {
+            "group_name": "picada_carrapato",
+            "group_label": "Picada de carrapato",
+            "compatibility": "insuficiente",
+            "evidence": [],
+            "score_debug": {
+              "score_visual": 15.38,
+              "score_symptoms": 0.0,
+              "score_absent_symptoms": 0.0,
+              "score_time": 0.0,
+              "score_location_context": 0.0,
+              "bonuses": 0.0,
+              "penalties": 0.0,
+              "score_clinical_absolute": 0.0,
+              "absolute_score": 15.38,
+              "included": true,
+              "reason": "clinical_or_visual_evidence",
+              "source": "clinical_group_profile"
+            },
+            "rank_position": 1
+          },
+          "visual_group": "picada_carrapato",
+          "visual_group_label": "Picada de carrapato",
+          "visual_confidence": 51,
+          "result_mode": "inconclusive",
+          "allowed_species": [],
+          "needs_group_disambiguation": true,
+          "competing_groups": [
+            "picada_carrapato",
+            "picada_aranha"
+          ],
+          "visual_group_candidate": "picada_carrapato",
+          "confidence_level": "baixa",
+          "result_type": "inconclusivo",
+          "clinical_severity": "sem sinais de emergência relatados",
+          "clinical_urgency": "observar evolução",
+          "clinical_risk_level": "baixo/moderado conforme evolução",
+          "clinical_risk_reason": "apenas sinais locais ou inespecificos relatados",
+          "identification_status": "inconclusive",
+          "identification_message": "Os dados informados não apresentam compatibilidade suficiente com os padrões atualmente reconhecidos pelo BDS. A picada pode pertencer a um animal, inseto ou situação que ainda não faz parte das classes analisadas pelo sistema.",
+          "decision_reason": "unified_group_absolute_score_or_margin_too_low",
+          "clinical_compatibility": "insuficiente",
+          "decision_debug": {
+            "reason": "unified_group_absolute_score_or_margin_too_low",
+            "visual_status": "inconclusive",
+            "visual_group": "picada_carrapato",
+            "visual_confidence": 0.5125885009765625,
+            "visual_margin": 0.03931015729904175,
+            "candidates": []
+          },
+          "species_gate_trace": {},
+          "differential_matches": [],
+          "v3_fusion": {
+            "visual_group": "picada_carrapato",
+            "candidates": [],
+            "legacy_candidate_count": 0
+          },
+          "visual_group_ranking": [
+            {
+              "group_name": "picada_carrapato",
+              "group_label": "Picada de carrapato",
+              "score": 0.5125885009765625
+            },
+            {
+              "group_name": "picada_aranha",
+              "group_label": "Picada de aranha",
+              "score": 0.47327834367752075
+            }
+          ],
+          "final_species_ranking": [],
+          "multimodal_fusion": {
+            "fusion_state": "INSUFFICIENT_EVIDENCE",
+            "leading_group": null,
+            "group_evidence": {},
+            "candidate_taxa": [],
+            "conflicts": [],
+            "sources_used": [],
+            "sources_unavailable": [
+              "ANIMAL"
+            ],
+            "sources_insufficient": [
+              "BITE",
+              "CLINICAL"
+            ],
+            "urgent_guidance_required": false,
+            "explanation_codes": [
+              "ANIMAL_NOT_AVAILABLE",
+              "BITE_INSUFFICIENT",
+              "CLINICAL_INSUFFICIENT"
+            ],
+            "available": true
+          },
+          "image_analysis": {
+            "class_label": "Picada de carrapato",
+            "class_name": "picada_carrapato",
+            "confidence": 0.5125885009765625,
+            "confidence_margin": 0.03931015729904175,
+            "context_id": "9d765bd1a22f4ac89d7bd928b2b31610",
+            "group_label": "Picada de carrapato",
+            "group_name": "picada_carrapato",
+            "identification_status": "inconclusive",
+            "image_received": true,
+            "is_uncertain": true,
+            "predictions": [
+              {
+                "class_name": "picada_carrapato",
+                "confidence": 0.5125885009765625
+              },
+              {
+                "class_name": "picada_aranha",
+                "confidence": 0.47327834367752075
+              }
+            ]
+          },
+          "asked_questions": [
+            "urgent_breathing_standing",
+            "urgent_systemic_worsening"
+          ],
+          "performance": {
+            "gemini_normalization_seconds": 0.0,
+            "ibge_normalization_seconds": 0.0,
+            "symptom_ai_seconds": 0.2426,
+            "total_ask_seconds": 0.3276,
+            "gemini_calls": 0,
+            "ibge_calls": 0
+          },
+          "known_evidence": {
+            "onset_imediato": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.8,
+              "source": "initial_description",
+              "evidence": "Na hora quase nao doeu"
+            },
+            "ardor": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "vermelhidao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.88,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "onset_minutos_horas": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.75,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "localizacao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.9,
+              "source": "initial_description",
+              "evidence": "braco"
+            },
+            "queimacao": {
+              "value": true,
+              "status": "present",
+              "confidence": 0.92,
+              "source": "initial_description",
+              "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo"
+            },
+            "falta_de_ar": {
+              "value": false,
+              "status": "absent",
+              "confidence": 0.85,
+              "source": "triage_answer",
+              "evidence": "question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.."
+            }
+          },
+          "gemini_clinical": {
+            "status": "ok",
+            "fallback": false,
+            "model": "mock-gemini",
+            "elapsed_seconds": 0.01,
+            "result": {
+              "species": null,
+              "group": "picada_carrapato",
+              "compatibility": "inconclusiva",
+              "confidence": 0.4,
+              "supporting_evidence": [],
+              "contradicting_evidence": [],
+              "reasoning_summary": "mock diagnostic branch",
+              "needs_more_questions": true,
+              "next_question_concept": "group:carrapato_febre",
+              "alternatives": []
+            }
+          },
+          "gemini_fusion": {
+            "applied": false,
+            "fallback": false,
+            "status": "ok",
+            "visual_group": "picada_carrapato",
+            "decision_reason": "gemini_requested_controlled_question",
+            "next_question_concept": "group:carrapato_febre"
+          }
+        },
+        "run_id": "3d12665c69214971aae6b7e85c7cd81b",
+        "request_sequence": 3
+      },
+      "next_question": {
+        "id": "carrapato_febre",
+        "question_id": "carrapato_febre",
+        "target_field": "group_carrapato_febre",
+        "category": "group_specific",
+        "text": "Nos dias seguintes surgiram febre, dor de cabeça forte, dores musculares, náusea/vômitos ou manchas?",
+        "options": [
+          "Sim",
+          "Não",
+          "Não sei"
+        ],
+        "priority": 1.28,
+        "diagnostic_gain": 0.9,
+        "answer_type": "single_choice"
+      }
+    }
+  ],
+  "derived_metrics": {},
+  "input": {
+    "initial_narrative": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+    "raw_question": "Nao",
+    "normalized_question": "Nao",
+    "structured_input": {
+      "structured_time_since_bite": "12 horas",
+      "city": "Campo Largo",
+      "state": "PR",
+      "body_location": {
+        "value": "braco",
+        "confidence": 0.9,
+        "source": "initial_description",
+        "evidence": "braco",
+        "status": "present"
+      },
+      "location": {
+        "city": "Campo Largo",
+        "state": "PR",
+        "uf": "PR",
+        "region": ""
+      },
+      "answered_question_id": "urgent_systemic_worsening"
+    },
+    "assembled_report_text": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_systemic_worsening target_field=urgent_systemic_screen answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas"
+  },
+  "initial_narrative": "Fui colocar uma camiseta que estava guardada e senti uma picada no braco. Na hora quase nao doeu. Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo. Tambem apareceu uma area mais clara no centro.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas. Resposta clinica: question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75.. Cidade: Campo Largo. Estado: PR. UF: PR. Tempo desde a picada: 12 horas",
+  "structured_time_since_bite": "12 horas",
+  "location": {
+    "city": "Campo Largo",
+    "state": "PR",
+    "uf": "PR",
+    "region": ""
+  },
+  "body_location": {
+    "value": "braco",
+    "confidence": 0.9,
+    "source": "initial_description",
+    "evidence": "braco",
+    "status": "present"
+  },
+  "extracted_clinical_features": {
+    "bite_location": {
+      "value": "braco",
+      "confidence": 0.9,
+      "source": "initial_description",
+      "evidence": "braco",
+      "status": "present"
+    },
+    "time_since_bite": {
+      "value": "12 horas",
+      "confidence": 0.82,
+      "source": "initial_description",
+      "evidence": "Tempo desde a picada: 12 horas",
+      "status": "present"
+    },
+    "pain_onset": {
+      "value": "tardio",
+      "confidence": 0.95,
+      "source": "initial_description",
+      "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+      "status": "present"
+    },
+    "burning": {
+      "value": true,
+      "confidence": 0.92,
+      "source": "initial_description",
+      "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+      "status": "present"
+    },
+    "redness": {
+      "value": true,
+      "confidence": 0.88,
+      "source": "initial_description",
+      "evidence": "Algumas horas depois comecou a ficar vermelho e dolorido, e agora esta ardendo",
+      "status": "present"
+    },
+    "symptom_onset": {
+      "value": "imediato",
+      "confidence": 0.8,
+      "source": "initial_description",
+      "evidence": "Na hora quase nao doeu",
+      "status": "present"
+    },
+    "shortness_of_breath": {
+      "value": false,
+      "confidence": 0.85,
+      "source": "triage_answer",
+      "evidence": "question_id=urgent_breathing_standing target_field=shortness_of_breath answer=no normalized_value=false confidence=0.75..",
+      "status": "absent",
+      "question_id": "urgent_breathing_standing"
+    },
+    "urgent_systemic_screen": {
+      "value": false,
+      "confidence": 0.85,
+      "source": "triage_answer",
+      "evidence": "question_id=urgent_systemic_worsening target_field=urgent_systemic_screen answer=no normalized_value=false confidence=0.75..",
+      "status": "absent",
+      "question_id": "urgent_systemic_worsening"
+    }
+  },
+  "clinical_only_snapshot": {
+    "clinical_only_top1": null,
+    "clinical_only_top2": null,
+    "clinical_only_top3": null,
+    "clinical_only_candidate": null,
+    "clinical_only_acceptance": {
+      "top1_score": 0.0,
+      "top1_evidence": 0.0
+    },
+    "clinical_only_ranking": []
+  }
+}

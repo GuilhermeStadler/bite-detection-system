@@ -1,0 +1,119 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "c6e4d95dd57d4381bc012ce70f2f5e9f",
+  "case_id": "PUBLIC-20260930T233708780193Z",
+  "test_id": "PUBLIC-20260930T233708780193Z",
+  "status": "IN_PROGRESS",
+  "started_at": "2026-09-30T23:37:08.780193Z",
+  "completed_at": null,
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "V6_V4_ORIGINAL_picada_aranha_V4_ORIGINAL_BDS_aranha_marrom_BDS_aranha_marrom_11.png",
+    "sha256": "062c7e348139fecc97d99d5c7c2d7492206a93501ca50a6b31240afd6b2be98e",
+    "bytes": 1512490,
+    "width": 1920,
+    "height": 1080
+  },
+  "questions": [],
+  "turns": [],
+  "derived_metrics": {},
+  "input": {
+    "initial_narrative": "Fui colocar uma camiseta que estava guardada e senti uma picada no braço. Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido. Agora tem uma área mais clara no centro e está ardendo.",
+    "raw_question": "Fui colocar uma camiseta que estava guardada e senti uma picada no braço. Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido. Agora tem uma área mais clara no centro e está ardendo.",
+    "normalized_question": "Fui colocar uma camiseta que estava guardada e senti uma picada no braço. Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido. Agora tem uma área mais clara no centro e está ardendo.",
+    "structured_input": {
+      "structured_time_since_bite": "6 horas",
+      "city": "Curitiba",
+      "state": "Paraná",
+      "body_location": {
+        "value": "braco",
+        "confidence": 0.9,
+        "source": "initial_description",
+        "evidence": "braco",
+        "status": "present"
+      },
+      "location": {
+        "city": "Curitiba",
+        "state": "Paraná",
+        "uf": "PR",
+        "region": "Sul"
+      },
+      "answered_question_id": ""
+    },
+    "assembled_report_text": "Fui colocar uma camiseta que estava guardada e senti uma picada no braço. Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido. Agora tem uma área mais clara no centro e está ardendo.. Cidade: Curitiba. Estado: Paraná. UF: PR. Região: Sul. Tempo desde a picada: 6 horas"
+  },
+  "initial_narrative": "Fui colocar uma camiseta que estava guardada e senti uma picada no braço. Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido. Agora tem uma área mais clara no centro e está ardendo.",
+  "structured_time_since_bite": "6 horas",
+  "location": {
+    "city": "Curitiba",
+    "state": "Paraná",
+    "uf": "PR",
+    "region": "Sul"
+  },
+  "body_location": {
+    "value": "braco",
+    "confidence": 0.9,
+    "source": "initial_description",
+    "evidence": "braco",
+    "status": "present"
+  },
+  "extracted_clinical_features": {
+    "bite_location": {
+      "value": "braco",
+      "confidence": 0.9,
+      "source": "initial_description",
+      "evidence": "braco",
+      "status": "present"
+    },
+    "time_since_bite": {
+      "value": "6 horas",
+      "confidence": 0.82,
+      "source": "initial_description",
+      "evidence": "Tempo desde a picada: 6 horas",
+      "status": "present"
+    },
+    "pain_onset": {
+      "value": "tardio",
+      "confidence": 0.95,
+      "source": "initial_description",
+      "evidence": "Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido",
+      "status": "present"
+    },
+    "burning": {
+      "value": true,
+      "confidence": 0.92,
+      "source": "initial_description",
+      "evidence": "Agora tem uma área mais clara no centro e está ardendo",
+      "status": "present"
+    },
+    "redness": {
+      "value": true,
+      "confidence": 0.88,
+      "source": "initial_description",
+      "evidence": "Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido",
+      "status": "present"
+    },
+    "symptom_onset": {
+      "value": "imediato",
+      "confidence": 0.8,
+      "source": "initial_description",
+      "evidence": "Na hora quase não doeu, mas algumas horas depois começou a ficar vermelho e dolorido",
+      "status": "present"
+    }
+  },
+  "clinical_only_snapshot": {
+    "clinical_only_top1": null,
+    "clinical_only_top2": null,
+    "clinical_only_top3": null,
+    "clinical_only_candidate": null,
+    "clinical_only_acceptance": {
+      "top1_score": 0.0,
+      "top1_evidence": 0.0
+    },
+    "clinical_only_ranking": []
+  }
+}

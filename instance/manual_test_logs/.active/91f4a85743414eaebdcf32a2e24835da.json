@@ -1,0 +1,22 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "91f4a85743414eaebdcf32a2e24835da",
+  "case_id": "PUBLIC-20261001T193907276795Z",
+  "test_id": "PUBLIC-20261001T193907276795Z",
+  "status": "IN_PROGRESS",
+  "started_at": "2026-10-01T19:39:07.276795Z",
+  "completed_at": null,
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "fake.jpg",
+    "sha256": "5464533c9647b67eb320c40ccc5959537c09102ae75388f6a7675b433e745c9d",
+    "bytes": 12
+  },
+  "questions": [],
+  "turns": [],
+  "derived_metrics": {}
+}

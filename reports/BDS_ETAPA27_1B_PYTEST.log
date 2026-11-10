@@ -1,0 +1,51 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\stadl\OneDrive\Desktop\IA_TESTE
+plugins: anyio-4.14.2
+collected 235 items
+
+tests\experimental\test_clinical_compatibility_adversarial.py ..         [  0%]
+tests\experimental\test_clinical_compatibility_v1.py ..                  [  1%]
+tests\test_active_visual_model_promotion_v5.py ...                       [  2%]
+tests\test_adaptive_question_flow.py ..........                          [  7%]
+tests\test_bds_main_database.py ........                                 [ 10%]
+tests\test_clinical_database_v1.py ............                          [ 15%]
+tests\test_clinical_v2.py ............                                   [ 20%]
+tests\test_compare_visual_models_v3_v4_v5.py .....                       [ 22%]
+tests\test_dynamic_qa_routing_bds.py ........                            [ 26%]
+tests\test_end_to_end_validation_bds.py .........                        [ 30%]
+tests\test_image_validator_v1_flow.py ....                               [ 31%]
+tests\test_input_evidence_guards.py .....................                [ 40%]
+tests\test_open_set_decision_flow.py .....                               [ 42%]
+tests\test_pipeline_fusion_improvement.py .............                  [ 48%]
+tests\test_pre_fair_final_flow.py ..............                         [ 54%]
+tests\test_qa_known_evidence_redundancy.py ............                  [ 59%]
+tests\test_result_card_presentation.py ....                              [ 61%]
+tests\test_security_app.py ............                                  [ 66%]
+tests\test_structural_clinical_invariants.py ..................          [ 74%]
+tests\test_symptom_ai_improvements.py .....................              [ 82%]
+tests\test_symptom_ai_text.py ...........                                [ 87%]
+tests\test_two_stage_architecture.py ........                            [ 91%]
+tests\test_unified_classification_flow.py ......                         [ 93%]
+tests\test_visual_dataset_v7_preparation.py .....                        [ 95%]
+tests\test_visual_pipeline_correction.py ..........                      [100%]
+
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.MessageMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.ScalarMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+tests/test_unified_classification_flow.py::RealVisualEndpointSmokeTests::test_real_uploaded_image_runs_active_visual_pipeline_without_mock
+  C:\Users\stadl\OneDrive\Desktop\IA_TESTE\.tf_deps\keras\src\utils\python_utils.py:190: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+    value = float(value)
+
+.test_deps\_pytest\cacheprovider.py:469
+  C:\Users\stadl\OneDrive\Desktop\IA_TESTE\.test_deps\_pytest\cacheprovider.py:469: PytestCacheWarning: cache could not write path C:\Users\stadl\OneDrive\Desktop\IA_TESTE\.pytest_cache\v\cache\nodeids: [Errno 13] Permission denied: 'C:\\Users\\stadl\\OneDrive\\Desktop\\IA_TESTE\\.pytest_cache\\v\\cache\\nodeids'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 235 passed, 4 warnings in 53.63s =======================
+
+EXIT_CODE=0

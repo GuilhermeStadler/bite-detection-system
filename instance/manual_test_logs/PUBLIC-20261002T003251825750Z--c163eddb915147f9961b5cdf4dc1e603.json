@@ -1,0 +1,251 @@
+{
+  "schema_version": "bds-manual-test-log-v1",
+  "run_id": "c163eddb915147f9961b5cdf4dc1e603",
+  "case_id": "PUBLIC-20261002T003251825750Z",
+  "test_id": "PUBLIC-20261002T003251825750Z",
+  "status": "COMPLETE",
+  "started_at": "2026-10-02T00:32:51.825750Z",
+  "completed_at": "2026-10-02T00:32:51.828681Z",
+  "real": {
+    "category": "",
+    "species": "",
+    "test_origin": ""
+  },
+  "image": {
+    "submitted_filename": "upload.jpg",
+    "sha256": "092d33f6870f74931bf7872d8bb75c6841cf356d61acdd84a35b187910206d30",
+    "bytes": 772,
+    "width": 96,
+    "height": 96
+  },
+  "questions": [],
+  "turns": [
+    {
+      "observed_at": "2026-10-02T00:32:51.828681Z",
+      "image_analysis": {
+        "image_received": true,
+        "validity": {
+          "checked": true,
+          "model_available": true,
+          "status": "passed"
+        },
+        "identification_status": "candidate",
+        "class_name": null,
+        "class_label": null,
+        "context_id": "05503279cc54440cb60a4edf68aca554"
+      },
+      "visual": {
+        "top_1": null,
+        "top_2": null,
+        "top_3": null,
+        "visual_group": null,
+        "gate": {
+          "checked": true,
+          "model_available": true,
+          "status": "passed"
+        },
+        "gate_reason": null,
+        "confidence": null,
+        "confidence_margin": null,
+        "full_ranking": []
+      },
+      "clinical_all_species_matches": null,
+      "species_matches": [],
+      "multimodal_fusion": null,
+      "species_gate_trace": null,
+      "decision_debug": null,
+      "identification_status": "invalid_input",
+      "result_type": null,
+      "selected_group": null,
+      "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+      "backend_response_payload": {
+        "ok": true,
+        "needs_more_info": false,
+        "answer": "Análise inicial da IA\nO texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.\n\nAviso: isso é apenas apoio inicial e não substitui avaliação médica.",
+        "analysis": {
+          "report_text": "",
+          "symptoms": [],
+          "city": "Curitiba",
+          "state": "PR",
+          "region": "",
+          "bite_location": "",
+          "species_matches": [],
+          "recommendations": [
+            "Lave o local com água e sabão.",
+            "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+            "Se houver piora importante, procure atendimento médico imediatamente."
+          ],
+          "image_analysis": {
+            "image_received": true,
+            "validity": {
+              "checked": true,
+              "model_available": true,
+              "status": "passed"
+            },
+            "identification_status": "candidate",
+            "class_name": null,
+            "class_label": null,
+            "context_id": "05503279cc54440cb60a4edf68aca554"
+          },
+          "identification_status": "invalid_input",
+          "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+          "text_validation": {
+            "valid": false,
+            "reason": "texto repetitivo sem significado clínico"
+          },
+          "asked_questions": []
+        },
+        "run_id": "c163eddb915147f9961b5cdf4dc1e603",
+        "request_sequence": 1
+      }
+    }
+  ],
+  "derived_metrics": {
+    "expected_group": "",
+    "visual_group": "",
+    "final_group": "",
+    "final_species": "",
+    "VISUAL_GROUP_CORRECT": "NO",
+    "FINAL_SPECIES_CORRECT": "NOT_APPLICABLE",
+    "FINAL_GROUP_CORRECT": "INCONCLUSIVE",
+    "Q&A_EFFECT": "INCONCLUSIVE"
+  },
+  "final": {
+    "report_text": "",
+    "symptoms": [],
+    "city": "Curitiba",
+    "state": "PR",
+    "region": "",
+    "bite_location": "",
+    "species_matches": [],
+    "recommendations": [
+      "Lave o local com água e sabão.",
+      "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+      "Se houver piora importante, procure atendimento médico imediatamente."
+    ],
+    "image_analysis": {
+      "image_received": true,
+      "validity": {
+        "checked": true,
+        "model_available": true,
+        "status": "passed"
+      },
+      "identification_status": "candidate",
+      "class_name": null,
+      "class_label": null,
+      "context_id": "05503279cc54440cb60a4edf68aca554"
+    },
+    "identification_status": "invalid_input",
+    "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+    "text_validation": {
+      "valid": false,
+      "reason": "texto repetitivo sem significado clínico"
+    },
+    "asked_questions": []
+  },
+  "backend_response_payload": {
+    "ok": true,
+    "needs_more_info": false,
+    "answer": "Análise inicial da IA\nO texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.\n\nAviso: isso é apenas apoio inicial e não substitui avaliação médica.",
+    "analysis": {
+      "report_text": "",
+      "symptoms": [],
+      "city": "Curitiba",
+      "state": "PR",
+      "region": "",
+      "bite_location": "",
+      "species_matches": [],
+      "recommendations": [
+        "Lave o local com água e sabão.",
+        "Observe se surgem sintomas importantes como falta de ar, vômito, febre alta ou piora rápida.",
+        "Se houver piora importante, procure atendimento médico imediatamente."
+      ],
+      "image_analysis": {
+        "image_received": true,
+        "validity": {
+          "checked": true,
+          "model_available": true,
+          "status": "passed"
+        },
+        "identification_status": "candidate",
+        "class_name": null,
+        "class_label": null,
+        "context_id": "05503279cc54440cb60a4edf68aca554"
+      },
+      "identification_status": "invalid_input",
+      "identification_message": "O texto informado não descreve sintomas, sinais locais ou contexto de picada suficiente.",
+      "text_validation": {
+        "valid": false,
+        "reason": "texto repetitivo sem significado clínico"
+      },
+      "asked_questions": []
+    },
+    "run_id": "c163eddb915147f9961b5cdf4dc1e603",
+    "request_sequence": 1
+  },
+  "final_visual": {
+    "top_1": null,
+    "top_2": null,
+    "top_3": null,
+    "visual_group": null,
+    "gate": {
+      "checked": true,
+      "model_available": true,
+      "status": "passed"
+    },
+    "gate_reason": null,
+    "confidence": null,
+    "confidence_margin": null,
+    "full_ranking": []
+  },
+  "image_name": "upload.jpg",
+  "image_sha256": "092d33f6870f74931bf7872d8bb75c6841cf356d61acdd84a35b187910206d30",
+  "image_width": 96,
+  "image_height": 96,
+  "visual_top1": null,
+  "visual_top1_score": null,
+  "visual_top2": null,
+  "visual_top2_score": null,
+  "visual_top3": null,
+  "visual_top3_score": null,
+  "visual_full_ranking": [],
+  "visual_group": null,
+  "visual_gate": {
+    "checked": true,
+    "model_available": true,
+    "status": "passed"
+  },
+  "visual_gate_reason": null,
+  "visual_confidence_state": {
+    "confidence": null,
+    "margin": null
+  },
+  "questions_asked_count": 0,
+  "question_stop_reason": "",
+  "remaining_discriminative_questions": [],
+  "clinical_all_species_matches": null,
+  "clinical_species_ranking": [],
+  "cross_group_decision_trace": null,
+  "multimodal_fusion": null,
+  "candidate_changed_by_visual": "NO",
+  "candidate_change_reason": "no_candidate_change_observed",
+  "species_acceptance": {},
+  "backend_final": {
+    "result_type": null,
+    "identification_status": "invalid_input",
+    "decision_reason": null,
+    "backend_final_group": "",
+    "backend_final_species": "",
+    "backend_final_state": "INCONCLUSIVE"
+  },
+  "backend_to_frontend_trace": {
+    "http_response_field": "analysis",
+    "javascript_function": "buildResultViewModel",
+    "result_type_source": "analysis.result_type / analysis.result_mode / analysis.identification_status",
+    "ui_compatibility_group_source": "analysis.selected_group || analysis.visual_group",
+    "ui_compatibility_group_value": "",
+    "group_only_ui_collision": false,
+    "group_only_rendered_title": "Espécie não determinada com segurança",
+    "inconclusive_rendered_title": "Resultado inconclusivo"
+  }
+}
